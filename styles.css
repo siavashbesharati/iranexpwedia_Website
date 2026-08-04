@@ -67,6 +67,17 @@ a {
   color: var(--accent);
 }
 
+.neon-text,
+.accent.neon-text {
+  background: linear-gradient(120deg, #30f2ff 0%, #fe9910 45%, #ff2bd6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 0 10px rgba(254, 153, 16, 0.45));
+}
+
 /* Header */
 .site-header {
   position: sticky;
@@ -313,6 +324,10 @@ a {
 
 .glitch-title {
   position: relative;
+  color: #f4f7ff;
+  text-shadow:
+    0 0 18px rgba(48, 242, 255, 0.25),
+    0 0 40px rgba(254, 153, 16, 0.12);
 }
 
 .glitch-title::before,
@@ -322,6 +337,8 @@ a {
   inset: 0;
   pointer-events: none;
   opacity: 0.35;
+  background: none;
+  -webkit-text-fill-color: unset;
 }
 
 .glitch-title::before {
@@ -334,10 +351,6 @@ a {
   color: var(--neon-magenta);
   transform: translateX(-2px);
   animation: glitchB 2.4s infinite;
-}
-
-.neon-text {
-  text-shadow: 0 0 12px rgba(254, 153, 16, 0.85);
 }
 
 .holo-frame {
@@ -470,6 +483,18 @@ a {
   line-height: 1.35;
   margin: 0 0 1rem;
   font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.section-head h2,
+.section h2,
+.split h2,
+.contact-grid h2 {
+  background: linear-gradient(100deg, #e8eaef 20%, #30f2ff 55%, #fe9910 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .lead {

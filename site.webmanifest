@@ -1,0 +1,23 @@
+{
+  "name": "ایران اکسپدیا | Iran Expedia",
+  "short_name": "ایران اکسپدیا",
+  "description": "نرم‌افزار اتوماسیون، CRM، یکپارچه‌سازی شبکه‌های اجتماعی و رشد کسب‌وکار برای B2B و B2C",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0e12",
+  "theme_color": "#fe9910",
+  "lang": "fa",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "assets/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
