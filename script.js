@@ -19,6 +19,7 @@
 
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  var isNarrow = window.matchMedia("(max-width: 900px)").matches;
   if (prefersReducedMotion) return;
 
   if (finePointer) {
@@ -50,39 +51,46 @@
   }
   animateCursor();
 
-  var parallaxItems = document.querySelectorAll("[data-parallax], [data-depth]");
-  window.addEventListener("mousemove", function (e) {
-    var px = (e.clientX / window.innerWidth - 0.5) * 2;
-    var py = (e.clientY / window.innerHeight - 0.5) * 2;
-    parallaxItems.forEach(function (el) {
-      var depth = parseFloat(el.getAttribute("data-parallax") || el.getAttribute("data-depth") || "0.02");
-      var tx = px * depth * 42;
-      var ty = py * depth * 28;
-      el.style.transform = "translate3d(" + tx + "px," + ty + "px,0)";
-    });
-  });
-
-  var tilts = document.querySelectorAll("[data-tilt]");
-  tilts.forEach(function (el) {
-    el.addEventListener("mousemove", function (e) {
-      var r = el.getBoundingClientRect();
-      var x = (e.clientX - r.left) / r.width;
-      var y = (e.clientY - r.top) / r.height;
-      var rx = (0.5 - y) * 8;
-      var ry = (x - 0.5) * 10;
-      el.style.transform = "perspective(900px) rotateX(" + rx + "deg) rotateY(" + ry + "deg) translateY(-2px)";
-    });
-    el.addEventListener("mouseleave", function () {
-      el.style.transform = "";
-    });
-  });
-
-  var frame = document.getElementById("holo-frame");
-  if (frame) {
+  // Parallax / 3D motion only on desktop — these transforms caused horizontal scroll on mobile
+  if (!isNarrow && finePointer) {
+    var parallaxItems = document.querySelectorAll("[data-parallax], [data-depth]");
     window.addEventListener("mousemove", function (e) {
-      var x = (e.clientX / window.innerWidth - 0.5) * 14;
-      var y = (e.clientY / window.innerHeight - 0.5) * -10;
-      frame.style.transform = "perspective(1000px) rotateY(" + x + "deg) rotateX(" + y + "deg)";
+      var px = (e.clientX / window.innerWidth - 0.5) * 2;
+      var py = (e.clientY / window.innerHeight - 0.5) * 2;
+      parallaxItems.forEach(function (el) {
+        var depth = parseFloat(el.getAttribute("data-parallax") || el.getAttribute("data-depth") || "0.02");
+        var tx = px * depth * 42;
+        var ty = py * depth * 28;
+        el.style.transform = "translate3d(" + tx + "px," + ty + "px,0)";
+      });
+    });
+
+    var tilts = document.querySelectorAll("[data-tilt]");
+    tilts.forEach(function (el) {
+      el.addEventListener("mousemove", function (e) {
+        var r = el.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width;
+        var y = (e.clientY - r.top) / r.height;
+        var rx = (0.5 - y) * 8;
+        var ry = (x - 0.5) * 10;
+        el.style.transform = "perspective(900px) rotateX(" + rx + "deg) rotateY(" + ry + "deg) translateY(-2px)";
+      });
+      el.addEventListener("mouseleave", function () {
+        el.style.transform = "";
+      });
+    });
+
+    var frame = document.getElementById("holo-frame");
+    if (frame) {
+      window.addEventListener("mousemove", function (e) {
+        var x = (e.clientX / window.innerWidth - 0.5) * 14;
+        var y = (e.clientY / window.innerHeight - 0.5) * -10;
+        frame.style.transform = "perspective(1000px) rotateY(" + x + "deg) rotateX(" + y + "deg)";
+      });
+    }
+  } else {
+    document.querySelectorAll("[data-parallax], [data-depth], #holo-frame").forEach(function (el) {
+      el.style.transform = "";
     });
   }
 

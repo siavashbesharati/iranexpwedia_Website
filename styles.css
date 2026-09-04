@@ -22,6 +22,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -32,6 +34,8 @@ body {
   line-height: 1.75;
   font-size: 1rem;
   overflow-x: hidden;
+  max-width: 100%;
+  position: relative;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -45,6 +49,15 @@ main,
 .site-footer {
   position: relative;
   z-index: 2;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.hero,
+.section,
+#bidar {
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 img {
@@ -61,6 +74,18 @@ a {
 .container {
   width: min(1120px, 92vw);
   margin-inline: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-actions .btn {
+  max-width: 100%;
 }
 
 .accent {
@@ -503,12 +528,6 @@ a {
   max-width: 36em;
 }
 
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
 .orbit-card {
   position: relative;
   padding: 2.5rem;
@@ -769,10 +788,16 @@ a {
   grid-template-columns: 1.2fr 0.8fr;
   gap: 2.5rem;
   align-items: center;
+  max-width: 100%;
+}
+
+.bidar-spotlight-copy {
+  min-width: 0;
 }
 
 .bidar-spotlight-copy h2 {
   margin-top: 0;
+  overflow-wrap: anywhere;
 }
 
 .bidar-spotlight-panel {
@@ -785,6 +810,9 @@ a {
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.45),
     0 0 40px rgba(48, 242, 255, 0.1);
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .bidar-panel-brand {
@@ -887,6 +915,44 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .hero {
+    overflow: hidden;
+  }
+
+  .hero-bg-orbs,
+  .holo-ring {
+    display: none;
+  }
+
+  .hero-visual,
+  .hero-copy,
+  [data-parallax],
+  [data-depth] {
+    transform: none !important;
+  }
+
+  .holo-frame {
+    transform: none !important;
+  }
+
+  .section-title-cyber span::before,
+  .section-title-cyber span::after {
+    width: 18px;
+  }
+
+  .bidar-panel-brand {
+    font-size: clamp(2rem, 12vw, 2.8rem);
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
   .testimonial-wide {
     grid-column: auto;
   }
@@ -907,6 +973,7 @@ a {
     opacity: 0;
     pointer-events: none;
     transition: transform 0.25s, opacity 0.25s;
+    max-width: 100%;
   }
 
   .site-nav.is-open {

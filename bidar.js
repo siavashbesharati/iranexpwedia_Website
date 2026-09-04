@@ -99,6 +99,64 @@
     }
   ];
 
+  /* Warm the browser cache as soon as the page is idle — before the user reaches the slider */
+  var photoCache = Object.create(null);
+
+  function preloadReviewPhotos() {
+    var seen = Object.create(null);
+    var queue = [];
+    reviews.forEach(function (item) {
+      if (!item.photo || seen[item.photo]) return;
+      seen[item.photo] = true;
+      queue.push(item.photo);
+    });
+
+    var i = 0;
+    function loadOne() {
+      if (i >= queue.length) return;
+      var url = queue[i++];
+      if (photoCache[url]) {
+        scheduleNext();
+        return;
+      }
+      var img = new Image();
+      var settled = false;
+      function done() {
+        if (settled) return;
+        settled = true;
+        scheduleNext();
+      }
+      img.decoding = "async";
+      img.onload = function () {
+        photoCache[url] = img;
+        done();
+      };
+      img.onerror = done;
+      img.src = url;
+      if (img.complete && img.naturalWidth > 0) {
+        photoCache[url] = img;
+        done();
+      }
+    }
+
+    function scheduleNext() {
+      if (i >= queue.length) return;
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(loadOne, { timeout: 1200 });
+      } else {
+        setTimeout(loadOne, 60);
+      }
+    }
+
+    loadOne();
+  }
+
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(preloadReviewPhotos, { timeout: 2000 });
+  } else {
+    setTimeout(preloadReviewPhotos, 350);
+  }
+
   var slide = document.getElementById("testimonial-slide");
   var quoteEl = document.getElementById("t-quote-text");
   var nameEl = document.getElementById("t-name");
@@ -130,21 +188,31 @@
     avatarEl.classList.remove("has-photo");
     photoEl.hidden = true;
     photoEl.removeAttribute("src");
-    if (item.photo) {
-      photoEl.onload = function () {
-        photoEl.hidden = false;
-        photoEl.removeAttribute("hidden");
-        avatarEl.classList.add("has-photo");
-      };
-      photoEl.onerror = function () {
-        photoEl.hidden = true;
-        avatarEl.classList.remove("has-photo");
-      };
-      photoEl.alt = item.name;
+    if (!item.photo) return;
+
+    function showPhoto() {
+      photoEl.hidden = false;
+      photoEl.removeAttribute("hidden");
+      avatarEl.classList.add("has-photo");
+    }
+
+    photoEl.onload = showPhoto;
+    photoEl.onerror = function () {
+      photoEl.hidden = true;
+      avatarEl.classList.remove("has-photo");
+    };
+    photoEl.alt = item.name;
+
+    var cached = photoCache[item.photo];
+    if (cached && cached.complete && cached.naturalWidth > 0) {
       photoEl.src = item.photo;
-      if (photoEl.complete && photoEl.naturalWidth > 0) {
-        photoEl.onload();
-      }
+      showPhoto();
+      return;
+    }
+
+    photoEl.src = item.photo;
+    if (photoEl.complete && photoEl.naturalWidth > 0) {
+      showPhoto();
     }
   }
 
