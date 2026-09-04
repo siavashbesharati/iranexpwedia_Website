@@ -45,56 +45,57 @@
   }
 
   /* —— Testimonials carousel + typewriter ——
-     To add a profile photo later, set photo: "assets/reviews/name.jpg"
+     To add a profile photo later, set photo: "/assets/reviews/name.png"
+     Use lowercase extensions (.png not .PNG) — Linux/Vercel is case-sensitive.
   */
   var reviews = [
     {
       name: "رضا موسوی",
       role: "مدیر فروش · بنگاه املاک ونک",
       text: "قبلاً روزی نزدیک صد پیام دیوار و واتساپ داشتیم و نصف‌شون از دست می‌رفت. بیدار پاسخ اولیه رو می‌ده، مشتری رو به واتساپ می‌آره و شماره رو ذخیره می‌کنه. تیم فروش ما فقط روی لیدهای داغ وقت می‌ذاره.",
-      photo: "assets/reviews/man-1.png"
+      photo: "/assets/reviews/man-1.png"
     },
     {
       name: "مینا احمدی",
       role: "مالک · املاک پارس سعادت‌آباد",
       text: "روی دیوار فایل‌های رهن و اجاره زیادی داریم. بیدار مکالمه رو طبیعی جلو می‌بره و وقتی مشتری جدی باشه تگ «داغ» می‌خوره. برای اولین‌بار قیف فروش املاک‌مون شفاف شده.",
-      photo: "assets/reviews/woman-1.png"
+      photo: "/assets/reviews/woman-1.png"
     },
     {
       name: "دکتر سارا نیک‌پی",
       role: "مدیر کلینیک زیبایی آتریوم",
       text: "کلینیک ما نوبت و مشاوره زیادی از بله و واتساپ می‌گیره. پاسخ خودکار بیدار باعث شد منشی‌ها شب‌ها هم پوشش داشته باشن و بیمار از دست نره. تگ «نیاز به انسان» هم عالی کار می‌کنه.",
-      photo: "assets/reviews/woman-2.png"
+      photo: "/assets/reviews/woman-2.png"
     },
     {
       name: "علی کرمی",
       role: "مسئول پذیرش · کلینیک دندان‌پزشکی مهر",
       text: "برای کمپین‌های یادآوری چکاپ و تخفیف فصلی، فیلتر روی تگ‌های جدید و قدیمی خیلی کمک کرد. بدون تماس دستی، پیام هدفمند رفت و نرخ برگشت بیمار بهتر شد.",
-      photo: "assets/reviews/man-2.png"
+      photo: "/assets/reviews/man-2.png"
     },
     {
       name: "نگار صالحی",
       role: "مدیر عملیات · آژانس مسافرتی آسمان آبی",
       text: "تور و بلیط آخر هفته پیام خیلی زیادی داره. بیدار روی چند اکانت واتساپ و بله کار می‌کنه و اپراتورها هم‌زمان جواب می‌دن. ایجنت هوشمند هم می‌گه امروز داغ‌ترین لیدها کدوم‌ان.",
-      photo: "assets/reviews/woman-3.png"
+      photo: "/assets/reviews/woman-3.png"
     },
     {
       name: "حسین فرهادی",
       role: "مدیر مارکتینگ · سفرهای پارسیان",
       text: "کمپین نوروز رو روی همه مشتریانی که از دیوار یا واتساپ پیام داده بودن زدیم. زمان ارسال و فیلتر تگ «جدید + داغ» دقیقاً همون چیزی بود که برای فروش تور نیاز داشتیم.",
-      photo: "assets/reviews/man-3.png"
+      photo: "/assets/reviews/man-3.png"
     },
     {
       name: "پویا رستمی",
       role: "مدیرعامل · گروه املاک و سرمایه‌گذاری آریا",
       text: "ما بر کسب‌وکار خودمان نیاز به شخصی‌سازی داشتیم که تیم بیدار این کار را کردند و پیشنهاد می‌دهم شما هم اگر نیاز دارید حتماً مطرح کنید؛ تیم بیدار بسیار باهوش هستند و ایده‌های شما را تقویت می‌کنند و به خوبی پیاده‌سازی می‌کنند.",
-      photo: "assets/reviews/man-4.png"
+      photo: "/assets/reviews/man-4.png"
     },
     {
       name: "مریم جعفری",
       role: "بنیان‌گذار · کلینیک پوست و مو نوران",
       text: "سناریوی پاسخ کلینیک ما خاص بود؛ از سوال قیمت تا هماهنگی پزشک. تیم بیدار ایده‌هامون رو گوش داد، بهترش کرد و توی سیستم پیاده کرد. حس می‌کنی شریک فنی داری، نه فقط یک نرم‌افزار آماده.",
-      photo: "assets/reviews/woman-4.png"
+      photo: "/assets/reviews/woman-4.png"
     }
   ];
 
@@ -132,6 +133,7 @@
     if (item.photo) {
       photoEl.onload = function () {
         photoEl.hidden = false;
+        photoEl.removeAttribute("hidden");
         avatarEl.classList.add("has-photo");
       };
       photoEl.onerror = function () {
@@ -140,6 +142,9 @@
       };
       photoEl.alt = item.name;
       photoEl.src = item.photo;
+      if (photoEl.complete && photoEl.naturalWidth > 0) {
+        photoEl.onload();
+      }
     }
   }
 

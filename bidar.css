@@ -769,6 +769,11 @@ em {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: none;
+}
+
+.t-avatar.has-photo img {
+  display: block;
 }
 
 .t-avatar.has-photo .t-letter {
