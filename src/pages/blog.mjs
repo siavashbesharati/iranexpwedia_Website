@@ -1,7 +1,7 @@
 import { esc } from '../lib/html.mjs';
 import { t, formatDate, readingTime } from '../lib/i18n.mjs';
 import { routes, localePath } from '../lib/routes.mjs';
-import { site, primaryCta, demoCta } from '../data/site.mjs';
+import { site, ogImage, primaryCta, demoCta } from '../data/site.mjs';
 import { posts, categories, blogPage } from '../data/blog.mjs';
 import { layout, breadcrumbSchema } from '../templates/layout.mjs';
 import { s, breadcrumbs, ctaBand, inlineCta, leadForm } from '../templates/components.mjs';
@@ -294,7 +294,7 @@ export function postPage(locale, post, assets) {
     wordCount: blocks.reduce((sum, block) => sum + String(block.p || block.h2 || block.quote || (block.ul || block.ol || []).join(' ')).split(/\s+/).length, 0),
     author: { '@id': `${site.domain}/#organization` },
     publisher: { '@id': `${site.domain}/#organization` },
-    image: `${site.domain}/assets/og-image.png`,
+    image: ogImage,
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${site.domain}${localePath(path, locale)}` },
   };
 

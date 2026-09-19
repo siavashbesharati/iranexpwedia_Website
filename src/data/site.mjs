@@ -113,6 +113,8 @@ export const site = {
   },
 };
 
+export const ogImage = `${site.domain}/assets/og-image.jpg?v=20260919`;
+
 export const nav = [
   { key: 'home', label: { fa: 'خانه', en: 'Home' }, path: { fa: '/', en: '/en/' } },
   { key: 'how', label: { fa: 'روش کار', en: 'How it works' }, path: { fa: '/#how', en: '/en/#how' } },

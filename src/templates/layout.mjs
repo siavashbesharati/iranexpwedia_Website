@@ -3,7 +3,7 @@
 import { esc, tidy, jsonLd } from '../lib/html.mjs';
 import { localeMeta } from '../lib/i18n.mjs';
 import { absolute, localePath } from '../lib/routes.mjs';
-import { site, packageOffer } from '../data/site.mjs';
+import { site, ogImage, packageOffer } from '../data/site.mjs';
 import { header, footer, actionBar } from './components.mjs';
 
 /**
@@ -73,13 +73,13 @@ export function layout(page, assets) {
 <meta property="og:url" content="${esc(canonical)}" />
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(description)}" />
-<meta property="og:image" content="${site.domain}/assets/og-image.png" />
+<meta property="og:image" content="${ogImage}" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="${esc(title)}" />
 <meta name="twitter:description" content="${esc(description)}" />
-<meta name="twitter:image" content="${site.domain}/assets/og-image.png" />
+<meta name="twitter:image" content="${ogImage}" />
 
 ${schema.map((entry) => jsonLd(entry)).join('\n')}
 <script>window.__IX_CONFIG__=${JSON.stringify(runtimeConfig)};</script>
@@ -108,7 +108,7 @@ export function organizationSchema(locale) {
     alternateName: locale === 'fa' ? 'Iran Expedia' : 'ایران اکسپدیا',
     url: `${site.domain}/`,
     logo: `${site.domain}/assets/brand-logo.svg`,
-    image: `${site.domain}/assets/og-image.png`,
+    image: ogImage,
     description: site.tagline[locale],
     telephone: site.contact.phone,
     email: site.contact.email,
