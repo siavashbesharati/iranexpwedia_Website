@@ -18,16 +18,6 @@ function ctaLink(locale, location, extraClass = '') {
   return `<a class="btn btn-primary${extraClass ? ` ${extraClass}` : ''}" href="${esc(t(primaryCta.path, locale))}" data-event="${primaryCta.event}" data-event-location="${esc(location)}">${esc(t(primaryCta.label, locale))}</a>`;
 }
 
-function imageSlot(locale, image, ratio = '4 / 3') {
-  return `<figure class="image-slot" style="--ratio:${ratio}">
-  <div class="image-slot-frame" role="img" aria-label="${esc(t(image.label, locale))}">
-    <img src="${esc(image.src)}" alt="${esc(t(image.label, locale))}" loading="lazy" decoding="async" />
-    <span class="image-slot-title">${esc(t(image.label, locale))}</span>
-  </div>
-  <figcaption>${esc(t(image.note, locale))}</figcaption>
-</figure>`;
-}
-
 function chapterHead(locale, chapter) {
   return `<header class="story-head">
     <p class="story-num" aria-hidden="true">${esc(chapter.num)}</p>
@@ -99,17 +89,10 @@ export function homePage(locale, assets) {
     .join('');
 
   const chUnderstand = `<section class="story-chapter" id="${understand.id}" data-chapter="${understand.id}">
-  <div class="story-shell story-split">
+  <div class="story-shell">
     <div>
       ${chapterHead(locale, understand)}
       <ol class="scan-list">${understandScan}</ol>
-    </div>
-    <div class="story-visual">
-      <div class="scan-rings" aria-hidden="true">
-        <span></span><span></span><span></span>
-        <b></b>
-      </div>
-      ${imageSlot(locale, understand.image, '5 / 4')}
     </div>
   </div>
 </section>`;
@@ -124,13 +107,10 @@ export function homePage(locale, assets) {
     .join('');
 
   const chRoadmap = `<section class="story-chapter is-tint" id="${roadmap.id}" data-chapter="${roadmap.id}">
-  <div class="story-shell story-split">
+  <div class="story-shell">
     <div>
       ${chapterHead(locale, roadmap)}
       <ol class="path-line">${roadmapStages}</ol>
-    </div>
-    <div class="story-visual">
-      ${imageSlot(locale, roadmap.image, '5 / 4')}
     </div>
   </div>
 </section>`;
@@ -149,13 +129,10 @@ export function homePage(locale, assets) {
     .join('');
 
   const chBuild = `<section class="story-chapter" id="${build.id}" data-chapter="${build.id}">
-  <div class="story-shell story-split">
+  <div class="story-shell">
     <div>
       ${chapterHead(locale, build)}
       <div class="stack-board">${buildGroups}</div>
-    </div>
-    <div class="story-visual">
-      ${imageSlot(locale, build.image, '4 / 5')}
     </div>
   </div>
 </section>`;
@@ -170,13 +147,10 @@ export function homePage(locale, assets) {
     .join('');
 
   const chAcquire = `<section class="story-chapter is-tint" id="${acquire.id}" data-chapter="${acquire.id}">
-  <div class="story-shell story-split">
+  <div class="story-shell">
     <div>
       ${chapterHead(locale, acquire)}
       <ol class="funnel">${funnelSteps}</ol>
-    </div>
-    <div class="story-visual">
-      ${imageSlot(locale, acquire.image, '5 / 4')}
     </div>
   </div>
 </section>`;
@@ -195,14 +169,11 @@ export function homePage(locale, assets) {
     .join('');
 
   const chRetain = `<section class="story-chapter" id="${retain.id}" data-chapter="${retain.id}">
-  <div class="story-shell story-split">
+  <div class="story-shell">
     <div>
       ${chapterHead(locale, retain)}
       <ol class="orbit">${cycleSteps}</ol>
       <ul class="quiet-row">${extras}</ul>
-    </div>
-    <div class="story-visual">
-      ${imageSlot(locale, retain.image, '5 / 4')}
     </div>
   </div>
 </section>`;
@@ -217,13 +188,10 @@ export function homePage(locale, assets) {
     .join('');
 
   const chTeam = `<section class="story-chapter is-warm" id="${team.id}" data-chapter="${team.id}">
-  <div class="story-shell story-split">
+  <div class="story-shell">
     <div>
       ${chapterHead(locale, team)}
       <ol class="pillars">${pillars}</ol>
-    </div>
-    <div class="story-visual">
-      ${imageSlot(locale, team.image, '5 / 4')}
     </div>
   </div>
 </section>`;
@@ -233,13 +201,10 @@ export function homePage(locale, assets) {
     .join('');
 
   const chForward = `<section class="story-chapter" id="${forward.id}" data-chapter="${forward.id}">
-  <div class="story-shell story-split">
+  <div class="story-shell">
     <div>
       ${chapterHead(locale, forward)}
       <ol class="horizon">${forwardItems}</ol>
-    </div>
-    <div class="story-visual">
-      ${imageSlot(locale, forward.image, '5 / 4')}
     </div>
   </div>
 </section>`;

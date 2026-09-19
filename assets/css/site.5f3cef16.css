@@ -1629,8 +1629,6 @@ ol {
 .js .story-scroll,
 .js .story-chapter .story-emotion,
 .js .story-head,
-.js .story-visual,
-.js .image-slot,
 .js .story-after,
 .js .story-bridge,
 .js .is-overwhelm > .story-shell > h2,
@@ -1822,8 +1820,6 @@ ol {
   .js .story-hero-actions,
   .js .story-scroll,
   .js .story-head,
-  .js .story-visual,
-  .js .image-slot,
   .js .card,
   .js .section-head,
   .js .hero h1,
@@ -1851,7 +1847,7 @@ ol {
 /* ==========================================================================
    Homepage story — editorial, scroll-driven, light theme.
    Loaded after site.css. Only used when body.is-story is present, except
-   for a few primitives (image-slot) that inner pages may reuse later.
+  for a few visual primitives that inner pages may reuse later.
    ========================================================================== */
 
 :root {
@@ -2282,39 +2278,6 @@ body.is-story .site-footer {
   box-shadow: 0 0 0 4px var(--bg);
 }
 
-.scan-rings {
-  position: relative;
-  width: min(100%, 340px);
-  aspect-ratio: 1;
-  margin-inline: auto;
-  margin-block-end: var(--space-3);
-}
-
-.scan-rings span {
-  position: absolute;
-  inset: 12%;
-  border: 1px solid var(--accent-soft);
-  border-radius: 50%;
-  animation: ringPulse 6s ease-in-out infinite;
-}
-
-.scan-rings span:nth-child(1) { inset: 4%; animation-delay: 0s; }
-.scan-rings span:nth-child(2) { inset: 18%; animation-delay: 0.6s; }
-.scan-rings span:nth-child(3) { inset: 32%; animation-delay: 1.2s; }
-
-.scan-rings b {
-  position: absolute;
-  inset: 44%;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 10px var(--accent-softer);
-}
-
-@keyframes ringPulse {
-  0%, 100% { opacity: 0.35; transform: scale(0.98); }
-  50% { opacity: 1; transform: scale(1.02); }
-}
-
 /* --- Roadmap path ----------------------------------------------------- */
 
 .path-line {
@@ -2685,70 +2648,6 @@ body.is-story .site-footer {
   transform: none;
 }
 
-/* --- Image placeholders ----------------------------------------------- */
-
-.image-slot {
-  margin: 0;
-}
-
-.image-slot-frame {
-  position: relative;
-  aspect-ratio: var(--ratio, 4 / 3);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background:
-    linear-gradient(135deg, var(--tint) 0%, var(--surface) 55%, var(--tint-warm) 100%);
-  border: 1px dashed var(--border-strong);
-  display: grid;
-  place-items: end start;
-  padding: var(--space-3);
-}
-
-.image-slot-frame img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.image-slot-frame::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(to bottom right, transparent 49%, rgba(74, 142, 200, 0.08) 50%, transparent 51%);
-  background-size: 18px 18px;
-  pointer-events: none;
-}
-
-.image-slot-mark {
-  position: absolute;
-  inset-block-start: var(--space-2);
-  inset-inline-start: var(--space-2);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.image-slot-title {
-  position: relative;
-  max-width: 18ch;
-  font-weight: 700;
-  font-size: var(--step-0);
-  color: var(--text);
-  text-shadow: 0 1px 12px var(--surface);
-}
-
-.image-slot figcaption {
-  margin-block-start: 0.6rem;
-  font-size: var(--step--1);
-  color: var(--text-subtle);
-  line-height: 1.6;
-}
-
 /* --- Testimonials sit inside the story without extra chrome ----------- */
 
 body.is-story .section.section-tint {
@@ -2805,9 +2704,6 @@ body.is-story #testimonials .section-head h2 {
     grid-template-columns: 1fr;
   }
 
-  .scan-rings {
-    display: none;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2827,7 +2723,6 @@ body.is-story #testimonials .section-head h2 {
     transition: none;
   }
 
-  .scan-rings span,
   .story-scroll::after {
     animation: none;
   }

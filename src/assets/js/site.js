@@ -99,8 +99,6 @@
       '.parallel-card',
       '.story-chapter .story-emotion',
       '.story-head',
-      '.story-visual',
-      '.image-slot',
       '.story-after',
       '.story-bridge',
       '.is-overwhelm > .story-shell > h2',

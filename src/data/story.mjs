@@ -104,14 +104,6 @@ export const story = {
           'Growth opportunities',
         ],
       },
-      image: {
-        src: '/assets/images/1.jpg',
-        label: { fa: 'صاحب کسب‌وکار در محیط واقعی کار', en: 'Business owner in a real working environment' },
-        note: {
-          fa: 'عکس بعدی: یک صاحب کسب‌وکار ایرانی پشت میز کارش، نه استودیو. نور طبیعی، جزئیات واقعی.',
-          en: 'Photo later: an Iranian business owner at their actual desk. Natural light, real detail. Not a studio.',
-        },
-      },
     },
     {
       id: 'roadmap',
@@ -135,14 +127,6 @@ export const story = {
           { k: 'Roadmap', v: 'Order of work' },
           { k: 'Growth', v: 'The result' },
         ],
-      },
-      image: {
-        src: '/assets/images/2.jpg',
-        label: { fa: 'نقشه‌ی رشد روی میز کار', en: 'A growth roadmap on a working table' },
-        note: {
-          fa: 'عکس بعدی: کاغذ یا تخته‌ی سفید با مسیر مشخص، دست‌ها در قاب، بدون لپ‌تاپ تبلیغاتی.',
-          en: 'Photo later: paper or a whiteboard with a clear path, hands in frame, no glossy laptop ad.',
-        },
       },
     },
     {
@@ -170,14 +154,6 @@ export const story = {
           },
         },
       ],
-      image: {
-        src: '/assets/images/3.jpg',
-        label: { fa: 'زیرساخت در حال ساخته شدن', en: 'Infrastructure being assembled' },
-        note: {
-          fa: 'عکس بعدی: لایه‌های یک سیستم واقعی — صفحه، فرم، پیام، گزارش — نه اسکرین‌شات داشبورد.',
-          en: 'Photo later: layers of a real system — a page, a form, a message, a report. Not a dashboard screenshot.',
-        },
-      },
     },
     {
       id: 'acquire',
@@ -201,14 +177,6 @@ export const story = {
           { k: 'Lead', v: 'Ads, conversion, the journey' },
           { k: 'Customer', v: 'Someone who actually buys' },
         ],
-      },
-      image: {
-        src: '/assets/images/4.jpg',
-        label: { fa: 'مسیر مشتری از جستجو تا خرید', en: 'The customer journey from search to purchase' },
-        note: {
-          fa: 'عکس بعدی: یک مسیر ساده و انسانی — جستجو، پیام، ورود به فروشگاه یا کلینیک. بدون آیکون قیف کلیشه‌ای.',
-          en: 'Photo later: a simple human path — a search, a message, walking into the shop or clinic. No stock funnel icons.',
-        },
       },
     },
     {
@@ -238,14 +206,6 @@ export const story = {
         fa: ['سیستم پیگیری', 'اتوماسیون ارتباط', 'بخش‌بندی مشتری', 'کمپین بازگشت', 'استراتژی معرفی'],
         en: ['Follow-up systems', 'Communication automation', 'Segmentation', 'Re-engagement', 'Referral'],
       },
-      image: {
-        src: '/assets/images/5.jpg',
-        label: { fa: 'رابطه‌ی بلندمدت با مشتری', en: 'A long relationship with a customer' },
-        note: {
-          fa: 'عکس بعدی: گفتگوی واقعی با مشتری — پذیرش کلینیک، مشاور املاک، میز فروشگاه. چهره آرام، نه تبلیغ شادی.',
-          en: 'Photo later: a real conversation with a customer — clinic reception, a realtor, a shop counter. Calm faces, not staged joy.',
-        },
-      },
     },
     {
       id: 'team',
@@ -267,14 +227,6 @@ export const story = {
           { k: 'Process', v: 'Clearer work, less wasted work' },
           { k: 'Performance', v: 'Measuring the work, not just the hours' },
         ],
-      },
-      image: {
-        src: '/assets/images/6.jpg',
-        label: { fa: 'جلسه‌ی کاری تیم', en: 'A team working session' },
-        note: {
-          fa: 'عکس بعدی: سه یا چهار نفر دور یک میز در دفتر ایرانی. در حال کار، نه ژست تیمی استوک.',
-          en: 'Photo later: three or four people around a table in an Iranian office. Working, not a stock team pose.',
-        },
       },
     },
     {
@@ -301,14 +253,6 @@ export const story = {
           'We try new methods, carefully',
           'We keep up with how customers actually behave',
         ],
-      },
-      image: {
-        src: '/assets/images/6.jpg',
-        label: { fa: 'افق کسب‌وکار در حال حرکت', en: 'A business still moving forward' },
-        note: {
-          fa: 'عکس بعدی: فضای کار در نور پایان روز، یا ویترین روشن بعد از ساعت کاری. حس تداوم، نه جشن راه‌اندازی.',
-          en: 'Photo later: a workspace at the end of the day, or a lit shopfront after hours. Continuity, not a launch party.',
-        },
       },
     },
   ],
