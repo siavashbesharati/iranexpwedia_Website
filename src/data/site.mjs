@@ -16,8 +16,8 @@ export const site = {
   },
 
   tagline: {
-    fa: 'ایده‌ی کسب‌وکار را به سیستم رشد تبدیل می‌کنیم.',
-    en: 'We turn business ideas into growth systems.',
+    fa: 'شما روی کسب‌وکارتان تمرکز کنید. بقیه‌اش با ما.',
+    en: 'You focus on your business. We take care of the rest.',
   },
 
   contact: {
@@ -116,18 +116,23 @@ export const site = {
 
 export const nav = [
   { key: 'home', label: { fa: 'خانه', en: 'Home' }, path: { fa: '/', en: '/en/' } },
-  { key: 'services', label: { fa: 'خدمات', en: 'Services' }, path: { fa: '/services', en: '/en/services' } },
-  { key: 'bidar', label: { fa: 'بیدار', en: 'Bidar' }, path: { fa: '/bidar', en: '/en/bidar' } },
-  { key: 'case-studies', label: { fa: 'نمونه‌کارها', en: 'Case studies' }, path: { fa: '/case-studies', en: '/en/case-studies' } },
-  { key: 'blog', label: { fa: 'بلاگ', en: 'Blog' }, path: { fa: '/blog', en: '/en/blog' } },
-  { key: 'about', label: { fa: 'درباره ما', en: 'About' }, path: { fa: '/about', en: '/en/about' } },
+  { key: 'how', label: { fa: 'روش کار', en: 'How it works' }, path: { fa: '/#how', en: '/en/#how' } },
+  { key: 'what', label: { fa: 'چه می‌کنیم', en: 'What we do' }, path: { fa: '/#what', en: '/en/#what' } },
+  { key: 'pricing', label: { fa: 'قیمت', en: 'Pricing' }, path: { fa: '/#pricing', en: '/en/#pricing' } },
   { key: 'contact', label: { fa: 'تماس', en: 'Contact' }, path: { fa: '/contact', en: '/en/contact' } },
 ];
 
+export const packageOffer = {
+  amount: 15000000,
+  toman: { fa: '۱۵٬۰۰۰٬۰۰۰', en: '15,000,000' },
+  unit: { fa: 'تومان / ماه', en: 'Toman / month' },
+  irr: 150000000,
+};
+
 export const primaryCta = {
-  label: { fa: 'رزرو جلسه مشاوره رشد', en: 'Book a growth consultation' },
+  label: { fa: 'نقشه‌ی رشد من را بسازید', en: 'Build my roadmap' },
   path: { fa: '/contact', en: '/en/contact' },
-  event: 'book_consultation',
+  event: 'build_roadmap',
 };
 
 export const secondaryCta = {

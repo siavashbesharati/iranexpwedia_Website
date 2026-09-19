@@ -103,6 +103,61 @@
     }
   }
 
+  /* ------------------------------------------ homepage story chapters */
+
+  initStory();
+
+  function initStory() {
+    var chapters = document.querySelectorAll('.story-chapter');
+    if (!chapters.length) return;
+
+    var railLinks = document.querySelectorAll('.story-rail a');
+    var railById = {};
+    railLinks.forEach(function (link) {
+      railById[link.getAttribute('data-chapter')] = link;
+    });
+
+    function activateRail(id) {
+      railLinks.forEach(function (link) {
+        link.classList.toggle('is-active', link.getAttribute('data-chapter') === id);
+      });
+    }
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      chapters.forEach(function (el) {
+        el.classList.add('is-in');
+      });
+      return;
+    }
+
+    var inObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-in');
+          inObserver.unobserve(entry.target);
+        });
+      },
+      { rootMargin: '0px 0px -12% 0px', threshold: 0.18 }
+    );
+
+    var railObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var id = entry.target.getAttribute('data-chapter') || entry.target.id;
+          if (id) activateRail(id);
+        });
+      },
+      { rootMargin: '-40% 0px -45% 0px', threshold: 0 }
+    );
+
+    chapters.forEach(function (el) {
+      inObserver.observe(el);
+      railObserver.observe(el);
+    });
+  }
+
   /* --------------------------------------------- testimonials (kept as-is) */
 
   initTestimonials();
