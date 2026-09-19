@@ -1885,12 +1885,14 @@ body.is-story .site-footer {
 .story-rail {
   position: fixed;
   inset-block-start: 50%;
-  inset-inline-start: max(12px, calc((100vw - 1180px) / 2));
+  inset-inline-start: clamp(8px, 1vw, 16px);
+  inset-inline-end: auto;
   z-index: 40;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+  text-align: start;
 }
 
 .story-rail a {
