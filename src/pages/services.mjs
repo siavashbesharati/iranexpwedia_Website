@@ -1,10 +1,10 @@
-import { esc } from '../lib/html.js';
-import { t, tList } from '../lib/i18n.js';
-import { routes, localePath } from '../lib/routes.js';
-import { site, primaryCta, demoCta, framework } from '../data/site.js';
-import { services, servicesPage } from '../data/services.js';
-import { faq } from '../data/pages.js';
-import { layout, breadcrumbSchema, faqSchema } from '../templates/layout.js';
+import { esc } from '../lib/html.mjs';
+import { t, tList } from '../lib/i18n.mjs';
+import { routes, localePath } from '../lib/routes.mjs';
+import { site, primaryCta, demoCta, framework } from '../data/site.mjs';
+import { services, servicesPage } from '../data/services.mjs';
+import { faq } from '../data/pages.mjs';
+import { layout, breadcrumbSchema, faqSchema } from '../templates/layout.mjs';
 import {
   s,
   breadcrumbs,
@@ -15,8 +15,8 @@ import {
   arrowList,
   inlineCta,
   testimonialBlock,
-} from '../templates/components.js';
-import { iconTile } from '../templates/icons.js';
+} from '../templates/components.mjs';
+import { iconTile } from '../templates/icons.mjs';
 
 const stageLabel = {
   visibility: { fa: 'لایه‌ی دیده‌شدن', en: 'Visibility layer' },

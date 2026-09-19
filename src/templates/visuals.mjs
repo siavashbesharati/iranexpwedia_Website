@@ -6,7 +6,7 @@
  * screenshots by swapping these functions for <img loading="lazy"> tags.
  */
 
-import { esc } from '../lib/html.js';
+import { esc } from '../lib/html.mjs';
 
 const W = 640;
 

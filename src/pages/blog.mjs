@@ -1,10 +1,10 @@
-import { esc } from '../lib/html.js';
-import { t, formatDate, readingTime } from '../lib/i18n.js';
-import { routes, localePath } from '../lib/routes.js';
-import { site, primaryCta, demoCta } from '../data/site.js';
-import { posts, categories, blogPage } from '../data/blog.js';
-import { layout, breadcrumbSchema } from '../templates/layout.js';
-import { s, breadcrumbs, ctaBand, inlineCta, leadForm } from '../templates/components.js';
+import { esc } from '../lib/html.mjs';
+import { t, formatDate, readingTime } from '../lib/i18n.mjs';
+import { routes, localePath } from '../lib/routes.mjs';
+import { site, primaryCta, demoCta } from '../data/site.mjs';
+import { posts, categories, blogPage } from '../data/blog.mjs';
+import { layout, breadcrumbSchema } from '../templates/layout.mjs';
+import { s, breadcrumbs, ctaBand, inlineCta, leadForm } from '../templates/components.mjs';
 
 const sortedPosts = [...posts].sort((a, b) => (a.date < b.date ? 1 : -1));
 
