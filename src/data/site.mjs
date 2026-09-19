@@ -16,8 +16,8 @@ export const site = {
   },
 
   tagline: {
-    fa: 'شما روی کسب‌وکارتان تمرکز کنید. بقیه‌اش با ما.',
-    en: 'You focus on your business. We take care of the rest.',
+    fa: 'دیده‌شدن. اعتمادسازی. بازگشت مشتری.',
+    en: 'Visibility. Trust. Return.',
   },
 
   contact: {
@@ -130,7 +130,7 @@ export const packageOffer = {
 };
 
 export const primaryCta = {
-  label: { fa: 'نقشه‌ی رشد من را بسازید', en: 'Build my roadmap' },
+  label: { fa: 'نقشه راه', en: 'Roadmap' },
   path: { fa: '/contact', en: '/en/contact' },
   event: 'build_roadmap',
 };

@@ -29,12 +29,8 @@ function imageSlot(locale, image, ratio = '4 / 3') {
 }
 
 function chapterHead(locale, chapter) {
-  const emotion = chapter.emotion
-    ? `<p class="story-emotion">${esc(t(chapter.emotion, locale))}</p>`
-    : '';
   return `<header class="story-head">
     <p class="story-num" aria-hidden="true">${esc(chapter.num)}</p>
-    ${emotion}
     <p class="story-kicker">${esc(t(chapter.kicker, locale))}</p>
     <h2>${esc(t(chapter.title, locale))}</h2>
     <p class="story-lead">${esc(t(chapter.lead, locale))}</p>
@@ -54,29 +50,45 @@ export function homePage(locale, assets) {
       .join('')}
   </nav>`;
 
+  const heroPillars = tList(story.hero.pillars, locale)
+    .map(
+      (item, i) => `<li class="parallel-card" style="--i:${i}">
+      <span class="parallel-num">${esc(item.num)}</span>
+      <strong>${esc(item.k)}</strong>
+      <span>${esc(item.v)}</span>
+    </li>`
+    )
+    .join('');
+
   const hero = `<section class="story-hero" id="top">
   <div class="story-hero-wash" aria-hidden="true"></div>
   <div class="story-shell">
     <p class="story-kicker is-hero">${esc(t(story.hero.kicker, locale))}</p>
     <h1>${esc(t(story.hero.title, locale))}</h1>
+    <ol class="parallel-row">${heroPillars}</ol>
     <p class="story-hero-support">${esc(t(story.hero.support, locale))}</p>
     ${priceBlock(locale)}
     <div class="story-hero-actions">
-      ${ctaLink(locale, 'hero', 'btn-lg')}
+      ${ctaLink(locale, 'hero')}
     </div>
     <a class="story-scroll" href="#overwhelm">${esc(t(story.hero.scroll, locale))}</a>
   </div>
 </section>`;
 
-  const overwhelmItems = tList(story.overwhelm.items, locale)
-    .map((item, i) => `<li style="--i:${i}">${esc(item)}</li>`)
+  const lossItems = tList(story.overwhelm.losses, locale)
+    .map(
+      (item, i) => `<li class="parallel-card" style="--i:${i}">
+      <span class="parallel-num">${esc(item.num)}</span>
+      <strong>${esc(item.k)}</strong>
+      <span>${esc(item.v)}</span>
+    </li>`
+    )
     .join('');
 
   const overwhelm = `<section class="story-chapter is-overwhelm" id="overwhelm">
   <div class="story-shell">
-    <p class="story-emotion">${esc(t(story.overwhelm.emotion, locale))}</p>
     <h2>${esc(t(story.overwhelm.title, locale))}</h2>
-    <ul class="load-field">${overwhelmItems}</ul>
+    <ol class="parallel-row">${lossItems}</ol>
     <p class="story-after">${esc(t(story.overwhelm.after, locale))}</p>
     <p class="story-bridge">${esc(t(story.overwhelm.bridge, locale))}</p>
   </div>
@@ -112,10 +124,14 @@ export function homePage(locale, assets) {
     .join('');
 
   const chRoadmap = `<section class="story-chapter is-tint" id="${roadmap.id}" data-chapter="${roadmap.id}">
-  <div class="story-shell">
-    ${chapterHead(locale, roadmap)}
-    <ol class="path-line">${roadmapStages}</ol>
-    ${imageSlot(locale, roadmap.image, '21 / 9')}
+  <div class="story-shell story-split">
+    <div>
+      ${chapterHead(locale, roadmap)}
+      <ol class="path-line">${roadmapStages}</ol>
+    </div>
+    <div class="story-visual">
+      ${imageSlot(locale, roadmap.image, '5 / 4')}
+    </div>
   </div>
 </section>`;
 
@@ -179,11 +195,15 @@ export function homePage(locale, assets) {
     .join('');
 
   const chRetain = `<section class="story-chapter" id="${retain.id}" data-chapter="${retain.id}">
-  <div class="story-shell">
-    ${chapterHead(locale, retain)}
-    <ol class="orbit">${cycleSteps}</ol>
-    <ul class="quiet-row">${extras}</ul>
-    ${imageSlot(locale, retain.image, '16 / 9')}
+  <div class="story-shell story-split">
+    <div>
+      ${chapterHead(locale, retain)}
+      <ol class="orbit">${cycleSteps}</ol>
+      <ul class="quiet-row">${extras}</ul>
+    </div>
+    <div class="story-visual">
+      ${imageSlot(locale, retain.image, '5 / 4')}
+    </div>
   </div>
 </section>`;
 
@@ -213,10 +233,14 @@ export function homePage(locale, assets) {
     .join('');
 
   const chForward = `<section class="story-chapter" id="${forward.id}" data-chapter="${forward.id}">
-  <div class="story-shell">
-    ${chapterHead(locale, forward)}
-    <ol class="horizon">${forwardItems}</ol>
-    ${imageSlot(locale, forward.image, '21 / 9')}
+  <div class="story-shell story-split">
+    <div>
+      ${chapterHead(locale, forward)}
+      <ol class="horizon">${forwardItems}</ol>
+    </div>
+    <div class="story-visual">
+      ${imageSlot(locale, forward.image, '5 / 4')}
+    </div>
   </div>
 </section>`;
 
@@ -238,7 +262,7 @@ export function homePage(locale, assets) {
     ${priceBlock(locale, { large: true })}
     <p class="story-lead">${esc(t(story.reveal.lead, locale))}</p>
     <div class="story-hero-actions">
-      ${ctaLink(locale, 'pricing', 'btn-lg')}
+      ${ctaLink(locale, 'pricing')}
     </div>
   </div>
 </section>`;

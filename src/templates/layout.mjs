@@ -44,7 +44,7 @@ export function layout(page, assets) {
 <link rel="alternate" hreflang="en" href="${esc(absolute(site.domain, path, 'en'))}" />
 <link rel="alternate" hreflang="x-default" href="${esc(absolute(site.domain, path, 'fa'))}" />
 <meta name="robots" content="${noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'}" />
-<meta name="theme-color" content="#1b3a34" />
+<meta name="theme-color" content="#4a8ec8" />
 <meta name="color-scheme" content="light" />
 <meta name="format-detection" content="telephone=yes" />
 <meta name="geo.region" content="IR-07" />

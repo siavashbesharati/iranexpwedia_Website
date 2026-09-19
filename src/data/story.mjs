@@ -9,69 +9,62 @@ export const story = {
     en: 'IranExpedia | Everything your business needs — one team, one monthly price',
   },
   metaDescription: {
-    fa: 'شما روی کسب‌وکارتان تمرکز کنید؛ بقیه‌اش با ما. فهمیدن، نقشه، ساختن، جذب مشتری، نگه‌داشتن، تیم و بهبود مداوم — یک بسته، ۱۵ میلیون تومان در ماه.',
-    en: 'You focus on your business; we take care of the rest. Understand, roadmap, build, acquire, retain, train and keep improving — one package, 15 million Toman a month.',
+    fa: 'هر کسب‌وکار برای موفقیت به سه ستون نیاز دارد: دیده‌شدن، اعتمادسازی، بازگشت مشتری. ایران اکسپدیا این سه را می‌سازد و نیروی انسانی شما را توانمند می‌کند. یک بسته، ۱۵ میلیون تومان در ماه.',
+    en: 'Every business needs three pillars: visibility, trust, and return. IranExpedia builds all three and strengthens your team. One package, 15 million Toman a month.',
   },
 
   hero: {
     kicker: {
-      fa: 'شما روی کسب‌وکارتان تمرکز کنید. بقیه‌اش با ما.',
-      en: 'You focus on your business. We take care of the rest.',
+      fa: 'رشد کسب‌وکار',
+      en: 'Business growth',
     },
     title: {
-      fa: 'کسب‌وکارتان نباید برای رشد، ده تیم مختلف لازم داشته باشد.',
-      en: 'Your business should not need ten different teams to grow.',
+      fa: 'هر کسب‌وکار برای موفقیت فقط به سه ستون نیاز دارد.',
+      en: 'Every business needs only three pillars to succeed.',
+    },
+    pillars: {
+      fa: [
+        { num: '۰۱', k: 'دیده‌شدن', v: 'مشتری در لحظه‌ی نیاز شما را پیدا کند.' },
+        { num: '۰۲', k: 'اعتمادسازی', v: 'وقتی پیدا شد، در چند ثانیه باور کند.' },
+        { num: '۰۳', k: 'بازگشت مشتری', v: 'بعد از خرید هم برگردد و معرفی کند.' },
+      ],
+      en: [
+        { num: '01', k: 'Visibility', v: 'The customer finds you at the moment of need.' },
+        { num: '02', k: 'Trust', v: 'Once found, they believe you in seconds.' },
+        { num: '03', k: 'Return', v: 'After buying, they come back and refer.' },
+      ],
     },
     support: {
-      fa: 'یک تیم. هر آنچه کسب‌وکار نیاز دارد.',
-      en: 'One team. Everything your business needs.',
+      fa: 'ما این سه ستون را می‌سازیم و نیروی انسانی شما را توانمند می‌کنیم.',
+      en: 'We build these three pillars, and we strengthen your own team.',
     },
-    scroll: { fa: 'داستان را ورق بزنید', en: 'Scroll the story' },
+    scroll: { fa: 'ادامه', en: 'Continue' },
   },
 
   overwhelm: {
-    emotion: { fa: 'سردرگم', en: 'Overwhelmed' },
     title: {
-      fa: 'اداره‌ی کسب‌وکار امروز یعنی مدیریتِ همزمانِ خیلی چیزها.',
-      en: 'Running a business today means managing too many things at once.',
+      fa: 'اکنون مشتری از دست می‌رود.',
+      en: 'Customers are leaving you now.',
     },
-    items: {
+    losses: {
       fa: [
-        'سایت',
-        'شبکه‌های اجتماعی',
-        'تبلیغات',
-        'سئو',
-        'CRM',
-        'حسابداری',
-        'نگه‌داشت مشتری',
-        'نوبت آنلاین',
-        'فروش آنلاین',
-        'گزارش و عدد',
-        'مدیریت تیم',
-        'فناوری‌های جدید',
+        { num: '۰۱', k: 'پیدایتان نکرده', v: 'هزاران مشتری رفته‌اند چون پیدایتان نکرده‌اند.' },
+        { num: '۰۲', k: 'اعتماد نکرده', v: 'پیدایتان کرده‌اند اما اعتماد نکرده‌اند.' },
+        { num: '۰۳', k: 'برنگشته', v: 'رفته‌اند و پشت سرشان را نگاه نکرده‌اند.' },
       ],
       en: [
-        'Website',
-        'Social media',
-        'Advertising',
-        'SEO',
-        'CRM',
-        'Accounting',
-        'Retention',
-        'Online booking',
-        'Online sales',
-        'Analytics',
-        'The team',
-        'New technology',
+        { num: '01', k: 'Not found', v: 'Thousands never found you, so they went elsewhere.' },
+        { num: '02', k: 'No trust', v: 'They found you, then did not trust you.' },
+        { num: '03', k: 'No return', v: 'They left and did not look back.' },
       ],
     },
     after: {
-      fa: 'و ده‌ها تصمیم در هر ماه — که هیچ‌کدام کار اصلی شما نیست.',
-      en: 'And dozens of decisions every month — none of which is the work you started the business to do.',
+      fa: 'این مشتری‌ها به اردوگاه رقیب پیوسته‌اند.',
+      en: 'Those customers have joined your competitor.',
     },
     bridge: {
-      fa: 'اول باید کسب‌وکار شما را بفهمیم.',
-      en: 'But first, we need to understand your business.',
+      fa: 'ما این سه ستون را می‌سازیم.',
+      en: 'We build these three pillars.',
     },
   },
 
@@ -79,9 +72,8 @@ export const story = {
     {
       id: 'how',
       num: '01',
-      emotion: { fa: 'فهمیده شدن', en: 'Understood' },
       kicker: { fa: 'فهمیدن', en: 'Understand' },
-      title: { fa: 'اول کسب‌وکار شما را از داخل می‌بینیم.', en: 'First we look inside the business.' },
+      title: { fa: 'کسب‌وکار شما را می‌بینیم.', en: 'We look inside the business.' },
       lead: {
         fa: 'نه حدس. نه پکیج آماده. یک تصویر روشن از آنچه واقعاً در جریان است.',
         en: 'Not a guess. Not a ready-made package. A clear picture of what is actually happening.',
@@ -123,9 +115,8 @@ export const story = {
     {
       id: 'roadmap',
       num: '02',
-      emotion: { fa: 'منظم شدن', en: 'Organized' },
       kicker: { fa: 'نقشه', en: 'The roadmap' },
-      title: { fa: 'بعد می‌گوییم کسب‌وکار شما واقعاً به چه چیزی نیاز دارد.', en: 'Then we say what your business actually needs next.' },
+      title: { fa: 'مسیر رشد را مشخص می‌کنیم.', en: 'We set the path for growth.' },
       lead: {
         fa: 'نه بیست خدمت تصادفی. یک مسیر، به ترتیب اثر.',
         en: 'Not twenty random services. One path, in the order that moves the numbers.',
@@ -155,9 +146,8 @@ export const story = {
     {
       id: 'what',
       num: '03',
-      emotion: { fa: 'ساخته شدن', en: 'Built' },
       kicker: { fa: 'ساخت', en: 'Build' },
-      title: { fa: 'ما فقط نمی‌گوییم چه کار کنید. سیستم را می‌سازیم.', en: 'We do not just tell you what to do. We build the systems that make it happen.' },
+      title: { fa: 'زیرساخت را می‌سازیم.', en: 'We build the infrastructure.' },
       lead: {
         fa: 'زیرساختی که مشتری می‌بیند، و سیستمی که تیم شما با آن کار می‌کند.',
         en: 'The infrastructure the customer sees, and the systems your team actually works in.',
@@ -189,9 +179,8 @@ export const story = {
     {
       id: 'acquire',
       num: '04',
-      emotion: { fa: 'در حال رشد', en: 'Growing' },
       kicker: { fa: 'جذب', en: 'Bring customers in' },
-      title: { fa: 'وقتی زیرساخت آماده است، مشتری را می‌آوریم.', en: 'Once the foundation is ready, we bring customers in.' },
+      title: { fa: 'مشتری را به شما می‌رسانیم.', en: 'We bring customers to you.' },
       lead: {
         fa: 'دیده‌شدن، توجه، لید، مشتری — به همین ترتیب. نه کمپین بی‌هدف.',
         en: 'Visibility, attention, lead, customer — in that order. Not a campaign for its own sake.',
@@ -222,7 +211,7 @@ export const story = {
       id: 'retain',
       num: '05',
       kicker: { fa: 'نگه‌داشتن', en: 'Keep them' },
-      title: { fa: 'گرفتن مشتری پایان کار نیست.', en: 'Getting a customer is not the end.' },
+      title: { fa: 'مشتری را برمی‌گردانیم.', en: 'We bring customers back.' },
       lead: {
         fa: 'رابطه می‌سازیم، نه فقط لید. برگشت، وفاداری، معرفی.',
         en: 'We help you build relationships, not just generate leads. Return, loyalty, referral.',
@@ -257,7 +246,7 @@ export const story = {
       id: 'team',
       num: '06',
       kicker: { fa: 'تیم', en: 'The team' },
-      title: { fa: 'کسب‌وکار، آدم‌هایش هم هست.', en: 'A business is also its people.' },
+      title: { fa: 'نیروی انسانی را توانمند می‌کنیم.', en: 'We strengthen your people.' },
       lead: {
         fa: 'سیستم بهتر. فرآیند بهتر. آدم‌های بهتر. کسب‌وکار بهتر.',
         en: 'Better systems. Better processes. Better people. Better business.',
@@ -285,9 +274,8 @@ export const story = {
     {
       id: 'forward',
       num: '07',
-      emotion: { fa: 'بهبود مداوم', en: 'Continuously improving' },
       kicker: { fa: 'تداوم', en: 'Keep moving' },
-      title: { fa: 'دنیا عوض می‌شود. کسب‌وکار نباید تنها بماند.', en: 'The world keeps changing. The business should not have to figure it out alone.' },
+      title: { fa: 'همراه کسب‌وکار می‌مانیم.', en: 'We stay with the business.' },
       lead: {
         fa: 'همراهی مداوم است، نه یک پروژه‌ی تمام‌شده.',
         en: 'An ongoing partnership, not a project that ends.',
@@ -360,9 +348,9 @@ export const story = {
     },
   },
 
-  reviewsTitle: { fa: 'از زبان کسانی که با ما کار کرده‌اند', en: 'From people we already work with' },
+  reviewsTitle: { fa: 'از زبان کسب‌وکارهایی که رشد کرده‌اند', en: 'From businesses that grew with us' },
   reviewsLead: {
-    fa: 'املاک، کلینیک، آژانس مسافرتی. حرف تیم‌ها، نه شعار ما.',
-    en: 'Real estate, clinics, travel. Their words, not ours.',
+    fa: 'سایت، سئو، زیرساخت و بازگشت مشتری.',
+    en: 'Website, SEO, infrastructure, and return.',
   },
 };
