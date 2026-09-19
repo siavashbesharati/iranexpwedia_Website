@@ -1,11 +1,11 @@
 {
-  "name": "ایران اکسپدیا | Iran Expedia",
+  "name": "ایران اکسپدیا | IranExpedia",
   "short_name": "ایران اکسپدیا",
-  "description": "نرم‌افزار اتوماسیون، CRM، یکپارچه‌سازی شبکه‌های اجتماعی و رشد کسب‌وکار برای B2B و B2C",
+  "description": "توسعه کسب‌وکار و رشد دیجیتال: سایت، سئو، محتوا، اعتبار و اتوماسیون فروش با بیدار.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0c0e12",
-  "theme_color": "#fe9910",
+  "background_color": "#fafaf7",
+  "theme_color": "#0f766e",
   "lang": "fa",
   "dir": "rtl",
   "icons": [

@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /thank-you
+Disallow: /en/thank-you
 
 Sitemap: https://iranexpedia.ir/sitemap.xml
