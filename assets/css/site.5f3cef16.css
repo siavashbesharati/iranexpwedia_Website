@@ -1,5 +1,5 @@
 /* ==========================================================================
-   iranexpedia.ir — design tokens + components
+   iranexpedia.ir â€” design tokens + components
    Light theme only. Logical properties throughout so the same stylesheet
    serves the Persian (RTL) and English (LTR) builds.
    ========================================================================== */
@@ -17,7 +17,7 @@
 /* --- Design tokens ------------------------------------------------------- */
 
 :root {
-  /* Surfaces — light blue paper */
+  /* Surfaces â€” light blue paper */
   --bg: #f3f7fc;
   --surface: #ffffff;
   --tint: #eaf2f9;
@@ -43,7 +43,7 @@
   --success: #15803d;
   --warn: #b45309;
 
-  /* Spacing — 8px grid */
+  /* Spacing â€” 8px grid */
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
@@ -353,7 +353,7 @@ ol {
 }
 
 .link-arrow::after {
-  content: '←';
+  content: 'â†';
   transition: transform 0.18s ease;
 }
 
@@ -362,7 +362,7 @@ ol {
 }
 
 [dir='ltr'] .link-arrow::after {
-  content: '→';
+  content: 'â†’';
 }
 
 [dir='ltr'] .link-arrow:hover::after {
@@ -652,7 +652,7 @@ ol {
   color: var(--text-muted);
 }
 
-/* --- Problem → solution ------------------------------------------------- */
+/* --- Problem â†’ solution ------------------------------------------------- */
 
 .pain-card {
   display: flex;
@@ -1250,7 +1250,7 @@ ol {
 }
 
 .faq-list details[open] summary::after {
-  content: '−';
+  content: 'âˆ’';
 }
 
 .faq-list details p {
@@ -1352,7 +1352,7 @@ ol {
 }
 
 .post-meta .dot::before {
-  content: '·';
+  content: 'Â·';
 }
 
 .category-pill {
@@ -1691,7 +1691,7 @@ ol {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .hero-grid,
   .split {
     grid-template-columns: 1fr;
@@ -1845,7 +1845,7 @@ ol {
 
 
 /* ==========================================================================
-   Homepage story — editorial, scroll-driven, light theme.
+   Homepage story â€” editorial, scroll-driven, light theme.
    Loaded after site.css. Only used when body.is-story is present, except
   for a few visual primitives that inner pages may reuse later.
    ========================================================================== */
@@ -2135,6 +2135,10 @@ body.is-story .site-footer {
 .story-head {
   max-width: 22ch;
   margin-block-end: var(--space-3);
+}
+
+body.is-story .story-head {
+  max-width: 46rem;
 }
 
 .story-split .story-head {

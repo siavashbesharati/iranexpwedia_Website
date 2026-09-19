@@ -291,6 +291,10 @@ body.is-story .site-footer {
   margin-block-end: var(--space-3);
 }
 
+body.is-story .story-head {
+  max-width: 46rem;
+}
+
 .story-split .story-head {
   max-width: none;
 }

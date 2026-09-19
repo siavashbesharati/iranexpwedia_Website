@@ -44,7 +44,7 @@ export function layout(page, assets) {
 <link rel="alternate" hreflang="en" href="${esc(absolute(site.domain, path, 'en'))}" />
 <link rel="alternate" hreflang="x-default" href="${esc(absolute(site.domain, path, 'fa'))}" />
 <meta name="robots" content="${noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'}" />
-<meta name="theme-color" content="#4a8ec8" />
+<meta name="theme-color" content="#fe9910" />
 <meta name="color-scheme" content="light" />
 <meta name="format-detection" content="telephone=yes" />
 <meta name="geo.region" content="IR-07" />
@@ -56,7 +56,13 @@ export function layout(page, assets) {
 <link rel="icon" href="/assets/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png" />
+<link rel="icon" type="image/png" sizes="180x180" href="/assets/favicon-180x180.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/android-chrome-512x512.png" />
 <link rel="manifest" href="/site.webmanifest" />
 
 <meta property="og:type" content="${page.ogType || 'website'}" />
