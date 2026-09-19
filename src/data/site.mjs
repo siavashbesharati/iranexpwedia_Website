@@ -33,9 +33,8 @@ export const site = {
     },
     whatsapp: 'https://wa.me/989120674032',
     email: 'hello@iranexpedia.ir',
-    // Set `handle` to the real Bale ID to turn this into a live link.
     bale: {
-      handle: null,
+      handle: 'iranexpedia_ir',
       placeholder: '[شناسه بله]',
       baseUrl: 'https://ble.ir/',
     },

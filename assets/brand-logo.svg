@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">IranExpedia</title>
+  <desc id="desc">IranExpedia cyan outline and orange lightning mark</desc>
+  <rect x="34" y="34" width="444" height="444" rx="106" fill="none" stroke="#28e3ed" stroke-width="16"/>
+  <path fill="#ff9d12" d="M180 293 244 219 354 163 258 269 234 313 239 253Z"/>
+  <path fill="#ff9d12" d="M180 322h98v18h-98zM180 350h130v18H180z"/>
+</svg>

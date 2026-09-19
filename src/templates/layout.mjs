@@ -44,7 +44,7 @@ export function layout(page, assets) {
 <link rel="alternate" hreflang="en" href="${esc(absolute(site.domain, path, 'en'))}" />
 <link rel="alternate" hreflang="x-default" href="${esc(absolute(site.domain, path, 'fa'))}" />
 <meta name="robots" content="${noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'}" />
-<meta name="theme-color" content="#fe9910" />
+<meta name="theme-color" content="#dff7fa" />
 <meta name="color-scheme" content="light" />
 <meta name="format-detection" content="telephone=yes" />
 <meta name="geo.region" content="IR-07" />
@@ -54,6 +54,7 @@ export function layout(page, assets) {
 <link rel="stylesheet" href="${assets.css}" />
 
 <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="/assets/brand-logo.svg" />
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
 <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png" />
@@ -106,7 +107,7 @@ export function organizationSchema(locale) {
     name: site.name[locale],
     alternateName: locale === 'fa' ? 'Iran Expedia' : 'ایران اکسپدیا',
     url: `${site.domain}/`,
-    logo: `${site.domain}/assets/logoWithTitles.svg`,
+    logo: `${site.domain}/assets/brand-logo.svg`,
     image: `${site.domain}/assets/og-image.png`,
     description: site.tagline[locale],
     telephone: site.contact.phone,

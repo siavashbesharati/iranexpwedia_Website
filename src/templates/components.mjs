@@ -134,7 +134,7 @@ export function header(locale, activeKey, altPath) {
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="${esc(localePath(routes.home, locale))}" aria-label="${esc(brandName)}">
-      <img src="/assets/logoWithTitles.svg" alt="${esc(brandName)}" width="150" height="38" fetchpriority="high" />
+      <img src="/assets/brand-logo.svg" alt="${esc(brandName)}" width="38" height="38" fetchpriority="high" />
     </a>
     <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="${esc(str.menu)}">
       <span></span><span></span><span></span>
@@ -178,7 +178,7 @@ export function footer(locale) {
   <div class="container">
     <div class="footer-grid">
       <div class="footer-about">
-        <img src="/assets/logoWithTitles.svg" alt="${esc(t(site.name, locale))}" width="140" height="36" loading="lazy" />
+        <img src="/assets/brand-logo.svg" alt="${esc(t(site.name, locale))}" width="38" height="38" loading="lazy" />
         <p>${esc(t(site.tagline, locale))}</p>
         <p>
           <a href="tel:${esc(site.contact.mobile)}" data-event="call_click" data-event-location="footer" dir="ltr">${esc(t(site.contact.mobileDisplay, locale))}</a>
