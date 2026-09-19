@@ -246,6 +246,7 @@ export function homePage(locale, assets) {
   const reviews = testimonialBlock(locale, {
     title: t(story.reviewsTitle, locale),
     lead: t(story.reviewsLead, locale),
+    variant: 'home',
   });
 
   const faqSection = faqBlock(locale, faq);

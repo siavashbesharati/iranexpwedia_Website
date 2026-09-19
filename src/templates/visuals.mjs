@@ -16,7 +16,7 @@ function frame(locale, height, body, { title }) {
   return `<svg viewBox="0 0 ${W} ${height}" role="img" aria-label="${esc(title)}" xmlns="http://www.w3.org/2000/svg">
   <rect width="${W}" height="${height}" rx="14" fill="#ffffff"/>
   <rect x="0.5" y="0.5" width="${W - 1}" height="${height - 1}" rx="13.5" fill="none" stroke="#e6e4dd"/>
-  <rect x="1" y="1" width="${W - 2}" height="38" rx="13" fill="#f1f7f6"/>
+  <rect x="1" y="1" width="${W - 2}" height="38" rx="13" fill="#e7eeeb"/>
   <circle cx="${dotX[0]}" cy="20" r="4" fill="#d6d3ca"/>
   <circle cx="${dotX[1]}" cy="20" r="4" fill="#d6d3ca"/>
   <circle cx="${dotX[2]}" cy="20" r="4" fill="#d6d3ca"/>
@@ -71,7 +71,7 @@ export function unifiedInboxVisual(locale) {
     .map((item, i) => {
       const y = 76 + i * 58;
       const active = i === 0;
-      return `<rect x="${X(16, 190)}" y="${y}" width="190" height="48" rx="10" fill="${active ? '#eaf6f4' : '#fafaf7'}" stroke="${active ? '#d6efec' : '#e6e4dd'}"/>
+      return `<rect x="${X(16, 190)}" y="${y}" width="190" height="48" rx="10" fill="${active ? '#e7eeeb' : '#fffcf7'}" stroke="${active ? '#d3dfdb' : '#e2dcd2'}"/>
   <circle cx="${TX(rtl ? 34 : 34)}" cy="${y + 24}" r="5" fill="${item.color}"/>
   <text x="${TX(rtl ? 48 : 48)}" y="${y + 20}" text-anchor="${anchor}" font-family="${font}" font-size="12.5" fill="#1f2937">${esc(item.name)}</text>
   <text x="${TX(rtl ? 48 : 48)}" y="${y + 37}" text-anchor="${anchor}" font-family="${font}" font-size="10.5" fill="#6b7484">${esc(item.channel)} · ${esc(item.tag)}</text>`;
@@ -91,19 +91,19 @@ export function unifiedInboxVisual(locale) {
   <text x="${TX(rtl ? 258 : 258)}" y="139" text-anchor="${anchor}" font-family="${font}" font-size="11.5" fill="#1f2937">${esc(copy.bubbleIn)}</text>
   <text x="${TX(rtl ? 258 : 258)}" y="156" text-anchor="${anchor}" font-family="${font}" font-size="9.5" fill="#6b7484">23:41</text>
 
-  <rect x="${X(320, 296)}" y="182" width="296" height="64" rx="12" fill="#0f766e"/>
+  <rect x="${X(320, 296)}" y="182" width="296" height="64" rx="12" fill="#1b3a34"/>
   <text x="${TX(rtl ? 336 : 336)}" y="206" text-anchor="${anchor}" font-family="${font}" font-size="11.5" fill="#ffffff">${esc(copy.bubbleOut)}</text>
-  <text x="${TX(rtl ? 336 : 336)}" y="232" text-anchor="${anchor}" font-family="${font}" font-size="9.5" fill="#cdeae6">23:41 · AI</text>
+  <text x="${TX(rtl ? 336 : 336)}" y="232" text-anchor="${anchor}" font-family="${font}" font-size="9.5" fill="#d3dfdb">23:41 · AI</text>
 
   <rect x="${X(244, 372)}" y="272" width="372" height="56" rx="12" fill="#fbf7f0" stroke="#efe7d6"/>
   <circle cx="${TX(rtl ? 268 : 268)}" cy="300" r="9" fill="#ffffff" stroke="#d6d3ca"/>
-  <path d="M${rtl ? W - 272 : 264} 300 l3 3 5-6" stroke="#0f766e" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M${rtl ? W - 272 : 264} 300 l3 3 5-6" stroke="#1b3a34" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   <text x="${TX(rtl ? 286 : 286)}" y="296" text-anchor="${anchor}" font-family="${font}" font-size="11.5" fill="#1f2937">${esc(copy.taskLabel)}</text>
   <text x="${TX(rtl ? 286 : 286)}" y="313" text-anchor="${anchor}" font-family="${font}" font-size="10" fill="#6b7484">${esc(copy.taskTime)}</text>
 
-  <rect x="${X(244, 372)}" y="344" width="372" height="40" rx="20" fill="#fafaf7" stroke="#e6e4dd"/>
+  <rect x="${X(244, 372)}" y="344" width="372" height="40" rx="20" fill="#fffcf7" stroke="#e2dcd2"/>
   <text x="${TX(rtl ? 266 : 266)}" y="369" text-anchor="${anchor}" font-family="${font}" font-size="11" fill="#6b7484">${locale === 'fa' ? 'پاسخ پیشنهادی هوش مصنوعی…' : 'Suggested AI reply…'}</text>
-  <circle cx="${TX(rtl ? 592 : 592)}" cy="364" r="14" fill="#0f766e"/>
+  <circle cx="${TX(rtl ? 592 : 592)}" cy="364" r="14" fill="#1b3a34"/>
   <path d="M${rtl ? W - 598 : 586} 364 h11 m-4 -4 l4 4 -4 4" stroke="#ffffff" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="${rtl ? `rotate(180 ${W - 592} 364)` : ''}"/>`;
 
   return frame(locale, H, body, { title: copy.title });
@@ -151,7 +151,7 @@ export function tagBoardVisual(locale) {
       const y = 86 + row * 44;
       cursor += w + 10;
       const active = i < 2;
-      return `<rect x="${X(x, w)}" y="${y}" width="${w}" height="32" rx="16" fill="${active ? '#0f766e' : '#fafaf7'}" stroke="${active ? '#0f766e' : '#e6e4dd'}"/>
+      return `<rect x="${X(x, w)}" y="${y}" width="${w}" height="32" rx="16" fill="${active ? '#1b3a34' : '#fffcf7'}" stroke="${active ? '#1b3a34' : '#e2dcd2'}"/>
   <text x="${TX(rtl ? x + w / 2 : x + w / 2)}" y="${y + 21}" text-anchor="middle" font-family="${font}" font-size="11.5" fill="${active ? '#ffffff' : '#566072'}">${esc(tag)}</text>`;
     })
     .join('\n  ');
@@ -160,8 +160,8 @@ export function tagBoardVisual(locale) {
     .map((name, i) => {
       const w = 96;
       const x = 24 + i * (w + 10);
-      return `<rect x="${X(x, w)}" y="184" width="${w}" height="30" rx="8" fill="#eaf6f4" stroke="#d6efec"/>
-  <text x="${TX(x + w / 2)}" y="204" text-anchor="middle" font-family="${font}" font-size="11" fill="#115e59">${esc(name)}</text>`;
+      return `<rect x="${X(x, w)}" y="184" width="${w}" height="30" rx="8" fill="#e7eeeb" stroke="#d3dfdb"/>
+  <text x="${TX(x + w / 2)}" y="204" text-anchor="middle" font-family="${font}" font-size="11" fill="#1b3a34">${esc(name)}</text>`;
     })
     .join('\n  ');
 
@@ -170,7 +170,7 @@ export function tagBoardVisual(locale) {
   ${channelShapes}
   <line x1="${X(24)}" y1="232" x2="${X(24 + 592)}" y2="232" stroke="#f0eee8"/>
   <text x="${TX(rtl ? 24 : 24)}" y="250" text-anchor="${anchor}" font-family="${font}" font-size="11.5" fill="#566072">${esc(copy.count)}</text>
-  <rect x="${X(472, 144)}" y="176" width="144" height="38" rx="19" fill="#0f766e"/>
+  <rect x="${X(472, 144)}" y="176" width="144" height="38" rx="19" fill="#1b3a34"/>
   <text x="${TX(rtl ? 544 : 544)}" y="200" text-anchor="middle" font-family="${font}" font-size="11.5" fill="#ffffff">${esc(copy.send)}</text>`;
 
   return frame(locale, H, body, { title: copy.title });
@@ -212,8 +212,8 @@ export function analyticsVisual(locale) {
     .map((kpi, i) => {
       const w = 188;
       const x = 24 + i * (w + 10);
-      return `<rect x="${X(x, w)}" y="56" width="${w}" height="64" rx="12" fill="#fafaf7" stroke="#e6e4dd"/>
-  <text x="${TX(rtl ? x + 16 : x + 16)}" y="86" text-anchor="${anchor}" font-family="${font}" font-size="20" font-weight="700" fill="#115e59">${esc(kpi.value)}</text>
+      return `<rect x="${X(x, w)}" y="56" width="${w}" height="64" rx="12" fill="#fffcf7" stroke="#e2dcd2"/>
+  <text x="${TX(rtl ? x + 16 : x + 16)}" y="86" text-anchor="${anchor}" font-family="${font}" font-size="20" font-weight="700" fill="#1b3a34">${esc(kpi.value)}</text>
   <text x="${TX(rtl ? x + 16 : x + 16)}" y="106" text-anchor="${anchor}" font-family="${font}" font-size="10.5" fill="#6b7484">${esc(kpi.label)}</text>`;
     })
     .join('\n  ');

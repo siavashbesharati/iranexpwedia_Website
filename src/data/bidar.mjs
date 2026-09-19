@@ -196,44 +196,59 @@ export const bidar = {
   ],
 
   pricing: {
-    title: { fa: 'قیمت بیدار چطور محاسبه می‌شود؟', en: 'How is Bidar priced?' },
+    title: { fa: 'یک بسته. همه قابلیت‌ها.', en: 'One plan. Every feature.' },
     lead: {
-      fa: 'قیمت بر اساس تعداد کانال، تعداد اپراتور و حجم پیام ماهانه تعیین می‌شود. برای اینکه عدد دقیق و بدون سورپرایز بدهیم، ابتدا یک دموی ۲۰ دقیقه‌ای می‌گذاریم.',
-      en: 'Pricing depends on the number of channels, the number of operators and monthly message volume. So the number is accurate with no surprises, we start with a 20-minute demo.',
+      fa: 'بدون پلن پایه و حرفه‌ای. کسب‌وکارهای بزرگ‌تر که نیاز سفارشی دارند، سازمانی می‌گیرند.',
+      en: 'No Basic and Pro. Larger businesses that need something tailored take Enterprise.',
     },
     tiers: [
       {
-        name: { fa: 'شروع', en: 'Starter' },
-        for: { fa: 'یک کانال، یک یا دو اپراتور', en: 'One channel, one or two operators' },
-        price: { fa: '[قیمت]', en: '[price]' },
-        items: {
-          fa: ['یک کانال (واتساپ، دیوار یا بله)', 'صندوق پیام یکپارچه', 'تگ‌گذاری خودکار لید', 'پشتیبانی راه‌اندازی'],
-          en: ['One channel (WhatsApp, Divar or Bale)', 'Unified inbox', 'Automatic lead tagging', 'Onboarding support'],
-        },
-      },
-      {
-        name: { fa: 'رشد', en: 'Growth' },
-        for: { fa: 'کسب‌وکارهای با بیش از ۳۰ پیام در روز', en: 'Businesses over 30 messages a day' },
-        price: { fa: '[قیمت]', en: '[price]' },
+        name: { fa: 'بیدار', en: 'Bidar' },
+        for: { fa: 'همه‌ی قابلیت‌ها، یک قیمت ماهانه', en: 'Every feature, one monthly price' },
+        price: { fa: '۲٬۰۰۰٬۰۰۰ تومان / ماه', en: '2,000,000 Toman / month' },
         featured: true,
         items: {
-          fa: ['هر سه کانال', 'پاسخ با کمک هوش مصنوعی روی دانش شما', 'وظایف، کمپین و گزارش', 'چند اکانت و چند اپراتور'],
-          en: ['All three channels', 'AI replies trained on your knowledge', 'Tasks, campaigns and analytics', 'Multi-account, multi-operator'],
+          fa: [
+            'صندوق پیام یکپارچه: واتساپ، دیوار، بله',
+            'پاسخ با کمک هوش مصنوعی روی دانش شما',
+            'تگ خودکار لید، وظیفه و پیگیری',
+            'کمپین، چند اکانت و چند اپراتور',
+            'گزارش زمان پاسخ و فروش',
+          ],
+          en: [
+            'Unified inbox: WhatsApp, Divar, Bale',
+            'AI replies trained on your knowledge',
+            'Automatic tags, tasks and follow-up',
+            'Campaigns, multiple accounts and operators',
+            'Response-time and sales reporting',
+          ],
         },
+        cta: 'start',
       },
       {
         name: { fa: 'سازمانی', en: 'Enterprise' },
-        for: { fa: 'تیم‌های بزرگ و نیازهای سفارشی', en: 'Larger teams and custom needs' },
-        price: { fa: '[قیمت]', en: '[price]' },
+        for: { fa: 'قابل سفارشی‌سازی برای کسب‌وکار شما', en: 'Custom-built around your business' },
+        price: { fa: 'تماس بگیرید', en: 'Contact us' },
         items: {
-          fa: ['سناریوهای سفارشی', 'اتصال به سیستم‌های موجود شما', 'آموزش تیم', 'پشتیبانی اختصاصی'],
-          en: ['Custom flows', 'Integration with your existing systems', 'Team training', 'Dedicated support'],
+          fa: [
+            'سناریو و گردش‌کار اختصاصی',
+            'اتصال به سیستم‌های موجود',
+            'آموزش تیم و همراهی اختصاصی',
+            'قیمت پس از بررسی نیاز شما',
+          ],
+          en: [
+            'Custom flows and workflows',
+            'Integration with your current systems',
+            'Team training and dedicated support',
+            'Pricing after we understand the need',
+          ],
         },
+        cta: 'contact',
       },
     ],
     note: {
-      fa: 'اعداد قیمت پس از تأیید نهایی در همین صفحه منتشر می‌شوند. تا آن زمان در جلسه‌ی دمو قیمت دقیق را می‌گیرید.',
-      en: 'Exact figures will be published here once finalised. Until then you get precise pricing in the demo call.',
+      fa: 'برای سازمانی با ۰۹۱۲ ۰۶۷ ۴۰۳۲ تماس بگیرید یا از فرم زیر بنویسید.',
+      en: 'For Enterprise, call 0912 067 4032 or use the form below.',
     },
   },
 

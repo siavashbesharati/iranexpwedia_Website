@@ -11,9 +11,14 @@
   'use strict';
 
   var root = document.documentElement;
-  root.classList.remove('no-js');
-
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    root.classList.add('no-js');
+    root.classList.remove('js');
+  } else {
+    root.classList.remove('no-js');
+    root.classList.add('js');
+  }
   var config = window.__IX_CONFIG__ || {};
 
   /* ---------------------------------------------------------------- events */
@@ -77,45 +82,99 @@
     });
   }
 
-  /* --------------------------------------------------------- scroll reveal */
+  /* ------------------------------------------ scroll-in + story rail */
 
-  var revealItems = document.querySelectorAll('.reveal');
+  initScrollIn();
 
-  if (revealItems.length) {
-    if (reduceMotion || !('IntersectionObserver' in window)) {
-      revealItems.forEach(function (el) {
-        el.classList.add('is-visible');
-      });
-    } else {
-      var revealObserver = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('is-visible');
-            revealObserver.unobserve(entry.target);
-          });
-        },
-        { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
-      );
-      revealItems.forEach(function (el) {
-        revealObserver.observe(el);
+  function initScrollIn() {
+    var scrollSelector = [
+      '.scroll-in',
+      '.reveal',
+      '.story-hero .story-kicker',
+      '.story-hero h1',
+      '.story-hero-support',
+      '.story-hero .story-price',
+      '.story-hero-actions',
+      '.story-scroll',
+      '.story-chapter .story-emotion',
+      '.story-head',
+      '.story-visual',
+      '.image-slot',
+      '.story-after',
+      '.story-bridge',
+      '.is-overwhelm > .story-shell > h2',
+      '.is-reveal .story-kicker',
+      '.is-reveal h2',
+      '.is-reveal .story-price',
+      '.is-reveal .story-lead',
+      '.is-reveal .story-hero-actions',
+      '.is-reveal .story-collapse-label',
+      '.hero .eyebrow',
+      '.hero h1',
+      '.hero .lead',
+      '.hero .btn-row',
+      '.hero .check-list',
+      '.hero-visual',
+      '.channel-pills',
+      '.hero-page h1',
+      '.hero-page .lead',
+      '.section-head',
+      '.card',
+      '.process-list > li',
+      '.faq-list details',
+      '.form-card',
+      '.cta-band',
+      '.cta-inline',
+      '.testimonial-stage',
+      '.testimonial-dots',
+      '.product-frame',
+      '.contact-option',
+      '.trust-item',
+      '.industry-row',
+      '.post-card',
+      '.category-nav',
+      '.prose > p',
+      '.prose > h2',
+      '.prose > ul',
+      '.prose > ol',
+      '.prose > blockquote',
+    ].join(',');
+
+    var nodes = document.querySelectorAll(scrollSelector);
+    var unique = [];
+    var seen = typeof WeakSet === 'function' ? new WeakSet() : null;
+
+    nodes.forEach(function (el) {
+      if (seen) {
+        if (seen.has(el)) return;
+        seen.add(el);
+      }
+      unique.push(el);
+    });
+
+    function stagger(parent, childSelector, step) {
+      if (!parent) return;
+      var kids;
+      try {
+        kids = childSelector ? parent.querySelectorAll(childSelector) : parent.children;
+      } catch (err) {
+        kids = parent.children;
+      }
+      Array.prototype.forEach.call(kids, function (el, i) {
+        if (el.nodeType !== 1) return;
+        el.style.setProperty('--scroll-delay', i * step + 'ms');
       });
     }
-  }
 
-  /* ------------------------------------------ homepage story chapters */
+    var hero = document.querySelector('.story-hero .story-shell') || document.querySelector('.hero > .container') || document.querySelector('.hero-grid');
+    stagger(hero, '.story-kicker, h1, .story-hero-support, .story-price, .btn-row, .story-hero-actions, .check-list, .channel-pills, .story-scroll, .lead, .eyebrow', 80);
 
-  initStory();
-
-  function initStory() {
-    var chapters = document.querySelectorAll('.story-chapter');
-    if (!chapters.length) return;
-
-    var railLinks = document.querySelectorAll('.story-rail a');
-    var railById = {};
-    railLinks.forEach(function (link) {
-      railById[link.getAttribute('data-chapter')] = link;
+    document.querySelectorAll('.grid, .price-grid, .process-list, .faq-list, .contact-options, .trust-grid').forEach(function (parent) {
+      stagger(parent, null, 70);
     });
+
+    var chapters = document.querySelectorAll('.story-chapter');
+    var railLinks = document.querySelectorAll('.story-rail a');
 
     function activateRail(id) {
       railLinks.forEach(function (link) {
@@ -123,7 +182,12 @@
       });
     }
 
+    function revealEl(el) {
+      el.classList.add('is-in', 'is-visible');
+    }
+
     if (reduceMotion || !('IntersectionObserver' in window)) {
+      unique.forEach(revealEl);
       chapters.forEach(function (el) {
         el.classList.add('is-in');
       });
@@ -134,28 +198,35 @@
       function (entries) {
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-in');
+          revealEl(entry.target);
           inObserver.unobserve(entry.target);
         });
       },
-      { rootMargin: '0px 0px -12% 0px', threshold: 0.18 }
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.12 }
     );
 
-    var railObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          var id = entry.target.getAttribute('data-chapter') || entry.target.id;
-          if (id) activateRail(id);
-        });
-      },
-      { rootMargin: '-40% 0px -45% 0px', threshold: 0 }
-    );
-
+    unique.forEach(function (el) {
+      inObserver.observe(el);
+    });
     chapters.forEach(function (el) {
       inObserver.observe(el);
-      railObserver.observe(el);
     });
+
+    if (chapters.length && railLinks.length) {
+      var railObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = entry.target.getAttribute('data-chapter') || entry.target.id;
+            if (id) activateRail(id);
+          });
+        },
+        { rootMargin: '-40% 0px -45% 0px', threshold: 0 }
+      );
+      chapters.forEach(function (el) {
+        railObserver.observe(el);
+      });
+    }
   }
 
   /* --------------------------------------------- testimonials (kept as-is) */

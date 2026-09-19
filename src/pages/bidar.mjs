@@ -1,4 +1,4 @@
-import { esc, markPlaceholders } from '../lib/html.mjs';
+import { esc } from '../lib/html.mjs';
 import { t, tList } from '../lib/i18n.mjs';
 import { routes, localePath } from '../lib/routes.mjs';
 import { site, demoCta, primaryCta } from '../data/site.mjs';
@@ -152,17 +152,23 @@ export function bidarPage(locale, assets) {
       <h2>${esc(t(bidar.pricing.title, locale))}</h2>
       <p>${esc(t(bidar.pricing.lead, locale))}</p>
     </div>
-    <div class="price-grid">
+    <div class="price-grid price-grid-two">
       ${bidar.pricing.tiers
-        .map(
-          (tier) => `<article class="card price-card${tier.featured ? ' is-featured' : ''} reveal">
+        .map((tier) => {
+          const isContact = tier.cta === 'contact';
+          const href = isContact ? `tel:${site.contact.mobile}` : t(demoCta.path, locale);
+          const label = isContact
+            ? t({ fa: 'تماس بگیرید — ۰۹۱۲ ۰۶۷ ۴۰۳۲', en: 'Call 0912 067 4032' }, locale)
+            : t({ fa: 'شروع کنید', en: 'Get started' }, locale);
+          const event = isContact ? 'call_click' : demoCta.event;
+          return `<article class="card price-card${tier.featured ? ' is-featured' : ''} reveal">
         <h3>${esc(t(tier.name, locale))}</h3>
         <p class="price-for">${esc(t(tier.for, locale))}</p>
-        <p class="price-value">${markPlaceholders(t(tier.price, locale))}</p>
+        <p class="price-value">${esc(t(tier.price, locale))}</p>
         ${checkList(tList(tier.items, locale))}
-        <a class="btn btn-secondary btn-block" href="${esc(t(demoCta.path, locale))}" data-event="${demoCta.event}" data-event-location="pricing_${esc(t(tier.name, 'en'))}">${esc(t(demoCta.label, locale))}</a>
-      </article>`
-        )
+        <a class="btn ${tier.featured ? 'btn-primary' : 'btn-secondary'} btn-block" href="${esc(href)}" data-event="${esc(event)}" data-event-location="pricing_${esc(t(tier.name, 'en'))}">${esc(label)}</a>
+      </article>`;
+        })
         .join('\n')}
     </div>
     <p class="muted" style="margin-block-start:var(--space-3);text-align:center">${esc(t(bidar.pricing.note, locale))}</p>
@@ -232,8 +238,10 @@ export function bidarPage(locale, assets) {
     offers: {
       '@type': 'Offer',
       url: `${site.domain}${localePath(routes.bidar, locale)}#pricing`,
+      price: '20000000',
       priceCurrency: 'IRR',
       availability: 'https://schema.org/InStock',
+      name: t({ fa: 'بیدار — اشتراک ماهانه', en: 'Bidar — monthly subscription' }, locale),
     },
   };
 
