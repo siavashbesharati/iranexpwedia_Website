@@ -1,13 +1,13 @@
 /** Reusable blocks shared by every page. */
 
-import { esc, markPlaceholders, attrs } from '../lib/html.js';
-import { t, tList, localizeDigits } from '../lib/i18n.js';
-import { routes, localePath } from '../lib/routes.js';
-import { site, nav, primaryCta, secondaryCta } from '../data/site.js';
-import { services } from '../data/services.js';
-import { categories } from '../data/blog.js';
-import { testimonials } from '../data/testimonials.js';
-import { icon, iconTile } from './icons.js';
+import { esc, markPlaceholders, attrs } from '../lib/html.mjs';
+import { t, tList, localizeDigits } from '../lib/i18n.mjs';
+import { routes, localePath } from '../lib/routes.mjs';
+import { site, nav, primaryCta, secondaryCta } from '../data/site.mjs';
+import { services } from '../data/services.mjs';
+import { categories } from '../data/blog.mjs';
+import { testimonials } from '../data/testimonials.mjs';
+import { icon, iconTile } from './icons.mjs';
 
 const strings = {
   fa: {

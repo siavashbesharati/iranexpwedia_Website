@@ -1,10 +1,10 @@
 /** The HTML document shell: head, SEO, structured data, shared chrome. */
 
-import { esc, tidy, jsonLd } from '../lib/html.js';
-import { localeMeta } from '../lib/i18n.js';
-import { absolute, localePath } from '../lib/routes.js';
-import { site } from '../data/site.js';
-import { header, footer, actionBar } from './components.js';
+import { esc, tidy, jsonLd } from '../lib/html.mjs';
+import { localeMeta } from '../lib/i18n.mjs';
+import { absolute, localePath } from '../lib/routes.mjs';
+import { site } from '../data/site.mjs';
+import { header, footer, actionBar } from './components.mjs';
 
 /**
  * @param {object} page

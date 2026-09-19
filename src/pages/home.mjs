@@ -1,11 +1,11 @@
-import { esc, markPlaceholders } from '../lib/html.js';
-import { t, tList } from '../lib/i18n.js';
-import { routes, localePath } from '../lib/routes.js';
-import { site, primaryCta, secondaryCta, demoCta, framework, frameworkOutcome, processSteps } from '../data/site.js';
-import { services } from '../data/services.js';
-import { caseStudies } from '../data/case-studies.js';
-import { home, faq } from '../data/pages.js';
-import { layout, organizationSchema, websiteSchema, faqSchema } from '../templates/layout.js';
+import { esc, markPlaceholders } from '../lib/html.mjs';
+import { t, tList } from '../lib/i18n.mjs';
+import { routes, localePath } from '../lib/routes.mjs';
+import { site, primaryCta, secondaryCta, demoCta, framework, frameworkOutcome, processSteps } from '../data/site.mjs';
+import { services } from '../data/services.mjs';
+import { caseStudies } from '../data/case-studies.mjs';
+import { home, faq } from '../data/pages.mjs';
+import { layout, organizationSchema, websiteSchema, faqSchema } from '../templates/layout.mjs';
 import {
   s,
   trustStrip,
@@ -15,9 +15,9 @@ import {
   leadForm,
   serviceTile,
   checkList,
-} from '../templates/components.js';
-import { iconTile } from '../templates/icons.js';
-import { unifiedInboxVisual, tagBoardVisual } from '../templates/visuals.js';
+} from '../templates/components.mjs';
+import { iconTile } from '../templates/icons.mjs';
+import { unifiedInboxVisual, tagBoardVisual } from '../templates/visuals.mjs';
 
 export function homePage(locale, assets) {
   const str = s(locale);

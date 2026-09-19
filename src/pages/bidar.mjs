@@ -1,9 +1,9 @@
-import { esc, markPlaceholders } from '../lib/html.js';
-import { t, tList } from '../lib/i18n.js';
-import { routes, localePath } from '../lib/routes.js';
-import { site, demoCta, primaryCta } from '../data/site.js';
-import { bidar } from '../data/bidar.js';
-import { layout, breadcrumbSchema, faqSchema } from '../templates/layout.js';
+import { esc, markPlaceholders } from '../lib/html.mjs';
+import { t, tList } from '../lib/i18n.mjs';
+import { routes, localePath } from '../lib/routes.mjs';
+import { site, demoCta, primaryCta } from '../data/site.mjs';
+import { bidar } from '../data/bidar.mjs';
+import { layout, breadcrumbSchema, faqSchema } from '../templates/layout.mjs';
 import {
   s,
   breadcrumbs,
@@ -12,9 +12,9 @@ import {
   testimonialBlock,
   checkList,
   leadForm,
-} from '../templates/components.js';
-import { iconTile } from '../templates/icons.js';
-import { unifiedInboxVisual, tagBoardVisual, analyticsVisual } from '../templates/visuals.js';
+} from '../templates/components.mjs';
+import { iconTile } from '../templates/icons.mjs';
+import { unifiedInboxVisual, tagBoardVisual, analyticsVisual } from '../templates/visuals.mjs';
 
 export function bidarPage(locale, assets) {
   const str = s(locale);

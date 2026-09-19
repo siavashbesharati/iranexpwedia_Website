@@ -1,11 +1,11 @@
-import { esc, markPlaceholders } from '../lib/html.js';
-import { t, tList } from '../lib/i18n.js';
-import { routes, localePath } from '../lib/routes.js';
-import { site, primaryCta } from '../data/site.js';
-import { caseStudies, caseStudiesPage } from '../data/case-studies.js';
-import { services } from '../data/services.js';
-import { layout, breadcrumbSchema } from '../templates/layout.js';
-import { s, breadcrumbs, ctaBand, arrowList, checkList, serviceTile } from '../templates/components.js';
+import { esc, markPlaceholders } from '../lib/html.mjs';
+import { t, tList } from '../lib/i18n.mjs';
+import { routes, localePath } from '../lib/routes.mjs';
+import { site, primaryCta } from '../data/site.mjs';
+import { caseStudies, caseStudiesPage } from '../data/case-studies.mjs';
+import { services } from '../data/services.mjs';
+import { layout, breadcrumbSchema } from '../templates/layout.mjs';
+import { s, breadcrumbs, ctaBand, arrowList, checkList, serviceTile } from '../templates/components.mjs';
 
 function resultGrid(study, locale) {
   const results = t(study.results, locale) || [];

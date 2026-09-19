@@ -14,17 +14,17 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { site } from './src/data/site.js';
-import { services } from './src/data/services.js';
-import { caseStudies } from './src/data/case-studies.js';
-import { categories, posts } from './src/data/blog.js';
-import { routes, localePath, outputFile } from './src/lib/routes.js';
-import { homePage } from './src/pages/home.js';
-import { servicesHubPage, servicePage } from './src/pages/services.js';
-import { bidarPage } from './src/pages/bidar.js';
-import { caseStudiesPageTemplate, caseStudyPage } from './src/pages/case-studies.js';
-import { blogIndexPage, blogCategoryPage, postPage } from './src/pages/blog.js';
-import { aboutPage, contactPage, thankYouPage, notFoundPage } from './src/pages/misc.js';
+import { site } from './src/data/site.mjs';
+import { services } from './src/data/services.mjs';
+import { caseStudies } from './src/data/case-studies.mjs';
+import { categories, posts } from './src/data/blog.mjs';
+import { routes, localePath, outputFile } from './src/lib/routes.mjs';
+import { homePage } from './src/pages/home.mjs';
+import { servicesHubPage, servicePage } from './src/pages/services.mjs';
+import { bidarPage } from './src/pages/bidar.mjs';
+import { caseStudiesPageTemplate, caseStudyPage } from './src/pages/case-studies.mjs';
+import { blogIndexPage, blogCategoryPage, postPage } from './src/pages/blog.mjs';
+import { aboutPage, contactPage, thankYouPage, notFoundPage } from './src/pages/misc.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const LOCALES = ['fa', 'en'];
