@@ -1,321 +1,514 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa-IR" dir="rtl" class="no-js">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>بیدار | CRM هوشمند واتساپ، دیوار و بله با پاسخ خودکار AI</title>
-  <meta name="description" content="بیدار — CRM و پاسخ‌گوی خودکار مبتنی بر RAG برای واتساپ، دیوار و بله. جذب لید، کمپین، تگ‌های هوشمند و ایجنت AI برای کسب‌وکارهایی با بیش از ۳۰ پیام در روز." />
-  <meta name="keywords" content="بیدار, CRM واتساپ, پاسخ خودکار دیوار, CRM بله, اتوماسیون چت, لید جنریشن, bidar" />
-  <meta name="robots" content="index, follow, max-image-preview:large" />
-  <meta name="theme-color" content="#fe9910" />
-  <link rel="canonical" href="https://iranexpedia.ir/bidar.html" />
-
-  <link rel="icon" href="/assets/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="fa_IR" />
-  <meta property="og:site_name" content="ایران اکسپدیا" />
-  <meta property="og:url" content="https://iranexpedia.ir/bidar.html" />
-  <meta property="og:title" content="بیدار | CRM هوشمند واتساپ، دیوار و بله" />
-  <meta property="og:description" content="پاسخ خودکار AI، تبدیل خریدار دیوار به لید، کمپین و تگ‌های داینامیک — برای کسب‌وکارهای پرپیام." />
-  <meta property="og:image" content="https://iranexpedia.ir/assets/og-image.png" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="بیدار | CRM هوشمند واتساپ، دیوار و بله" />
-  <meta name="twitter:description" content="پاسخ خودکار AI برای واتساپ، دیوار و بله — امتحان کنید: bidar-app.ir" />
-  <meta name="twitter:image" content="https://iranexpedia.ir/assets/og-image.png" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "بیدار",
-    "alternateName": "Bidar",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "url": "https://bidar-app.ir",
-    "description": "CRM و پاسخ‌گوی خودکار AI برای واتساپ، دیوار و بله با RAG، کمپین و تگ‌های هوشمند.",
-    "offers": {
-      "@type": "Offer",
-      "url": "https://bidar-app.ir",
-      "priceCurrency": "IRR",
-      "availability": "https://schema.org/InStock"
-    },
-    "provider": {
-      "@type": "Organization",
-      "name": "ایران اکسپدیا",
-      "url": "https://iranexpedia.ir"
-    }
-  }
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="bidar.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>بیدار | CRM و صندوق پیام یکپارچه واتساپ، دیوار و بله</title>
+<meta name="description" content="بیدار پیام‌های واتساپ، دیوار و بله را در یک صندوق جمع می‌کند: پاسخ هوشمند، لید و تگ خودکار، کمپین، وظایف و گزارش. درخواست دمو." />
+<link rel="canonical" href="https://iranexpedia.ir/bidar" />
+<link rel="alternate" hreflang="fa-IR" href="https://iranexpedia.ir/bidar" />
+<link rel="alternate" hreflang="en" href="https://iranexpedia.ir/en/bidar" />
+<link rel="alternate" hreflang="x-default" href="https://iranexpedia.ir/bidar" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="theme-color" content="#0f766e" />
+<meta name="color-scheme" content="light" />
+<meta name="format-detection" content="telephone=yes" />
+<meta name="geo.region" content="IR-07" />
+<meta name="geo.placename" content="Tehran" />
+<link rel="preload" href="/assets/fonts/vazirmatn-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/assets/css/site.552789ad.css" />
+<link rel="icon" href="/assets/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fa_IR" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta property="og:site_name" content="ایران اکسپدیا" />
+<meta property="og:url" content="https://iranexpedia.ir/bidar" />
+<meta property="og:title" content="بیدار | CRM و صندوق پیام یکپارچه واتساپ، دیوار و بله" />
+<meta property="og:description" content="بیدار پیام‌های واتساپ، دیوار و بله را در یک صندوق جمع می‌کند: پاسخ هوشمند، لید و تگ خودکار، کمپین، وظایف و گزارش. درخواست دمو." />
+<meta property="og:image" content="https://iranexpedia.ir/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="بیدار | CRM و صندوق پیام یکپارچه واتساپ، دیوار و بله" />
+<meta name="twitter:description" content="بیدار پیام‌های واتساپ، دیوار و بله را در یک صندوق جمع می‌کند: پاسخ هوشمند، لید و تگ خودکار، کمپین، وظایف و گزارش. درخواست دمو." />
+<meta name="twitter:image" content="https://iranexpedia.ir/assets/og-image.png" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"بیدار","alternateName":"Bidar","applicationCategory":"BusinessApplication","applicationSubCategory":"CRM","operatingSystem":"Web","url":"https://bidar-app.ir","description":"بیدار پیام‌های واتساپ، دیوار و بله را در یک صندوق جمع می‌کند: پاسخ هوشمند، لید و تگ خودکار، کمپین، وظایف و گزارش. درخواست دمو.","inLanguage":["fa","en"],"featureList":["صندوق پیام یکپارچه","پاسخ با کمک هوش مصنوعی","تگ‌گذاری خودکار لید","وظایف و پیگیری","کمپین با فیلتر دقیق","چند اکانت و چند اپراتور","گزارش و تحلیل","دستیار پرس‌وجو"],"provider":{"@id":"https://iranexpedia.ir/#organization"},"offers":{"@type":"Offer","url":"https://iranexpedia.ir/bidar#pricing","priceCurrency":"IRR","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"خانه","item":"https://iranexpedia.ir/"},{"@type":"ListItem","position":2,"name":"بیدار","item":"https://iranexpedia.ir/bidar"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"بیدار دقیقاً چه کاری می‌کند؟","acceptedAnswer":{"@type":"Answer","text":"پیام‌های واتساپ، دیوار و بله را در یک صندوق جمع می‌کند، با کمک هوش مصنوعی پاسخ می‌دهد، هر گفتگو را به لید تگ‌خورده تبدیل می‌کند و امکان وظیفه، کمپین و گزارش را می‌دهد."}},{"@type":"Question","name":"راه‌اندازی چقدر طول می‌کشد؟","acceptedAnswer":{"@type":"Answer","text":"اتصال کانال‌ها معمولاً در همان جلسه انجام می‌شود. آموزش دستیار با اسناد و قیمت‌های شما بسته به حجم محتوا یکی دو نشست کاری می‌برد."}},{"@type":"Question","name":"پاسخ‌های هوش مصنوعی از کجا می‌آید؟ ممکن است اشتباه جواب بدهد؟","acceptedAnswer":{"@type":"Answer","text":"دستیار فقط از دانشی که شما می‌دهید استفاده می‌کند: لیست خدمات، قیمت‌ها و سوال‌های پرتکرار. برای موضوعات حساس، پاسخ خودکار غیرفعال می‌شود و گفتگو با تگ «نیاز به انسان» به اپراتور می‌رسد."}},{"@type":"Question","name":"داده‌ها و شماره‌های مشتریان ما کجا ذخیره می‌شود؟","acceptedAnswer":{"@type":"Answer","text":"داده‌ها در حساب اختصاصی کسب‌وکار شما نگه‌داری می‌شود و دسترسی اپراتورها قابل تعریف است. شرایط دقیق نگه‌داری داده در قرارداد مشخص می‌شود."}},{"@type":"Question","name":"بعد از راه‌اندازی، پشتیبانی دارید؟","acceptedAnswer":{"@type":"Answer","text":"بله. آموزش تیم بخشی از راه‌اندازی است و بعد از آن می‌توانید پشتیبانی ماهانه بگیرید یا خودتان سیستم را بگردانید."}},{"@type":"Question","name":"اگر تیم فروش ما فقط دو نفر باشد هم به‌صرفه است؟","acceptedAnswer":{"@type":"Answer","text":"اگر روزانه بیش از ۳۰ پیام دریافت می‌کنید، بله؛ چون بیشترین هزینه‌ی تیم‌های کوچک، پیام‌های بی‌جواب است. زیر آن حجم، معمولاً پیشنهاد می‌کنیم از خدمات دیگر شروع کنید."}}]}</script>
+<script>window.__IX_CONFIG__={"dataLayerName":"dataLayer","formEndpoint":null,"whatsapp":"+989120674032","locale":"fa"};</script>
 </head>
-<body>
-  <div class="fx-layer scanlines" aria-hidden="true"></div>
-  <div class="fx-layer noise" aria-hidden="true"></div>
-
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="bidar.html" aria-label="بیدار">
-        <span class="brand-mark">بیدار</span>
-        <span class="brand-sub">از ایران اکسپدیا</span>
-      </a>
-      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="منو">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="site-nav" id="site-nav">
-        <a href="#channels">کانال‌ها</a>
-        <a href="#features">قابلیت‌ها</a>
-        <a href="#testimonials">نظرات</a>
-        <a href="#audience">مخاطب</a>
-        <a href="#faq">سوالات</a>
-        <a class="btn btn-sm" href="https://bidar-app.ir" target="_blank" rel="noopener noreferrer">شروع رایگان</a>
-      </nav>
+<body data-page="bidar">
+<a class="skip-link" href="#main">رفتن به محتوای اصلی</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="ایران اکسپدیا">
+      <img src="/assets/logoWithTitles.svg" alt="ایران اکسپدیا" width="150" height="38" fetchpriority="high" />
+    </a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="منو">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="دسترسی سریع">
+      <ul><li><a href="/">خانه</a></li><li><a href="/services">خدمات</a></li><li><a href="/bidar" aria-current="page">بیدار</a></li><li><a href="/case-studies">نمونه‌کارها</a></li><li><a href="/blog">بلاگ</a></li><li><a href="/about">درباره ما</a></li><li><a href="/contact">تماس</a></li></ul>
+      <div class="header-tools">
+        <a class="lang-toggle" href="/en/bidar" hreflang="en" lang="en" aria-label="switch to English" data-event="language_switch">English</a>
+        <a class="btn btn-primary btn-sm" href="/contact" data-event="book_consultation" data-event-location="header">رزرو جلسه مشاوره رشد</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <p class="eyebrow">محصول ایران اکسپدیا</p>
+      <h1>یک مشتری. یک گفتگو. یک جریان کاری.</h1>
+      <p class="lead">بیدار واتساپ، دیوار و بله را در یک صندوق پیام جمع می‌کند، با کمک هوش مصنوعی پاسخ می‌دهد و هر گفتگو را به یک لید قابل پیگیری تبدیل می‌کند.</p>
+      <ul class="channel-pills">
+        <li><span class="channel-dot is-whatsapp"></span>واتساپ</li>
+        <li><span class="channel-dot is-divar"></span>دیوار</li>
+        <li><span class="channel-dot is-bale"></span>بله</li>
+      </ul>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-lg" href="/contact?topic=bidar" data-event="request_demo" data-event-location="bidar_hero">درخواست دموی بیدار</a>
+        <a class="btn btn-secondary btn-lg" href="https://bidar-app.ir" target="_blank" rel="noopener" data-event="bidar_app_open" data-event-location="bidar_hero">bidar-app.ir</a>
+      </div>
+      <ul class="check-list"><li>بدون نصب سخت‌افزار</li><li>راه‌اندازی با کمک تیم ما</li><li>مناسب تیم‌های چندنفره</li></ul>
     </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="hero-atmosphere" aria-hidden="true">
-        <div class="hero-grid-lines"></div>
-        <div class="hero-glow hero-glow-a"></div>
-        <div class="hero-glow hero-glow-b"></div>
-      </div>
-      <div class="container hero-content">
-        <p class="hero-brand reveal">بیدار</p>
-        <h1 class="reveal delay-1">CRM بیدار؛ چت‌ها را به مشتری تبدیل کنید</h1>
-        <p class="hero-lead reveal delay-2">
-          پاسخ خودکار مبتنی بر RAG برای واتساپ، دیوار و بله — جذب شماره، ذخیره لید، کمپین و اپراتورهای متعدد در یک سیستم.
-        </p>
-        <div class="hero-cta reveal delay-3">
-          <a class="btn btn-primary" href="https://bidar-app.ir" target="_blank" rel="noopener noreferrer">امتحان کنید — bidar-app.ir</a>
-          <a class="btn btn-ghost" href="#flow">ببینید چطور کار می‌کند</a>
+    <div class="hero-visual">
+      <div class="product-frame"><svg viewBox="0 0 640 420" role="img" aria-label="بیدار — صندوق پیام یکپارچه" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" rx="14" fill="#ffffff"/>
+  <rect x="0.5" y="0.5" width="639" height="419" rx="13.5" fill="none" stroke="#e6e4dd"/>
+  <rect x="1" y="1" width="638" height="38" rx="13" fill="#f1f7f6"/>
+  <circle cx="618" cy="20" r="4" fill="#d6d3ca"/>
+  <circle cx="600" cy="20" r="4" fill="#d6d3ca"/>
+  <circle cx="582" cy="20" r="4" fill="#d6d3ca"/>
+  <text x="320" y="24" text-anchor="middle" font-family="Vazirmatn, system-ui, sans-serif" font-size="12" fill="#566072">بیدار — صندوق پیام یکپارچه</text>
+  <rect x="424" y="39" width="216" height="380" fill="#ffffff"/>
+  <line x1="424" y1="39" x2="424" y2="420" stroke="#e6e4dd"/>
+  <text x="616" y="62" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="11" fill="#6b7484">کانال‌ها</text>
+  <rect x="434" y="76" width="190" height="48" rx="10" fill="#eaf6f4" stroke="#d6efec"/>
+  <circle cx="606" cy="100" r="5" fill="#25d366"/>
+  <text x="592" y="96" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="12.5" fill="#1f2937">خانم احمدی</text>
+  <text x="592" y="113" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="10.5" fill="#6b7484">واتساپ · داغ</text>
+  <rect x="434" y="134" width="190" height="48" rx="10" fill="#fafaf7" stroke="#e6e4dd"/>
+  <circle cx="606" cy="158" r="5" fill="#a3005f"/>
+  <text x="592" y="154" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="12.5" fill="#1f2937">خریدار دیوار</text>
+  <text x="592" y="171" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="10.5" fill="#6b7484">دیوار · جدید</text>
+  <rect x="434" y="192" width="190" height="48" rx="10" fill="#fafaf7" stroke="#e6e4dd"/>
+  <circle cx="606" cy="216" r="5" fill="#1f8bd6"/>
+  <text x="592" y="212" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="12.5" fill="#1f2937">آقای کرمی</text>
+  <text x="592" y="229" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="10.5" fill="#6b7484">بله · پیگیری</text>
+  <text x="396" y="68" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="14" font-weight="700" fill="#1f2937">خانم احمدی</text>
+  <text x="396" y="86" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="10.5" fill="#6b7484">واتساپ · یک مشتری، یک پرونده</text>
+  <line x1="396" y1="100" x2="24" y2="100" stroke="#f0eee8"/>
+  <rect x="146" y="116" width="250" height="52" rx="12" fill="#f4f4f0" stroke="#e6e4dd"/>
+  <text x="382" y="139" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="11.5" fill="#1f2937">قیمت مشاوره چقدره؟ امشب وقت دارید؟</text>
+  <text x="382" y="156" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="9.5" fill="#6b7484">23:41</text>
+  <rect x="24" y="182" width="296" height="64" rx="12" fill="#0f766e"/>
+  <text x="304" y="206" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="11.5" fill="#ffffff">سلام. مشاوره اولیه رایگانه. فردا ۱۰ صبح یا ۱۷ خالیه.</text>
+  <text x="304" y="232" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="9.5" fill="#cdeae6">23:41 · AI</text>
+  <rect x="24" y="272" width="372" height="56" rx="12" fill="#fbf7f0" stroke="#efe7d6"/>
+  <circle cx="372" cy="300" r="9" fill="#ffffff" stroke="#d6d3ca"/>
+  <path d="M368 300 l3 3 5-6" stroke="#0f766e" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="354" y="296" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="11.5" fill="#1f2937">وظیفه: تماس پیگیری</text>
+  <text x="354" y="313" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="10" fill="#6b7484">فردا، ۱۰:۰۰</text>
+  <rect x="24" y="344" width="372" height="40" rx="20" fill="#fafaf7" stroke="#e6e4dd"/>
+  <text x="374" y="369" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="11" fill="#6b7484">پاسخ پیشنهادی هوش مصنوعی…</text>
+  <circle cx="48" cy="364" r="14" fill="#0f766e"/>
+  <path d="M42 364 h11 m-4 -4 l4 4 -4 4" stroke="#ffffff" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="rotate(180 48 364)"/>
+</svg></div>
+      <p class="product-caption">صندوق پیام یکپارچه — واتساپ، دیوار و بله در یک صفحه</p>
+    </div>
+  </div>
+</section>
+<section class="section" id="integrations">
+  <div class="container">
+    <div class="section-head">
+      <h2>سه کانالی که فروش شما در آن اتفاق می‌افتد</h2>
+      <p>بدون جابه‌جا شدن بین اپلیکیشن‌ها و بدون گم شدن پیام.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card reveal">
+        <span class="channel-dot is-whatsapp" style="width:10px;height:10px;display:inline-block;margin-block-end:var(--space-1)"></span>
+        <h3>واتساپ</h3>
+        <p class="muted">چند اکانت، پاسخ خودکار، کمپین و پیگیری — همه در یک صندوق مشترک برای کل تیم.</p>
+      </article>
+<article class="card reveal">
+        <span class="channel-dot is-divar" style="width:10px;height:10px;display:inline-block;margin-block-end:var(--space-1)"></span>
+        <h3>دیوار</h3>
+        <p class="muted">گفتگوی خریدار دیوار به‌صورت طبیعی ادامه پیدا می‌کند، به کانال امن‌تر منتقل می‌شود و شماره ذخیره می‌شود.</p>
+      </article>
+<article class="card reveal">
+        <span class="channel-dot is-bale" style="width:10px;height:10px;display:inline-block;margin-block-end:var(--space-1)"></span>
+        <h3>بله</h3>
+        <p class="muted">کانال داخلی و قابل اعتماد برای مشتریان ایرانی — یکپارچه با همان CRM، تگ و کمپین.</p>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="section section-tint" id="features">
+  <div class="container">
+    <div class="section-head">
+      <h2>قابلیت‌ها</h2>
+      <p>از پاسخ اول تا گزارش پایان ماه.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card reveal">
+        <span class="icon-tile"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 13.5h4l1.5 2.5h6l1.5-2.5h4"/><path d="M3.5 13.5L6 5h12l2.5 8.5V19a1.5 1.5 0 01-1.5 1.5H5A1.5 1.5 0 013.5 19v-5.5z"/></svg></span>
+        <h3>صندوق پیام یکپارچه</h3>
+        <p class="muted">همه‌ی کانال‌ها در یک صفحه. هر مشتری یک پرونده دارد، حتی اگر از سه کانال پیام داده باشد.</p>
+      </article>
+<article class="card reveal">
+        <span class="icon-tile"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12.5h.01M15 12.5h.01M9.5 16h5"/></svg></span>
+        <h3>پاسخ با کمک هوش مصنوعی</h3>
+        <p class="muted">پاسخ‌ها بر اساس اسناد، قیمت‌ها و لحن کسب‌وکار شما ساخته می‌شوند؛ اپراتور می‌تواند قبل از ارسال ویرایش کند.</p>
+      </article>
+<article class="card reveal">
+        <span class="icon-tile"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 12.7l-7.8 7.8a2 2 0 01-2.9 0L3.5 13.2V3.5H13l7.5 7.4a1.6 1.6 0 010 1.8z"/><circle cx="8.2" cy="8.2" r="1.4"/></svg></span>
+        <h3>تگ‌گذاری خودکار لید</h3>
+        <p class="muted">داغ، جدید، قدیمی، ناراضی، ازدست‌رفته، نیاز به انسان — و هر تگ سفارشی که کسب‌وکار شما لازم دارد.</p>
+      </article>
+<article class="card reveal">
+        <span class="icon-tile"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 12.2l2.3 2.3 4.7-5"/></svg></span>
+        <h3>وظایف و پیگیری</h3>
+        <p class="muted">هر لید می‌تواند وظیفه، مسئول و زمان پیگیری داشته باشد. پیگیری از حافظه‌ی تیم بیرون می‌آید.</p>
+      </article>
+<article class="card reveal">
+        <span class="icon-tile"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9.5v5a1.5 1.5 0 001.5 1.5H8l6 4V5.5l-6 4H5.5A1.5 1.5 0 004 11z"/><path d="M17.5 8.5a5 5 0 010 7"/></svg></span>
+        <h3>کمپین با فیلتر دقیق</h3>
+        <p class="muted">برای مناسبت‌ها یا یادآوری، به مخاطبان یک کانال یا یک ترکیب تگ پیام بفرستید — با زمان‌بندی.</p>
+      </article>
+<article class="card reveal">
+        <span class="icon-tile"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="8.5" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M16 5.6a3.2 3.2 0 010 6M18 14.8c2 .8 3.3 2.6 3.3 5.2"/></svg></span>
+        <h3>چند اکانت و چند اپراتور</h3>
+        <p class="muted">چند اکانت روی هر کانال و چند اپراتور همزمان؛ انسان و هوش مصنوعی روی همان لیدها کار می‌کنند.</p>
+      </article>
+<article class="card reveal">
+        <span class="icon-tile"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20h16"/><path d="M7 20V12M12 20V6M17 20v-6"/></svg></span>
+        <h3>گزارش و تحلیل</h3>
+        <p class="muted">حجم پیام، زمان پاسخ، لید و فروش به تفکیک کانال و اپراتور — روی یک داشبورد.</p>
+      </article>
+<article class="card reveal">
+        <span class="icon-tile"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5l8 4.2v8.6l-8 4.2-8-4.2V7.7l8-4.2z"/><path d="M12 12l8-4.3M12 12v8.5M12 12L4 7.7"/></svg></span>
+        <h3>دستیار پرس‌وجو</h3>
+        <p class="muted">به زبان ساده بپرسید: «داغ‌ترین لیدهای امروز کیا هستن؟» و جواب را از داده‌های خودتان بگیرید.</p>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="section" id="how">
+  <div class="container split split-top">
+    <div>
+      <p class="eyebrow">جریان کاری</p>
+      <h2>از پیام تا لید، در چهار قدم</h2>
+      <ol class="process-list" style="grid-template-columns:1fr">
+        <li><strong>مشتری پیام می‌دهد</strong><span>از واتساپ، دیوار یا بله — پیام در همان لحظه در صندوق مشترک تیم می‌نشیند.</span></li>
+<li><strong>پاسخ اول بدون معطلی</strong><span>دستیار با دانش کسب‌وکار شما جواب می‌دهد، نیاز مشتری را روشن می‌کند و او را گرم نگه می‌دارد.</span></li>
+<li><strong>تحویل به اپراتور در لحظه‌ی درست</strong><span>وقتی گفتگو جدی یا حساس می‌شود، تگ «نیاز به انسان» می‌خورد و به اپراتور مسئول می‌رسد.</span></li>
+<li><strong>لید، وظیفه و کمپین</strong><span>شماره و تاریخچه ذخیره می‌شود، وظیفه‌ی پیگیری ساخته می‌شود و مخاطب برای کمپین‌های بعدی آماده است.</span></li>
+      </ol>
+    </div>
+    <div class="reveal">
+      <div class="product-frame"><svg viewBox="0 0 640 260" role="img" aria-label="بیدار — تگ و کمپین" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="260" rx="14" fill="#ffffff"/>
+  <rect x="0.5" y="0.5" width="639" height="259" rx="13.5" fill="none" stroke="#e6e4dd"/>
+  <rect x="1" y="1" width="638" height="38" rx="13" fill="#f1f7f6"/>
+  <circle cx="618" cy="20" r="4" fill="#d6d3ca"/>
+  <circle cx="600" cy="20" r="4" fill="#d6d3ca"/>
+  <circle cx="582" cy="20" r="4" fill="#d6d3ca"/>
+  <text x="320" y="24" text-anchor="middle" font-family="Vazirmatn, system-ui, sans-serif" font-size="12" fill="#566072">بیدار — تگ و کمپین</text>
+  <text x="616" y="66" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="12.5" font-weight="700" fill="#1f2937">فیلتر مخاطبان کمپین</text>
+  <rect x="558" y="86" width="58" height="32" rx="16" fill="#0f766e" stroke="#0f766e"/>
+  <text x="587" y="107" text-anchor="middle" font-family="Vazirmatn, system-ui, sans-serif" font-size="11.5" fill="#ffffff">داغ</text>
+  <rect x="482" y="86" width="66" height="32" rx="16" fill="#0f766e" stroke="#0f766e"/>
+  <text x="515" y="107" text-anchor="middle" font-family="Vazirmatn, system-ui, sans-serif" font-size="11.5" fill="#ffffff">جدید</text>
+  <rect x="397" y="86" width="75" height="32" rx="16" fill="#fafaf7" stroke="#e6e4dd"/>
+  <text x="434.5" y="107" text-anchor="middle" font-family="Vazirmatn, system-ui, sans-serif" font-size="11.5" fill="#566072">قدیمی</text>
+  <rect x="303" y="86" width="84" height="32" rx="16" fill="#fafaf7" stroke="#e6e4dd"/>
+  <text x="345" y="107" text-anchor="middle" font-family="Vazirmatn, system-ui, sans-serif" font-size="11.5" fill="#566072">ناراضی</text>
+  <rect x="173" y="86" width="120" height="32" rx="16" fill="#fafaf7" stroke="#e6e4dd"/>
+  <text x="233" y="107" text-anchor="middle" font-family="Vazirmatn, system-ui, sans-serif" font-size="11.5" fill="#566072">ازدست‌رفته</text>
+  <rect x="469" y="130" width="147" height="32" rx="16" fill="#fafaf7" stroke="#e6e4dd"/>
+  <text x="542.5" y="151" text-anchor="middle" font-family="Vazirmatn, system-ui, sans-serif" font-size="11.5" fill="#566072">نیاز به انسان</text>
+  <rect x="520" y="184" width="96" height="30" rx="8" fill="#eaf6f4" stroke="#d6efec"/>
+  <text x="568" y="204" text-anchor="middle" font-family="Vazirmatn, system-ui, sans-serif" font-size="11" fill="#115e59">واتساپ</text>
+  <rect x="414" y="184" width="96" height="30" rx="8" fill="#eaf6f4" stroke="#d6efec"/>
+  <text x="462" y="204" text-anchor="middle" font-family="Vazirmatn, system-ui, sans-serif" font-size="11" fill="#115e59">دیوار</text>
+  <rect x="308" y="184" width="96" height="30" rx="8" fill="#eaf6f4" stroke="#d6efec"/>
+  <text x="356" y="204" text-anchor="middle" font-family="Vazirmatn, system-ui, sans-serif" font-size="11" fill="#115e59">بله</text>
+  <line x1="616" y1="232" x2="24" y2="232" stroke="#f0eee8"/>
+  <text x="616" y="250" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="11.5" fill="#566072">مخاطب انتخاب‌شده: [X]</text>
+  <rect x="24" y="176" width="144" height="38" rx="19" fill="#0f766e"/>
+  <text x="96" y="200" text-anchor="middle" font-family="Vazirmatn, system-ui, sans-serif" font-size="11.5" fill="#ffffff">زمان‌بندی ارسال</text>
+</svg></div>
+      <p class="product-caption">تگ‌ها و فیلتر مخاطبان کمپین</p>
+    </div>
+  </div>
+</section>
+<section class="section section-warm" id="analytics">
+  <div class="container split">
+    <div class="reveal">
+      <div class="product-frame"><svg viewBox="0 0 640 280" role="img" aria-label="بیدار — گزارش" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="280" rx="14" fill="#ffffff"/>
+  <rect x="0.5" y="0.5" width="639" height="279" rx="13.5" fill="none" stroke="#e6e4dd"/>
+  <rect x="1" y="1" width="638" height="38" rx="13" fill="#f1f7f6"/>
+  <circle cx="618" cy="20" r="4" fill="#d6d3ca"/>
+  <circle cx="600" cy="20" r="4" fill="#d6d3ca"/>
+  <circle cx="582" cy="20" r="4" fill="#d6d3ca"/>
+  <text x="320" y="24" text-anchor="middle" font-family="Vazirmatn, system-ui, sans-serif" font-size="12" fill="#566072">بیدار — گزارش</text>
+  <rect x="428" y="56" width="188" height="64" rx="12" fill="#fafaf7" stroke="#e6e4dd"/>
+  <text x="600" y="86" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="20" font-weight="700" fill="#115e59">[X]</text>
+  <text x="600" y="106" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="10.5" fill="#6b7484">لید این ماه</text>
+  <rect x="230" y="56" width="188" height="64" rx="12" fill="#fafaf7" stroke="#e6e4dd"/>
+  <text x="402" y="86" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="20" font-weight="700" fill="#115e59">[X]</text>
+  <text x="402" y="106" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="10.5" fill="#6b7484">میانگین پاسخ (دقیقه)</text>
+  <rect x="32" y="56" width="188" height="64" rx="12" fill="#fafaf7" stroke="#e6e4dd"/>
+  <text x="204" y="86" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="20" font-weight="700" fill="#115e59">[X]٪</text>
+  <text x="204" y="106" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="10.5" fill="#6b7484">پیام بی‌جواب</text>
+  <text x="616" y="160" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="12" font-weight="700" fill="#1f2937">حجم پیام به تفکیک کانال</text>
+  <circle cx="260" cy="156" r="5" fill="#25d366"/>
+  <text x="248" y="160" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="10" fill="#566072">واتساپ</text>
+  <circle cx="178" cy="156" r="5" fill="#a3005f"/>
+  <text x="166" y="160" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="10" fill="#566072">دیوار</text>
+  <circle cx="96" cy="156" r="5" fill="#1f8bd6"/>
+  <text x="84" y="160" text-anchor="end" font-family="Vazirmatn, system-ui, sans-serif" font-size="10" fill="#566072">بله</text>
+  <line x1="616" y1="236" x2="24" y2="236" stroke="#e6e4dd"/>
+  <rect x="588" y="194" width="12" height="42" rx="4" fill="#25d366" opacity="0.85"/>
+  <rect x="492" y="174.4" width="12" height="61.599999999999994" rx="4" fill="#25d366" opacity="0.85"/>
+  <rect x="396" y="182.8" width="12" height="53.199999999999996" rx="4" fill="#25d366" opacity="0.85"/>
+  <rect x="300" y="157.60000000000002" width="12" height="78.39999999999999" rx="4" fill="#25d366" opacity="0.85"/>
+  <rect x="204" y="168.8" width="12" height="67.19999999999999" rx="4" fill="#25d366" opacity="0.85"/>
+  <rect x="108" y="149.2" width="12" height="86.8" rx="4" fill="#25d366" opacity="0.85"/>
+  <rect x="572" y="210.8" width="12" height="25.2" rx="4" fill="#a3005f" opacity="0.85"/>
+  <rect x="476" y="199.6" width="12" height="36.4" rx="4" fill="#a3005f" opacity="0.85"/>
+  <rect x="380" y="205.2" width="12" height="30.799999999999997" rx="4" fill="#a3005f" opacity="0.85"/>
+  <rect x="284" y="188.4" width="12" height="47.599999999999994" rx="4" fill="#a3005f" opacity="0.85"/>
+  <rect x="188" y="194" width="12" height="42" rx="4" fill="#a3005f" opacity="0.85"/>
+  <rect x="92" y="180" width="12" height="56" rx="4" fill="#a3005f" opacity="0.85"/>
+  <rect x="556" y="222" width="12" height="14" rx="4" fill="#1f8bd6" opacity="0.85"/>
+  <rect x="460" y="216.4" width="12" height="19.599999999999998" rx="4" fill="#1f8bd6" opacity="0.85"/>
+  <rect x="364" y="210.8" width="12" height="25.2" rx="4" fill="#1f8bd6" opacity="0.85"/>
+  <rect x="268" y="213.6" width="12" height="22.4" rx="4" fill="#1f8bd6" opacity="0.85"/>
+  <rect x="172" y="205.2" width="12" height="30.799999999999997" rx="4" fill="#1f8bd6" opacity="0.85"/>
+  <rect x="76" y="199.6" width="12" height="36.4" rx="4" fill="#1f8bd6" opacity="0.85"/>
+</svg></div>
+      <p class="product-caption">گزارش لید، زمان پاسخ و حجم پیام</p>
+    </div>
+    <div>
+      <h2>چیزی را اندازه می‌گیرید که به فروش وصل است</h2>
+      <p class="lead">زمان پاسخ، تعداد لید، پیام‌های بی‌جواب و سهم هر کانال — به تفکیک اپراتور. همین چند عدد کافی است تا بفهمید کجا فرصت از دست می‌رود.</p>
+      <ul class="check-list"><li>زمان اولین پاسخ به تفکیک کانال</li><li>تعداد لید و نرخ تبدیل گفتگو به لید</li><li>پیام‌های بی‌جواب و ساعت‌های پرریسک</li><li>عملکرد هر اپراتور در کنار پاسخ‌های هوشمند</li></ul>
+    </div>
+  </div>
+</section>
+<section class="section" id="use-cases">
+  <div class="container">
+    <div class="section-head">
+      <h2>کاربردها</h2>
+      <p>هر کسب‌وکاری که روزی بیش از ۳۰ پیام جواب می‌دهد.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card reveal">
+        <h3>املاک</h3>
+        <p class="muted">پاسخ به پیام‌های دیوار، گرفتن شماره، تفکیک خریدار جدی از کنجکاو و پیگیری بازدید ملک.</p>
+      </article>
+<article class="card reveal">
+        <h3>کلینیک و زیبایی</h3>
+        <p class="muted">پاسخ به سوال قیمت و آمادگی قبل از درمان، نوبت‌دهی و یادآوری مراجعه‌ی بعدی.</p>
+      </article>
+<article class="card reveal">
+        <h3>آژانس مسافرتی</h3>
+        <p class="muted">پیک پیام آخر هفته، چند اکانت، چند اپراتور و کمپین‌های فصلی روی لیست مخاطبان.</p>
+      </article>
+<article class="card reveal">
+        <h3>فروشگاه آنلاین</h3>
+        <p class="muted">سوال موجودی و ارسال، سبد رهاشده و پیگیری بعد از خرید در همان کانالی که مشتری راحت است.</p>
+      </article>
+<article class="card reveal">
+        <h3>خدمات محلی</h3>
+        <p class="muted">گرفتن آدرس و زمان، ثبت سفارش و جلوگیری از گم شدن تماس‌های خارج از ساعت کاری.</p>
+      </article>
+<article class="card reveal">
+        <h3>آموزش و مشاوره</h3>
+        <p class="muted">پاسخ به سوال دوره‌ها، ثبت‌نام و پیگیری افرادی که فقط قیمت پرسیده‌اند.</p>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="section section-tint" id="testimonials">
+  <div class="container">
+    <div class="section-head is-centered">
+      <h2>تیم‌هایی که با بیدار کار می‌کنند</h2>
+    </div>
+    <div class="testimonial-stage" aria-live="polite">
+      <article class="testimonial-slide is-active" id="testimonial-slide" aria-atomic="true">
+        <div class="t-avatar" id="t-avatar">
+          <span class="t-letter" id="t-letter">ر</span>
+          <img id="t-photo" alt="" width="64" height="64" hidden />
         </div>
+        <blockquote class="t-quote"><span id="t-quote-text">قبلاً روزی نزدیک صد پیام دیوار و واتساپ داشتیم و نصف‌شون از دست می‌رفت. بیدار پاسخ اولیه رو می‌ده، مشتری رو به واتساپ می‌آره و شماره رو ذخیره می‌کنه. تیم فروش ما فقط روی لیدهای داغ وقت می‌ذاره.</span><span class="t-caret is-done" aria-hidden="true"></span></blockquote>
+        <div class="t-meta">
+          <strong id="t-name">رضا موسوی</strong>
+          <span id="t-role">مدیر فروش · بنگاه املاک ونک</span>
+        </div>
+      </article>
+    </div>
+    <div class="testimonial-dots" id="testimonial-dots" data-label="نظر"></div>
+    <script type="application/json" id="testimonial-data">[{"name":"رضا موسوی","role":"مدیر فروش · بنگاه املاک ونک","text":"قبلاً روزی نزدیک صد پیام دیوار و واتساپ داشتیم و نصف‌شون از دست می‌رفت. بیدار پاسخ اولیه رو می‌ده، مشتری رو به واتساپ می‌آره و شماره رو ذخیره می‌کنه. تیم فروش ما فقط روی لیدهای داغ وقت می‌ذاره.","photo":"/assets/reviews/man-1.png"},{"name":"مینا احمدی","role":"مالک · املاک پارس سعادت‌آباد","text":"روی دیوار فایل‌های رهن و اجاره زیادی داریم. بیدار مکالمه رو طبیعی جلو می‌بره و وقتی مشتری جدی باشه تگ «داغ» می‌خوره. برای اولین‌بار قیف فروش املاک‌مون شفاف شده.","photo":"/assets/reviews/woman-1.png"},{"name":"دکتر سارا نیک‌پی","role":"مدیر کلینیک زیبایی آتریوم","text":"کلینیک ما نوبت و مشاوره زیادی از بله و واتساپ می‌گیره. پاسخ خودکار بیدار باعث شد منشی‌ها شب‌ها هم پوشش داشته باشن و بیمار از دست نره. تگ «نیاز به انسان» هم عالی کار می‌کنه.","photo":"/assets/reviews/woman-2.png"},{"name":"علی کرمی","role":"مسئول پذیرش · کلینیک دندان‌پزشکی مهر","text":"برای کمپین‌های یادآوری چکاپ و تخفیف فصلی، فیلتر روی تگ‌های جدید و قدیمی خیلی کمک کرد. بدون تماس دستی، پیام هدفمند رفت و نرخ برگشت بیمار بهتر شد.","photo":"/assets/reviews/man-2.png"},{"name":"نگار صالحی","role":"مدیر عملیات · آژانس مسافرتی آسمان آبی","text":"تور و بلیط آخر هفته پیام خیلی زیادی داره. بیدار روی چند اکانت واتساپ و بله کار می‌کنه و اپراتورها هم‌زمان جواب می‌دن. ایجنت هوشمند هم می‌گه امروز داغ‌ترین لیدها کدوم‌ان.","photo":"/assets/reviews/woman-3.png"},{"name":"حسین فرهادی","role":"مدیر مارکتینگ · سفرهای پارسیان","text":"کمپین نوروز رو روی همه مشتریانی که از دیوار یا واتساپ پیام داده بودن زدیم. زمان ارسال و فیلتر تگ «جدید + داغ» دقیقاً همون چیزی بود که برای فروش تور نیاز داشتیم.","photo":"/assets/reviews/man-3.png"},{"name":"پویا رستمی","role":"مدیرعامل · گروه املاک و سرمایه‌گذاری آریا","text":"ما بر کسب‌وکار خودمان نیاز به شخصی‌سازی داشتیم که تیم بیدار این کار را کردند و پیشنهاد می‌دهم شما هم اگر نیاز دارید حتماً مطرح کنید؛ تیم بیدار بسیار باهوش هستند و ایده‌های شما را تقویت می‌کنند و به خوبی پیاده‌سازی می‌کنند.","photo":"/assets/reviews/man-4.png"},{"name":"مریم جعفری","role":"بنیان‌گذار · کلینیک پوست و مو نوران","text":"سناریوی پاسخ کلینیک ما خاص بود؛ از سوال قیمت تا هماهنگی پزشک. تیم بیدار ایده‌هامون رو گوش داد، بهترش کرد و توی سیستم پیاده کرد. حس می‌کنی شریک فنی داری، نه فقط یک نرم‌افزار آماده.","photo":"/assets/reviews/woman-4.png"}]</script>
+  </div>
+</section>
+<section class="section section-tint" id="pricing">
+  <div class="container">
+    <div class="section-head is-centered">
+      <h2>قیمت بیدار چطور محاسبه می‌شود؟</h2>
+      <p>قیمت بر اساس تعداد کانال، تعداد اپراتور و حجم پیام ماهانه تعیین می‌شود. برای اینکه عدد دقیق و بدون سورپرایز بدهیم، ابتدا یک دموی ۲۰ دقیقه‌ای می‌گذاریم.</p>
+    </div>
+    <div class="price-grid">
+      <article class="card price-card reveal">
+        <h3>شروع</h3>
+        <p class="price-for">یک کانال، یک یا دو اپراتور</p>
+        <p class="price-value"><span class="placeholder-value">[قیمت]</span></p>
+        <ul class="check-list"><li>یک کانال (واتساپ، دیوار یا بله)</li><li>صندوق پیام یکپارچه</li><li>تگ‌گذاری خودکار لید</li><li>پشتیبانی راه‌اندازی</li></ul>
+        <a class="btn btn-secondary btn-block" href="/contact?topic=bidar" data-event="request_demo" data-event-location="pricing_Starter">درخواست دموی بیدار</a>
+      </article>
+<article class="card price-card is-featured reveal">
+        <h3>رشد</h3>
+        <p class="price-for">کسب‌وکارهای با بیش از ۳۰ پیام در روز</p>
+        <p class="price-value"><span class="placeholder-value">[قیمت]</span></p>
+        <ul class="check-list"><li>هر سه کانال</li><li>پاسخ با کمک هوش مصنوعی روی دانش شما</li><li>وظایف، کمپین و گزارش</li><li>چند اکانت و چند اپراتور</li></ul>
+        <a class="btn btn-secondary btn-block" href="/contact?topic=bidar" data-event="request_demo" data-event-location="pricing_Growth">درخواست دموی بیدار</a>
+      </article>
+<article class="card price-card reveal">
+        <h3>سازمانی</h3>
+        <p class="price-for">تیم‌های بزرگ و نیازهای سفارشی</p>
+        <p class="price-value"><span class="placeholder-value">[قیمت]</span></p>
+        <ul class="check-list"><li>سناریوهای سفارشی</li><li>اتصال به سیستم‌های موجود شما</li><li>آموزش تیم</li><li>پشتیبانی اختصاصی</li></ul>
+        <a class="btn btn-secondary btn-block" href="/contact?topic=bidar" data-event="request_demo" data-event-location="pricing_Enterprise">درخواست دموی بیدار</a>
+      </article>
+    </div>
+    <p class="muted" style="margin-block-start:var(--space-3);text-align:center">اعداد قیمت پس از تأیید نهایی در همین صفحه منتشر می‌شوند. تا آن زمان در جلسه‌ی دمو قیمت دقیق را می‌گیرید.</p>
+  </div>
+</section>
+<section class="section" id="demo">
+  <div class="container split split-top">
+    <div>
+      <h2>دموی ۲۰ دقیقه‌ای بیدار</h2>
+      <p class="lead">با کانال‌های خودتان نگاه می‌کنیم: کجا پیام گم می‌شود، چه چیزی قابل خودکارسازی است و قیمت دقیق چقدر می‌شود.</p>
+      <ul class="check-list"><li>نمایش زنده‌ی صندوق پیام و تگ‌ها</li><li>بررسی حجم پیام و کانال‌های شما</li><li>قیمت شفاف در همان جلسه</li></ul>
+    </div>
+    <div class="reveal"><form class="form-card" data-ix-form="growth_consultation" data-success-url="/thank-you" data-msg-sending="در حال ارسال…" data-msg-success="پیام شما ثبت شد. به‌زودی تماس می‌گیریم." data-msg-error="ارسال انجام نشد. از طریق واتساپ ادامه می‌دهیم." data-msg-fallback="واتساپ باز شد تا پیام شما با همین اطلاعات ارسال شود." data-wa-intro="درخواست از سایت ایران اکسپدیا:" novalidate method="post" action="/thank-you">
+  <div class="field-row">
+    <label class="field"><span>نام *</span>
+      <input type="text" name="name" autocomplete="name" required />
+    </label>
+    <label class="field"><span>شماره تماس یا واتساپ *</span>
+      <input type="tel" name="phone" inputmode="tel" autocomplete="tel" dir="ltr" required />
+    </label>
+  </div>
+  <div class="field-row">
+    <label class="field"><span>نام کسب‌وکار</span>
+      <input type="text" name="business" autocomplete="organization" />
+    </label>
+    <label class="field"><span>موضوع</span>
+      <select name="topic"><option value="مشاوره رشد کسب‌وکار">مشاوره رشد کسب‌وکار</option><option value="دموی بیدار (CRM و پیام‌ها)" selected>دموی بیدار (CRM و پیام‌ها)</option><option value="سایت و حضور دیجیتال">سایت و حضور دیجیتال</option><option value="سئو و دیده‌شدن">سئو و دیده‌شدن</option><option value="محتوا و شبکه‌های اجتماعی">محتوا و شبکه‌های اجتماعی</option><option value="موضوع دیگر">موضوع دیگر</option></select>
+    </label>
+  </div>
+  <label class="field"><span>بیشتر توضیح دهید (اختیاری)</span>
+    <textarea name="message" rows="4"></textarea>
+  </label>
+  <div class="form-honey" aria-hidden="true">
+    <label>Leave empty<input type="text" name="_honey" tabindex="-1" autocomplete="off" /></label>
+  </div>
+  <button class="btn btn-primary btn-lg btn-block" type="submit" data-event="book_consultation" data-event-location="form">رزرو جلسه مشاوره</button>
+  <p class="form-status" role="status" aria-live="polite"></p>
+  <p class="form-legal">اطلاعات شما فقط برای پاسخ به همین درخواست استفاده می‌شود.</p>
+</form></div>
+  </div>
+</section>
+<section class="section" id="faq">
+  <div class="container container-narrow">
+    <div class="section-head is-centered">
+      <h2>سوالات پرتکرار</h2>
+    </div>
+    <div class="faq-list"><details>
+      <summary>بیدار دقیقاً چه کاری می‌کند؟</summary>
+      <p>پیام‌های واتساپ، دیوار و بله را در یک صندوق جمع می‌کند، با کمک هوش مصنوعی پاسخ می‌دهد، هر گفتگو را به لید تگ‌خورده تبدیل می‌کند و امکان وظیفه، کمپین و گزارش را می‌دهد.</p>
+    </details><details>
+      <summary>راه‌اندازی چقدر طول می‌کشد؟</summary>
+      <p>اتصال کانال‌ها معمولاً در همان جلسه انجام می‌شود. آموزش دستیار با اسناد و قیمت‌های شما بسته به حجم محتوا یکی دو نشست کاری می‌برد.</p>
+    </details><details>
+      <summary>پاسخ‌های هوش مصنوعی از کجا می‌آید؟ ممکن است اشتباه جواب بدهد؟</summary>
+      <p>دستیار فقط از دانشی که شما می‌دهید استفاده می‌کند: لیست خدمات، قیمت‌ها و سوال‌های پرتکرار. برای موضوعات حساس، پاسخ خودکار غیرفعال می‌شود و گفتگو با تگ «نیاز به انسان» به اپراتور می‌رسد.</p>
+    </details><details>
+      <summary>داده‌ها و شماره‌های مشتریان ما کجا ذخیره می‌شود؟</summary>
+      <p>داده‌ها در حساب اختصاصی کسب‌وکار شما نگه‌داری می‌شود و دسترسی اپراتورها قابل تعریف است. شرایط دقیق نگه‌داری داده در قرارداد مشخص می‌شود.</p>
+    </details><details>
+      <summary>بعد از راه‌اندازی، پشتیبانی دارید؟</summary>
+      <p>بله. آموزش تیم بخشی از راه‌اندازی است و بعد از آن می‌توانید پشتیبانی ماهانه بگیرید یا خودتان سیستم را بگردانید.</p>
+    </details><details>
+      <summary>اگر تیم فروش ما فقط دو نفر باشد هم به‌صرفه است؟</summary>
+      <p>اگر روزانه بیش از ۳۰ پیام دریافت می‌کنید، بله؛ چون بیشترین هزینه‌ی تیم‌های کوچک، پیام‌های بی‌جواب است. زیر آن حجم، معمولاً پیشنهاد می‌کنیم از خدمات دیگر شروع کنید.</p>
+    </details></div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="cta-band reveal">
+      <h2>پاسخ‌گویی‌تان را از امروز منظم کنید</h2>
+      <p>یک دموی کوتاه بگذارید و ببینید بیدار روی کانال‌های خودتان چه می‌کند.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-lg" href="/contact?topic=bidar" data-event="request_demo" data-event-location="bidar_final">درخواست دموی بیدار</a>
+        <a class="btn btn-secondary btn-lg" href="/contact" data-event="book_consultation" data-event-location="bidar_final">رزرو جلسه مشاوره رشد</a>
       </div>
-    </section>
-
-    <section class="section strip" id="audience">
-      <div class="container">
-        <p class="strip-label">برای چه کسانی؟</p>
-        <h2>هر کسب‌وکاری که روزی بیش از ۳۰ پیام جواب می‌دهد</h2>
-        <p class="section-lead">املاک، آژانس مسافرتی، کلینیک، فروشگاه آنلاین، خدمات و هر برندی که نمی‌خواهد پیام‌ها روی زمین بماند.</p>
-        <ul class="audience-row">
-          <li>املاک و مستغلات</li>
-          <li>آژانس مسافرتی</li>
-          <li>کلینیک و زیبایی</li>
-          <li>فروشگاه و خدمات</li>
-          <li>آموزش و مشاوره</li>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <img src="/assets/logoWithTitles.svg" alt="ایران اکسپدیا" width="140" height="36" loading="lazy" />
+        <p>ایده‌ی کسب‌وکار را به سیستم رشد تبدیل می‌کنیم.</p>
+        <p>
+          <a href="tel:+982188728071" data-event="call_click" data-event-location="footer">۰۲۱-۸۸۷۲۸۰۷۱</a>
+          · <a href="https://wa.me/989120674032" rel="noopener" target="_blank" data-event="whatsapp_click" data-event-location="footer">واتساپ</a>
+        </p>
+      </div>
+      <div>
+        <h4>خدمات</h4>
+        <ul><li><a href="/services/digital-presence">حضور دیجیتال</a></li><li><a href="/services/search-visibility">سئو و دیده‌شدن</a></li><li><a href="/services/social-content">شبکه‌های اجتماعی و محتوا</a></li><li><a href="/services/reputation-trust">اعتبار و اعتماد</a></li><li><a href="/services/automation-crm">اتوماسیون و CRM</a></li></ul>
+      </div>
+      <div>
+        <h4>محصول</h4>
+        <ul>
+          <li><a href="/bidar">بیدار</a></li>
+          <li><a href="https://bidar-app.ir" rel="noopener" target="_blank">bidar-app.ir</a></li>
+          <li><a href="/case-studies">نمونه‌کارها</a></li>
+          <li><a href="/about">درباره ما</a></li>
+          <li><a href="/contact">تماس</a></li>
         </ul>
       </div>
-    </section>
-
-    <section class="section" id="channels">
-      <div class="container">
-        <header class="section-head">
-          <h2>سه کانال اصلی فروش شما</h2>
-          <p>یک CRM برای گفتگوهایی که واقعاً فروش می‌سازند</p>
-        </header>
-        <div class="channel-grid">
-          <article class="channel">
-            <span class="channel-badge wa">WhatsApp</span>
-            <h3>واتساپ</h3>
-            <p>پاسخ خودکار، چند اکانت، کمپین و استخراج لیست اعضای گروه‌های بیزنسی که قبلاً عضو شده‌اید برای توسعه بازار.</p>
-          </article>
-          <article class="channel">
-            <span class="channel-badge divar">دیوار</span>
-            <h3>دیوار</h3>
-            <p>چت خریداران دیوار را با مکالمه طبیعی AI به واتساپ یا بله ببرید، شماره بگیرید و به‌عنوان لید ذخیره کنید.</p>
-          </article>
-          <article class="channel">
-            <span class="channel-badge bale">بله</span>
-            <h3>بله</h3>
-            <p>کانال قابل‌اعتماد کسب‌وکارهای ایرانی برای ارتباط با مشتری — یکپارچه با CRM، تگ و کمپین.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="flow">
-      <div class="container flow-layout">
-        <div>
-          <h2>از آگهی دیوار تا لید ذخیره‌شده</h2>
-          <p class="section-lead">AI با دانش کسب‌وکار شما (RAG) حرف می‌زند، مسیر را طبیعی جلو می‌برد و مخاطب را به کانال امن‌تر هدایت می‌کند.</p>
-        </div>
-        <ol class="flow-steps">
-          <li>
-            <strong>خریدار در دیوار پیام می‌دهد</strong>
-            <span>AI مثل یک فروشنده واقعی جواب می‌دهد و نیاز را کشف می‌کند.</span>
-          </li>
-          <li>
-            <strong>هدایت به واتساپ یا بله</strong>
-            <span>ادامه گفتگو در کانالی که شماره و پیگیری آسان‌تر است.</span>
-          </li>
-          <li>
-            <strong>شماره + لید در CRM</strong>
-            <span>مخاطب با تگ‌های هوشمند ذخیره می‌شود و برای اپراتور یا کمپین آماده است.</span>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section" id="features">
-      <div class="container">
-        <header class="section-head">
-          <h2>قابلیت‌های بیدار</h2>
-          <p>از پاسخ خودکار تا شکار لید و فرمان‌های دیتابیس با زبان طبیعی</p>
-        </header>
-
-        <div class="feature-stack">
-          <article class="feature">
-            <h3>چند اکانت روی هر کانال</h3>
-            <p>برای هر کسب‌وکار چند اکانت واتساپ، دیوار و بله اضافه کنید و همه را از یک داشبورد مدیریت کنید.</p>
-          </article>
-          <article class="feature">
-            <h3>چند اپراتور همزمان</h3>
-            <p>تیم فروش و پشتیبانی را اضافه کنید؛ AI و انسان کنار هم روی همان لیدها کار می‌کنند.</p>
-          </article>
-          <article class="feature">
-            <h3>AI چت کسب‌وکار</h3>
-            <p>با AI درباره کسب‌وکارتان حرف بزنید، ایده بگیرید و پیشنهادهای عملی برای پاسخ و فروش بشنوید.</p>
-          </article>
-          <article class="feature">
-            <h3>ایجنت AI روی کل سیستم</h3>
-            <p>با زبان طبیعی روی دیتابیس دستور بدهید؛ مثلاً: «داغ‌ترین لیدهای امروز کیا هستن؟» یا «بیشترین فروشم به کیا بوده؟»</p>
-          </article>
-          <article class="feature">
-            <h3>استخراج اعضای گروه‌های واتساپ</h3>
-            <p>از گروه‌های بیزنس رقیب یا همکار که عضو شده‌اید لیست اعضا بگیرید و برای جذب مشتری دوباره استفاده کنید.</p>
-          </article>
-          <article class="feature">
-            <h3>تگ‌های داینامیک AI</h3>
-            <p>لیدها خودکار برچسب می‌خورند: داغ، ناراضی، ازدست‌رفته، جدید، قدیمی، نیاز به انسان و تگ‌های سفارشی شما.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="campaigns">
-      <div class="container campaign-layout">
-        <div>
-          <h2>کمپین بسازید؛ دقیق فیلتر کنید</h2>
-          <p class="section-lead">
-            مثلاً برای عید به همه مشتریانی که از بله، دیوار یا واتساپ پیام داده‌اند پیام بفرستید —
-            یا فقط به کسانی که تگ‌های <em>داغ</em> و <em>جدید</em> دارند.
-          </p>
-        </div>
-        <div class="tag-board" aria-label="نمونه تگ‌ها">
-          <span class="tag tag-hot">داغ</span>
-          <span class="tag tag-new">جدید</span>
-          <span class="tag tag-old">قدیمی</span>
-          <span class="tag tag-unhappy">ناراضی</span>
-          <span class="tag tag-lost">ازدست‌رفته</span>
-          <span class="tag tag-human">نیاز به انسان</span>
-          <span class="tag tag-custom">تگ سفارشی…</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section demo-section">
-      <div class="container">
-        <header class="section-head">
-          <h2>ایجنت بیدار؛ مثل حرف زدن با تیم فروش</h2>
-          <p>بدون گزارش پیچیده — فقط بپرسید</p>
-        </header>
-        <div class="chat-demo" id="chat-demo">
-          <div class="chat-bubble user">داغ‌ترین لیدهای امروز کیا هستن؟</div>
-          <div class="chat-bubble bot">
-            ۱۲ لید با تگ «داغ» امروز فعال بودن. ۳ تای اول: املاک ونک، کلینیک زیبایی سعادت‌آباد، تور استانبول.
-            می‌خوای لیست کامل رو بفرستم یا کمپین پیامک/واتساپ روشون بذاریم؟
-          </div>
-          <div class="chat-bubble user">بیشترین فروشم این ماه به کیا بوده؟</div>
-          <div class="chat-bubble bot">
-            ۵ مشتری برتر بر اساس مبلغ بسته: … فیلتر کانال هم می‌خوای؟ دیوار، بله یا واتساپ؟
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="testimonials">
-      <div class="container">
-        <header class="section-head">
-          <h2>نظر مشتریان بیدار</h2>
-          <p>املاک، کلینیک و آژانس مسافرتی — تجربه واقعی تیم‌ها</p>
-        </header>
-        <div class="testimonial-stage" aria-live="polite">
-          <article class="testimonial-slide" id="testimonial-slide" aria-atomic="true">
-            <div class="t-avatar" id="t-avatar">
-              <span class="t-letter" id="t-letter">ر</span>
-              <img id="t-photo" alt="" hidden />
-            </div>
-            <blockquote class="t-quote">
-              <span id="t-quote-text"></span><span class="t-caret" aria-hidden="true"></span>
-            </blockquote>
-            <div class="t-meta">
-              <strong id="t-name"></strong>
-              <span id="t-role"></span>
-            </div>
-          </article>
-        </div>
-        <div class="testimonial-dots" id="testimonial-dots" role="tablist" aria-label="نظرات"></div>
-      </div>
-    </section>
-
-    <section class="section cta-final">
-      <div class="container cta-box">
-        <p class="hero-brand cta-brand">بیدار</p>
-        <h2>امروز سیستم فروش‌تان را بیدار کنید</h2>
-        <p>پلتفرم آماده است. اکانت بسازید و کانال‌ها را وصل کنید.</p>
-        <a class="btn btn-primary btn-lg" href="https://bidar-app.ir" target="_blank" rel="noopener noreferrer">ورود به بیدار — bidar-app.ir</a>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="faq">
-      <div class="container narrow">
-        <header class="section-head">
-          <h2>سوالات پرتکرار</h2>
-        </header>
-        <div class="faq-list">
-          <details>
-            <summary>بیدار دقیقاً چه کاری می‌کند؟</summary>
-            <p>یک CRM با پاسخ‌گوی خودکار AI است که روی واتساپ، دیوار و بله کار می‌کند؛ لید می‌سازد، تگ می‌زند، کمپین می‌فرستد و با زبان طبیعی به سوالات تیم شما از داده‌ها جواب می‌دهد.</p>
-          </details>
-          <details>
-            <summary>آیا چند اکانت و چند اپراتور پشتیبانی می‌شود؟</summary>
-            <p>بله. هر کسب‌وکار می‌تواند چند اکانت روی هر کانال و چند اپراتور داشته باشد.</p>
-          </details>
-          <details>
-            <summary>چطور از دیوار لید می‌گیرم؟</summary>
-            <p>AI مکالمه دیوار را ادامه می‌دهد، مخاطب را به واتساپ یا بله هدایت می‌کند، شماره را می‌گیرد و در CRM ذخیره می‌کند.</p>
-          </details>
-          <details>
-            <summary>از کجا شروع کنم؟</summary>
-            <p>به <a href="https://bidar-app.ir" target="_blank" rel="noopener noreferrer">bidar-app.ir</a> بروید و محیط را امتحان کنید. برای مشاوره هم می‌توانید با ایران اکسپدیا تماس بگیرید.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
       <div>
-        <strong class="footer-brand">بیدار</strong>
-        <p>محصول ایران اکسپدیا — اتوماسیون فروش و CRM</p>
-      </div>
-      <div class="footer-links">
-        <a href="https://bidar-app.ir" target="_blank" rel="noopener noreferrer">bidar-app.ir</a>
-        <a href="index.html">iranexpedia.ir</a>
-        <a href="https://wa.me/989120674032" target="_blank" rel="noopener noreferrer">واتساپ پشتیبانی</a>
+        <h4>بلاگ</h4>
+        <ul><li><a href="/blog/category/business-growth">رشد کسب‌وکار</a></li><li><a href="/blog/category/marketing">بازاریابی</a></li><li><a href="/blog/category/technology-ai">فناوری و هوش مصنوعی</a></li><li><a href="/blog/category/business-ideas">ایده‌های کسب‌وکار</a></li><li><a href="/blog/category/case-studies">تجربه‌های اجرا</a></li></ul>
       </div>
     </div>
-  </footer>
-
-  <script src="bidar.js"></script>
+    <div class="footer-bottom">
+      <p>© ۲۰۲۶ ایران اکسپدیا — تمامی حقوق محفوظ است.</p>
+      <p>تهران، وزرا، کوچه ششم، پلاک ۱۴، واحد ششم</p>
+    </div>
+  </div>
+</footer>
+<div class="action-bar">
+  <a class="btn btn-primary" href="/contact" data-event="book_consultation" data-event-location="action_bar">رزرو جلسه مشاوره رشد</a>
+  <a class="btn btn-secondary" href="https://wa.me/989120674032" target="_blank" rel="noopener" data-event="whatsapp_click" data-event-location="action_bar" aria-label="واتساپ"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 11.7A8 8 0 018 18.9L4 20l1.1-3.9A8 8 0 1120 11.7z"/><path d="M9 9.8c0 3 2.2 5.2 5.2 5.2l.8-1.3-1.9-1-1 .8a4.6 4.6 0 01-1.6-1.6l.8-1-1-1.9-1.3.8z"/></svg></a>
+  <a class="btn btn-secondary" href="tel:+982188728071" data-event="call_click" data-event-location="action_bar" aria-label="تماس"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 3.5h3l1.5 4-2 1.5a10 10 0 005 5l1.5-2 4 1.5v3a2 2 0 01-2.2 2A16 16 0 015.5 5.7 2 2 0 017 3.5z"/></svg></a>
+</div>
+<script src="/assets/js/site.ebc77faf.js" defer></script>
 </body>
 </html>
