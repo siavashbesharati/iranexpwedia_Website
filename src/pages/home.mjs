@@ -21,7 +21,7 @@ function ctaLink(locale, location, extraClass = '') {
 function imageSlot(locale, image, ratio = '4 / 3') {
   return `<figure class="image-slot" style="--ratio:${ratio}">
   <div class="image-slot-frame" role="img" aria-label="${esc(t(image.label, locale))}">
-    <span class="image-slot-mark">${esc(t({ fa: 'جای تصویر', en: 'Image' }, locale))}</span>
+    <img src="${esc(image.src)}" alt="${esc(t(image.label, locale))}" loading="lazy" decoding="async" />
     <span class="image-slot-title">${esc(t(image.label, locale))}</span>
   </div>
   <figcaption>${esc(t(image.note, locale))}</figcaption>
