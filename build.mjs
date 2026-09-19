@@ -73,7 +73,9 @@ async function clean() {
 /* ----------------------------------------------------------------- assets */
 
 async function buildAssets() {
-  const css = await fs.readFile(path.join(root, 'src/assets/css/site.css'), 'utf8');
+  const siteCss = await fs.readFile(path.join(root, 'src/assets/css/site.css'), 'utf8');
+  const storyCss = await fs.readFile(path.join(root, 'src/assets/css/story.css'), 'utf8');
+  const css = `${siteCss}\n\n${storyCss}`;
   const js = await fs.readFile(path.join(root, 'src/assets/js/site.js'), 'utf8');
 
   const cssName = `site.${hash(css)}.css`;

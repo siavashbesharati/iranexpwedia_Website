@@ -168,45 +168,45 @@ export const home = {
 /** Objection-handling FAQ. Also emitted as FAQPage schema. */
 export const faq = [
   {
-    q: { fa: 'هزینه‌ی کار با شما چقدر است؟', en: 'How much does working with you cost?' },
+    q: { fa: '۱۵ میلیون تومان در ماه شامل چیست؟', en: 'What is in the 15 million Toman a month?' },
     a: {
-      fa: 'بستگی به دامنه‌ی کار دارد و ما قبل از جلسه عدد الکی نمی‌گوییم. پروژه‌ها معمولاً یا قیمت ثابت دارند (مثل ساخت سایت و راه‌اندازی اتوماسیون) یا ماهانه‌اند (مثل سئو، محتوا و پشتیبانی رشد). در جلسه‌ی اول محدوده‌ی قیمت را شفاف می‌گوییم و اگر بودجه‌ی شما با دامنه‌ی کار هم‌خوان نبود، همان‌جا می‌گوییم.',
-      en: 'It depends on scope, and we will not quote a fake number before the call. Projects are either fixed-price (a website build, an automation rollout) or monthly (SEO, content, growth retainer). In the first call we give you a clear range — and if your budget does not match the scope, we say so then and there.',
+      fa: 'یک تیم، برای کل مسیر: فهمیدن کسب‌وکار، نقشه‌ی رشد، ساخت و اتصال زیرساخت، جذب مشتری، نگه‌داشت، کار با تیم شما، و بهبود ماه‌به‌ماه. ماه اول با تشخیص و نقشه شروع می‌شود؛ بعد همان نقشه را اجرا می‌کنیم — به ترتیبی که برای شما اثر دارد، نه به ترتیبی که در کاتالوگ آمده.',
+      en: 'One team, for the whole path: understanding the business, the growth roadmap, building and connecting infrastructure, bringing customers in, keeping them, working with your people, and improving month by month. Month one starts with diagnosis and the roadmap; then we execute that roadmap — in the order that moves your numbers, not the order in a catalogue.',
     },
   },
   {
-    q: { fa: 'چقدر طول می‌کشد تا نتیجه ببینیم؟', en: 'How long until we see results?' },
+    q: { fa: 'یعنی کار همه‌ی کسب‌وکارها یکی است؟', en: 'Does every business get the same work?' },
     a: {
-      fa: 'ساخت یا بازسازی سایت و لندینگ معمولاً چند هفته کاری است. اتوماسیون پاسخ‌گویی سریع‌ترین اثر را دارد چون از روز اول زمان پاسخ کوتاه می‌شود. سئو کندترین است و منطقی است که در بازه‌ی چند ماه سنجیده شود، نه چند هفته. هر برنامه‌ای که «رتبه‌ی یک در یک ماه» وعده بدهد، قابل اعتماد نیست.',
-      en: 'A site or landing page build is typically a few working weeks. Reply automation shows the fastest effect, because response times drop from day one. SEO is the slowest and should be judged over months, not weeks. Any plan promising “number one in a month” is not credible.',
+      fa: 'قیمت یکی است. نقشه یکی نیست. کلینیک، نقشه‌ی املاک را نمی‌گیرد. اول می‌فهمیم گلوگاه کجاست؛ بعد همان را می‌سازیم. چیزهایی که لازم ندارید، در بسته نمی‌آید فقط چون در لیست بوده.',
+      en: 'The price is the same. The roadmap is not. A clinic does not get a real-estate playbook. We find the bottleneck first, then we build that. Things you do not need do not land in the work just because they are on a list.',
     },
   },
   {
-    q: { fa: 'بعد از راه‌اندازی، سایت را نگه‌داری می‌کنید؟', en: 'Do you maintain the site after launch?' },
+    q: { fa: 'کی نتیجه می‌بینیم؟', en: 'When do we see a result?' },
     a: {
-      fa: 'بله، و اجباری هم نیست. سه حالت داریم: تحویل کامل با آموزش تیم شما، پشتیبانی ماهانه‌ی سبک (به‌روزرسانی، پشتیبان‌گیری، رفع اشکال)، یا همراهی رشد ماهانه که شامل بهینه‌سازی و محتوا هم می‌شود. مالکیت دامنه، کد و داده‌ها در هر سه حالت متعلق به شماست.',
-      en: 'Yes, and it is optional. Three modes: full handover with training for your team, light monthly support (updates, backups, fixes), or a monthly growth retainer that includes optimisation and content. In all three, the domain, the code and the data belong to you.',
+      fa: 'هفته‌های اول: تشخیص و یک نقشه‌ی مکتوب. ساخت زیرساخت بلافاصله بعد از آن شروع می‌شود. جذب و نگه‌داشت روی ماه‌ها جمع می‌شود، نه روی یک کمپین. اگر کسی «رتبه‌ی یک گوگل در سی روز» وعده بدهد، جدی نگیرید.',
+      en: 'The first weeks: a diagnosis and a written roadmap. Infrastructure work starts right after. Acquisition and retention compound over months, not over one campaign. Anyone promising “number one in Google in thirty days” is not serious.',
     },
   },
   {
-    q: { fa: 'کد و داده‌ها مال ما می‌مانند؟', en: 'Do we own the code and the data?' },
+    q: { fa: 'بعد از راه‌اندازی می‌روید؟', en: 'Do you leave after launch?' },
     a: {
-      fa: 'بله. دامنه، هاست، کد سایت و داده‌های مشتریان شما به نام خودتان ثبت می‌شود و دسترسی کامل دارید. اگر روزی خواستید کار را به تیم دیگری بدهید، هیچ چیزی گرو نمی‌ماند.',
-      en: 'Yes. The domain, hosting, site code and your customer data are registered to you with full access. If you ever move to another team, nothing is held hostage.',
+      fa: 'نه؛ قیمت ماهانه یعنی همراهی، نه پروژه‌ی تمام‌شده. هر ماه می‌توانید ادامه بدهید یا تمام کنید. دامنه، کد و داده‌ها از روز اول مال شماست.',
+      en: 'No. The monthly price is a partnership, not a finished project. You can continue or stop at the end of any month. The domain, the code and the data are yours from day one.',
     },
   },
   {
-    q: { fa: 'آیا باید هم خدمات بگیریم و هم بیدار؟', en: 'Do we need both the services and Bidar?' },
+    q: { fa: 'فقط سایت می‌خواهم. باز هم باید بسته‌ی ماهانه بگیرم؟', en: 'I only need a website. Do I still have to take the monthly package?' },
     a: {
-      fa: 'نه. خیلی از مشتریان فقط سایت و سئو می‌گیرند و خیلی‌ها فقط بیدار را راه می‌اندازند. اگر روزانه بیش از ۳۰ پیام دریافت می‌کنید، معمولاً بیدار سریع‌ترین بازگشت را دارد. اگر مشتری اصلاً شما را پیدا نمی‌کند، اول باید روی دیده‌شدن کار کرد.',
-      en: 'No. Many clients only take the website and SEO; many only roll out Bidar. If you handle more than 30 messages a day, Bidar usually pays back fastest. If customers cannot find you at all, visibility comes first.',
+      fa: 'نه. هنوز پروژه‌ی تکی هم انجام می‌دهیم. این صفحه درباره‌ی بسته‌ی کامل است. در تماس بگویید کجا گیر کرده‌اید؛ همان‌جا می‌گوییم بسته به کارتان می‌آید یا یک پروژه‌ی مشخص.',
+      en: 'No. We still do one-off projects. This page is about the complete package. On the call, tell us where you are stuck; we will say whether the package fits or a single project does.',
     },
   },
   {
-    q: { fa: 'با کسب‌وکارهای کوچک هم کار می‌کنید؟', en: 'Do you work with small businesses?' },
+    q: { fa: 'با کسب‌وکار کوچک هم کار می‌کنید؟', en: 'Do you work with small businesses?' },
     a: {
-      fa: 'بله؛ بیشتر مشتریان ما کسب‌وکارهای کوچک و متوسط ایرانی‌اند: کلینیک، املاک، خدمات محلی و فروشگاه آنلاین. برای تیم‌های کوچک معمولاً پیشنهاد می‌کنیم از یک قطعه شروع کنید و بعد از دیدن نتیجه، گسترش بدهید.',
-      en: 'Yes — most of our clients are Iranian small and mid-size businesses: clinics, real estate, local services and online stores. For small teams we usually suggest starting with one piece and expanding once you see the result.',
+      fa: 'بله. بیشتر کسانی که با ما کار می‌کنند کلینیک، املاک، خدمات محلی و فروشگاه‌اند — نه شرکت‌های بزرگ.',
+      en: 'Yes. Most of the people we work with run clinics, real estate, local services and shops — not large companies.',
     },
   },
 ];
@@ -278,24 +278,24 @@ export const contact = {
     fa: 'برای جلسه‌ی مشاوره رشد یا دموی بیدار تماس بگیرید: واتساپ، بله، تلفن یا فرم. تهران، وزرا.',
     en: 'Get in touch for a growth consultation or a Bidar demo: WhatsApp, Bale, phone or form. Tehran, Vozara.',
   },
-  title: { fa: 'بیایید درباره‌ی رشد کسب‌وکار شما حرف بزنیم', en: 'Let’s talk about growing your business' },
+  title: { fa: 'بیایید نقشه‌ی رشد کسب‌وکار شما را بسازیم', en: 'Let’s build your growth roadmap' },
   lead: {
-    fa: 'یک جلسه‌ی ۳۰ دقیقه‌ای، بدون هزینه. قبل از جلسه وضعیت فعلی شما را نگاه می‌کنیم و در جلسه می‌گوییم کدام کار بیشترین اثر را دارد. اگر ترجیح می‌دهید سریع‌تر پیام بدهید، واتساپ همیشه باز است.',
-    en: 'A free 30-minute call. We review where you are beforehand, then tell you which change has the biggest impact. If you prefer to message, WhatsApp is always open.',
+    fa: 'یک جلسه‌ی ۳۰ دقیقه‌ای، بدون هزینه. قبل از جلسه وضعیت امروز را نگاه می‌کنیم و در جلسه می‌گوییم نقشه از کجا باید شروع شود. اگر ترجیح می‌دهید سریع‌تر پیام بدهید، واتساپ همیشه باز است.',
+    en: 'A free 30-minute call. We look at where you are beforehand, then tell you where the roadmap should start. If you prefer to message, WhatsApp is always open.',
   },
   expectations: {
     title: { fa: 'در جلسه چه اتفاقی می‌افتد؟', en: 'What happens on the call?' },
     items: {
       fa: [
-        'وضعیت امروز: از کجا لید می‌گیرید و کجا از دست می‌رود.',
+        'وضعیت امروز: از کجا مشتری می‌آید و کجا از دست می‌رود.',
         'یک تشخیص روشن از گلوگاه اصلی.',
-        'دو یا سه پیشنهاد عملی با ترتیب اجرا و محدوده‌ی هزینه.',
+        'نقشه‌ی کار با ترتیب اجرا — و اینکه بسته‌ی ماهانه به کارتان می‌آید یا یک پروژه‌ی مشخص.',
         'بدون تماس فروش پیگیرانه؛ تصمیم با شماست.',
       ],
       en: [
-        'Where you are today: where leads come from and where they leak.',
+        'Where you are today: where customers come from and where they leak.',
         'A clear diagnosis of the main bottleneck.',
-        'Two or three practical next steps with an order and a cost range.',
+        'A working order for the roadmap — and whether the monthly package fits, or a single project does.',
         'No follow-up sales pressure; the decision is yours.',
       ],
     },

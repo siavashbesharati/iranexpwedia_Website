@@ -3,7 +3,7 @@
 import { esc, tidy, jsonLd } from '../lib/html.mjs';
 import { localeMeta } from '../lib/i18n.mjs';
 import { absolute, localePath } from '../lib/routes.mjs';
-import { site } from '../data/site.mjs';
+import { site, packageOffer } from '../data/site.mjs';
 import { header, footer, actionBar } from './components.mjs';
 
 /**
@@ -77,7 +77,7 @@ export function layout(page, assets) {
 ${schema.map((entry) => jsonLd(entry)).join('\n')}
 <script>window.__IX_CONFIG__=${JSON.stringify(runtimeConfig)};</script>
 </head>
-<body data-page="${esc(pageId || navKey || 'page')}">
+<body${page.bodyClass ? ` class="${esc(page.bodyClass)}"` : ''} data-page="${esc(pageId || navKey || 'page')}">
 ${header(locale, navKey, altPath)}
 <main id="main">
 ${body}
@@ -127,6 +127,18 @@ export function organizationSchema(locale) {
     sameAs: [site.contact.whatsapp, site.product.url],
     areaServed: 'IR',
     knowsLanguage: ['fa', 'en'],
+    makesOffer: {
+      '@type': 'Offer',
+      name: locale === 'fa' ? 'بسته‌ی ماهانه‌ی رشد کسب‌وکار' : 'Monthly business growth package',
+      price: String(packageOffer.irr),
+      priceCurrency: 'IRR',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: String(packageOffer.irr),
+        priceCurrency: 'IRR',
+        unitCode: 'MON',
+      },
+    },
   };
 }
 
