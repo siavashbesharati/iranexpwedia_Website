@@ -4,8 +4,8 @@
   "description": "توسعه کسب‌وکار و رشد دیجیتال: سایت، سئو، محتوا، اعتبار و اتوماسیون فروش با بیدار.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fafaf7",
-  "theme_color": "#0f766e",
+  "background_color": "#f6f4ef",
+  "theme_color": "#1b3a34",
   "lang": "fa",
   "dir": "rtl",
   "icons": [

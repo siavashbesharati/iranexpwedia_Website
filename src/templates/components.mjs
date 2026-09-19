@@ -142,6 +142,7 @@ export function header(locale, activeKey, altPath) {
     <nav class="site-nav" id="site-nav" aria-label="${esc(str.quickLinks)}">
       <ul>${links}</ul>
       <div class="header-tools">
+        <a class="header-phone" href="tel:${esc(site.contact.mobile)}" dir="ltr" data-event="call_click" data-event-location="header">${esc(t(site.contact.mobileDisplay, locale))}</a>
         <a class="lang-toggle" href="${esc(altPath)}" hreflang="${otherLocale}" lang="${otherLocale}" aria-label="${esc(str.langSwitchLabel)}" data-event="language_switch">${esc(str.langSwitch)}</a>
         <a class="btn btn-primary btn-sm" href="${esc(t(primaryCta.path, locale))}" data-event="${primaryCta.event}" data-event-location="header">${esc(t(primaryCta.label, locale))}</a>
       </div>
@@ -180,7 +181,7 @@ export function footer(locale) {
         <img src="/assets/logoWithTitles.svg" alt="${esc(t(site.name, locale))}" width="140" height="36" loading="lazy" />
         <p>${esc(t(site.tagline, locale))}</p>
         <p>
-          <a href="tel:${esc(site.contact.phone)}" data-event="call_click" data-event-location="footer">${esc(t(site.contact.phoneDisplay, locale))}</a>
+          <a href="tel:${esc(site.contact.mobile)}" data-event="call_click" data-event-location="footer" dir="ltr">${esc(t(site.contact.mobileDisplay, locale))}</a>
           · <a href="${esc(site.contact.whatsapp)}" rel="noopener" target="_blank" data-event="whatsapp_click" data-event-location="footer">${esc(str.whatsapp)}</a>
         </p>
         ${badges}
@@ -219,7 +220,7 @@ export function actionBar(locale) {
   return `<div class="action-bar">
   <a class="btn btn-primary" href="${esc(t(primaryCta.path, locale))}" data-event="${primaryCta.event}" data-event-location="action_bar">${esc(t(primaryCta.label, locale))}</a>
   <a class="btn btn-secondary" href="${esc(site.contact.whatsapp)}" target="_blank" rel="noopener" data-event="whatsapp_click" data-event-location="action_bar" aria-label="${esc(str.whatsapp)}">${icon('whatsapp')}</a>
-  <a class="btn btn-secondary" href="tel:${esc(site.contact.phone)}" data-event="call_click" data-event-location="action_bar" aria-label="${esc(str.call)}">${icon('phone')}</a>
+  <a class="btn btn-secondary" href="tel:${esc(site.contact.mobile)}" data-event="call_click" data-event-location="action_bar" aria-label="${esc(str.call)}">${icon('phone')}</a>
 </div>`;
 }
 
@@ -306,12 +307,12 @@ export function faqBlock(locale, items, { title } = {}) {
 }
 
 /** Testimonial carousel: slides in from the left, types the quote out. */
-export function testimonialBlock(locale, { title, lead } = {}) {
+export function testimonialBlock(locale, { title, lead, variant = 'product' } = {}) {
   const str = s(locale);
   const payload = testimonials.map((item) => ({
     name: t(item.name, locale),
     role: t(item.role, locale),
-    text: t(item.text, locale),
+    text: t(variant === 'home' && item.homeText ? item.homeText : item.text, locale),
     photo: item.photo || null,
   }));
 
@@ -406,6 +407,11 @@ export function leadForm(locale, variant, { topicDefault = '' } = {}) {
 export function contactOptions(locale) {
   const str = s(locale);
   const cards = [];
+
+  cards.push(`<a class="contact-option" href="tel:${esc(site.contact.mobile)}" data-event="call_click" data-event-location="contact_options">
+    ${iconTile('phone')}
+    <span><span class="contact-label">${esc(str.call)}</span><span class="contact-value" dir="ltr">${esc(t(site.contact.mobileDisplay, locale))}</span></span>
+  </a>`);
 
   cards.push(`<a class="contact-option" href="${esc(site.contact.whatsapp)}" target="_blank" rel="noopener" data-event="whatsapp_click" data-event-location="contact_options">
     ${iconTile('whatsapp')}

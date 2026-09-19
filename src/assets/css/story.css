@@ -5,9 +5,9 @@
    ========================================================================== */
 
 :root {
-  --story-display: clamp(2.35rem, 1.1rem + 4.2vw, 4.85rem);
-  --story-title: clamp(1.85rem, 1.1rem + 2.4vw, 3.1rem);
-  --story-pad: clamp(4.5rem, 12vh, 8.5rem);
+  --story-display: clamp(2.1rem, 1.05rem + 3.2vw, 3.75rem);
+  --story-title: clamp(1.6rem, 1.05rem + 1.7vw, 2.5rem);
+  --story-pad: clamp(2.15rem, 5vh, 3.5rem);
 }
 
 body.is-story {
@@ -26,7 +26,7 @@ body.is-story .site-footer {
 .story-split {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(var(--space-4), 5vw, var(--space-6));
+  gap: clamp(var(--space-3), 4vw, var(--space-4));
   align-items: center;
 }
 
@@ -77,10 +77,10 @@ body.is-story .site-footer {
 
 .story-hero {
   position: relative;
-  min-height: calc(100vh - var(--header-h));
+  min-height: 0;
   display: flex;
   align-items: center;
-  padding-block: var(--story-pad);
+  padding-block: clamp(2.25rem, 6vh, 3.75rem);
   overflow: hidden;
 }
 
@@ -99,11 +99,11 @@ body.is-story .site-footer {
 
 .story-hero h1 {
   font-size: var(--story-display);
-  font-weight: 800;
-  line-height: 1.18;
-  letter-spacing: -0.03em;
-  max-width: 16ch;
-  margin: 0 0 var(--space-3);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+  max-width: 18ch;
+  margin: 0 0 var(--space-2);
   text-wrap: balance;
 }
 
@@ -121,11 +121,11 @@ body.is-story .site-footer {
 }
 
 .story-hero-support {
-  margin: 0 0 var(--space-3);
-  font-size: var(--step-2);
+  margin: 0 0 var(--space-2);
+  font-size: var(--step-1);
   font-weight: 600;
   color: var(--text);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
 .story-price {
@@ -133,19 +133,19 @@ body.is-story .site-footer {
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.6rem 1rem;
-  margin: 0 0 var(--space-3);
+  margin: 0 0 var(--space-2);
 }
 
 .story-price-amount {
-  font-size: clamp(1.8rem, 1.2rem + 2vw, 2.6rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.65rem, 1.15rem + 1.6vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
   font-variant-numeric: tabular-nums;
   color: var(--text);
 }
 
 .story-price.is-large .story-price-amount {
-  font-size: clamp(2.6rem, 1.4rem + 4vw, 4.4rem);
+  font-size: clamp(2.15rem, 1.25rem + 3vw, 3.4rem);
   line-height: 1;
 }
 
@@ -159,7 +159,7 @@ body.is-story .site-footer {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
-  margin-block-end: var(--space-4);
+  margin-block-end: var(--space-3);
 }
 
 .story-scroll {
@@ -208,7 +208,7 @@ body.is-story .site-footer {
 
 .story-head {
   max-width: 22ch;
-  margin-block-end: var(--space-4);
+  margin-block-end: var(--space-3);
 }
 
 .story-split .story-head {
@@ -258,24 +258,24 @@ body.is-story .site-footer {
 }
 
 .story-bridge {
-  margin: var(--space-5) 0 0;
-  font-size: var(--step-2);
+  margin: var(--space-3) 0 0;
+  font-size: var(--step-1);
   font-weight: 700;
   letter-spacing: -0.02em;
-  max-width: 18ch;
+  max-width: 22ch;
 }
 
 /* --- Overwhelm / load field ------------------------------------------- */
 
 .is-overwhelm h2 {
   max-width: 18ch;
-  margin-block-end: var(--space-4);
+  margin-block-end: var(--space-3);
 }
 
 .load-field {
   list-style: none;
   padding: 0;
-  margin: var(--space-4) 0;
+  margin: var(--space-3) 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem 0.7rem;
@@ -394,7 +394,7 @@ body.is-story .site-footer {
 
 .path-line {
   list-style: none;
-  margin: 0 0 var(--space-5);
+  margin: 0 0 var(--space-3);
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -534,9 +534,10 @@ body.is-story .site-footer {
   transform: none;
 }
 
-.funnel li:nth-child(2) { background: #0f766e; }
-.funnel li:nth-child(3) { background: #115e59; }
-.funnel li:nth-child(4) { background: #134e4a; }
+.funnel li:nth-child(1) { background: var(--accent-mid); }
+.funnel li:nth-child(2) { background: var(--accent); }
+.funnel li:nth-child(3) { background: #16302c; }
+.funnel li:nth-child(4) { background: var(--accent-hover); }
 
 .funnel strong {
   display: block;
@@ -554,7 +555,7 @@ body.is-story .site-footer {
 
 .orbit {
   list-style: none;
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-3);
   padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -596,7 +597,7 @@ body.is-story .site-footer {
 .quiet-row {
   list-style: none;
   padding: 0;
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-3);
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -648,7 +649,7 @@ body.is-story .site-footer {
 
 .horizon {
   list-style: none;
-  margin: 0 0 var(--space-5);
+  margin: 0 0 var(--space-3);
   padding: 0;
   display: grid;
   gap: 0;
@@ -657,7 +658,7 @@ body.is-story .site-footer {
 
 .horizon li {
   counter-increment: hz;
-  padding: 1.1rem 0 1.1rem 0;
+  padding: 0.85rem 0;
   padding-inline-start: 3.2rem;
   border-block-end: 1px solid var(--border);
   position: relative;
@@ -699,15 +700,15 @@ body.is-story .site-footer {
 }
 
 .is-reveal h2 {
-  max-width: 12ch;
+  max-width: 14ch;
   font-size: var(--story-display);
-  margin-block: var(--space-4) var(--space-2);
+  margin-block: var(--space-3) var(--space-2);
 }
 
 .role-cloud {
   list-style: none;
   padding: 0;
-  margin: var(--space-3) 0 var(--space-5);
+  margin: var(--space-2) 0 var(--space-3);
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem 0.75rem;
@@ -739,13 +740,13 @@ body.is-story .site-footer {
 .collapse-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-3);
 }
 
 .collapse-list li {
-  font-size: clamp(1.6rem, 1.1rem + 2vw, 2.4rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.4rem, 1.05rem + 1.6vw, 2.05rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
   line-height: 1.25;
   opacity: 0;
   transform: translateY(12px);
@@ -783,7 +784,7 @@ body.is-story .site-footer {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to bottom right, transparent 49%, rgba(15, 118, 110, 0.07) 50%, transparent 51%);
+    linear-gradient(to bottom right, transparent 49%, rgba(27, 58, 52, 0.07) 50%, transparent 51%);
   background-size: 18px 18px;
   pointer-events: none;
 }
@@ -842,7 +843,7 @@ body.is-story #testimonials .section-head h2 {
 
   .story-hero {
     min-height: auto;
-    padding-block: clamp(3.5rem, 10vh, 5.5rem);
+    padding-block: clamp(2rem, 6vh, 3.25rem);
   }
 
   .story-hero h1 {

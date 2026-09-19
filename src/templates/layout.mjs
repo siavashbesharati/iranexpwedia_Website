@@ -44,7 +44,7 @@ export function layout(page, assets) {
 <link rel="alternate" hreflang="en" href="${esc(absolute(site.domain, path, 'en'))}" />
 <link rel="alternate" hreflang="x-default" href="${esc(absolute(site.domain, path, 'fa'))}" />
 <meta name="robots" content="${noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'}" />
-<meta name="theme-color" content="#0f766e" />
+<meta name="theme-color" content="#1b3a34" />
 <meta name="color-scheme" content="light" />
 <meta name="format-detection" content="telephone=yes" />
 <meta name="geo.region" content="IR-07" />
@@ -76,6 +76,7 @@ export function layout(page, assets) {
 
 ${schema.map((entry) => jsonLd(entry)).join('\n')}
 <script>window.__IX_CONFIG__=${JSON.stringify(runtimeConfig)};</script>
+<script>(function(){try{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;}catch(e){}document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');})();</script>
 </head>
 <body${page.bodyClass ? ` class="${esc(page.bodyClass)}"` : ''} data-page="${esc(pageId || navKey || 'page')}">
 ${header(locale, navKey, altPath)}
