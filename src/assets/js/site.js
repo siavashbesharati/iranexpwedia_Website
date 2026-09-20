@@ -96,6 +96,7 @@
       '.story-hero .story-price',
       '.story-hero-actions',
       '.story-scroll',
+      '.parallel-card',
       '.story-chapter .story-emotion',
       '.story-head',
       '.story-visual',
@@ -169,7 +170,7 @@
     var hero = document.querySelector('.story-hero .story-shell') || document.querySelector('.hero > .container') || document.querySelector('.hero-grid');
     stagger(hero, '.story-kicker, h1, .story-hero-support, .story-price, .btn-row, .story-hero-actions, .check-list, .channel-pills, .story-scroll, .lead, .eyebrow', 80);
 
-    document.querySelectorAll('.grid, .price-grid, .process-list, .faq-list, .contact-options, .trust-grid').forEach(function (parent) {
+    document.querySelectorAll('.grid, .price-grid, .process-list, .faq-list, .contact-options, .trust-grid, .parallel-row').forEach(function (parent) {
       stagger(parent, null, 70);
     });
 

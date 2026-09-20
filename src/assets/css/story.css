@@ -19,7 +19,7 @@ body.is-story .site-footer {
 }
 
 .story-shell {
-  width: min(920px, 88vw);
+  width: min(1040px, 90vw);
   margin-inline: auto;
 }
 
@@ -35,12 +35,14 @@ body.is-story .site-footer {
 .story-rail {
   position: fixed;
   inset-block-start: 50%;
-  inset-inline-start: max(12px, calc((100vw - 1180px) / 2));
+  inset-inline-start: clamp(8px, 1vw, 16px);
+  inset-inline-end: auto;
   z-index: 40;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+  text-align: start;
 }
 
 .story-rail a {
@@ -102,8 +104,8 @@ body.is-story .site-footer {
   font-weight: 700;
   line-height: 1.22;
   letter-spacing: -0.025em;
-  max-width: 18ch;
-  margin: 0 0 var(--space-2);
+  max-width: 24ch;
+  margin: 0 0 var(--space-3);
   text-wrap: balance;
 }
 
@@ -121,11 +123,12 @@ body.is-story .site-footer {
 }
 
 .story-hero-support {
-  margin: 0 0 var(--space-2);
+  margin: var(--space-3) 0 var(--space-2);
   font-size: var(--step-1);
   font-weight: 600;
   color: var(--text);
   letter-spacing: -0.015em;
+  max-width: 36rem;
 }
 
 .story-price {
@@ -206,6 +209,83 @@ body.is-story .site-footer {
   border-block-color: var(--border);
 }
 
+.story-split .path-line {
+  grid-template-columns: 1fr 1fr;
+}
+
+.story-split .path-line::before {
+  display: none;
+}
+
+.story-split .orbit {
+  min-height: 0;
+}
+
+.story-split .orbit li {
+  min-height: 0;
+}
+
+/* --- Parallel three-column boards ------------------------------------- */
+
+.parallel-row {
+  list-style: none;
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+  align-items: stretch;
+}
+
+.parallel-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-height: 100%;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+.is-in .parallel-card,
+.story-hero .parallel-card.is-in,
+.no-js .parallel-card,
+.js .parallel-card.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.parallel-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.parallel-card strong {
+  font-size: var(--step-1);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.parallel-card span:last-child {
+  color: var(--text-muted);
+  font-size: var(--step-0);
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.is-overwhelm h2 {
+  max-width: 16ch;
+  margin-block-end: var(--space-3);
+}
+
 .story-head {
   max-width: 22ch;
   margin-block-end: var(--space-3);
@@ -266,11 +346,6 @@ body.is-story .site-footer {
 }
 
 /* --- Overwhelm / load field ------------------------------------------- */
-
-.is-overwhelm h2 {
-  max-width: 18ch;
-  margin-block-end: var(--space-3);
-}
 
 .load-field {
   list-style: none;
@@ -536,7 +611,7 @@ body.is-story .site-footer {
 
 .funnel li:nth-child(1) { background: var(--accent-mid); }
 .funnel li:nth-child(2) { background: var(--accent); }
-.funnel li:nth-child(3) { background: #16302c; }
+.funnel li:nth-child(3) { background: #3478b3; }
 .funnel li:nth-child(4) { background: var(--accent-hover); }
 
 .funnel strong {
@@ -784,7 +859,7 @@ body.is-story .site-footer {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to bottom right, transparent 49%, rgba(27, 58, 52, 0.07) 50%, transparent 51%);
+    linear-gradient(to bottom right, transparent 49%, rgba(74, 142, 200, 0.08) 50%, transparent 51%);
   background-size: 18px 18px;
   pointer-events: none;
 }
@@ -867,6 +942,10 @@ body.is-story #testimonials .section-head h2 {
     clip-path: none;
   }
 
+  .parallel-row {
+    grid-template-columns: 1fr;
+  }
+
   .scan-rings {
     display: none;
   }
@@ -882,7 +961,8 @@ body.is-story #testimonials .section-head h2 {
   .pillars li,
   .horizon li,
   .role-cloud li,
-  .collapse-list li {
+  .collapse-list li,
+  .parallel-card {
     opacity: 1;
     transform: none;
     transition: none;
