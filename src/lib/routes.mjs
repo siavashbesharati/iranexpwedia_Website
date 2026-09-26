@@ -16,6 +16,7 @@ export const routes = {
   post: (slug) => `/blog/${slug}`,
   about: '/about',
   contact: '/contact',
+  contract: '/contract-template',
   thankYou: '/thank-you',
   notFound: '/404',
 };

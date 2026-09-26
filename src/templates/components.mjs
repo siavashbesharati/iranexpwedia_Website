@@ -198,6 +198,7 @@ export function footer(locale) {
           <li><a href="${esc(localePath(routes.caseStudies, locale))}">${esc(t({ fa: 'نمونه‌کارها', en: 'Case studies' }, locale))}</a></li>
           <li><a href="${esc(localePath(routes.about, locale))}">${esc(t({ fa: 'درباره ما', en: 'About' }, locale))}</a></li>
           <li><a href="${esc(localePath(routes.contact, locale))}">${esc(t({ fa: 'تماس', en: 'Contact' }, locale))}</a></li>
+          <li><a href="${esc(localePath(routes.contract, locale))}">${esc(t({ fa: 'قالب قرارداد همکاری', en: 'Collaboration contract template' }, locale))}</a></li>
         </ul>
       </div>
       <div>

@@ -24,6 +24,7 @@ import { servicesHubPage, servicePage } from './src/pages/services.mjs';
 import { bidarPage } from './src/pages/bidar.mjs';
 import { caseStudiesPageTemplate, caseStudyPage } from './src/pages/case-studies.mjs';
 import { blogIndexPage, blogCategoryPage, postPage } from './src/pages/blog.mjs';
+import { contractPage } from './src/pages/contract.mjs';
 import { aboutPage, contactPage, thankYouPage, notFoundPage } from './src/pages/misc.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
@@ -120,6 +121,7 @@ function collectPages(assets) {
     add(locale, routes.blog, blogIndexPage(locale, assets), { priority: 0.8, changefreq: 'weekly' });
     add(locale, routes.about, aboutPage(locale, assets), { priority: 0.6 });
     add(locale, routes.contact, contactPage(locale, assets), { priority: 0.9 });
+    add(locale, routes.contract, contractPage(locale, assets), { priority: 0.5 });
     add(locale, routes.thankYou, thankYouPage(locale, assets), { indexable: false });
     add(locale, routes.notFound, notFoundPage(locale, assets), { indexable: false });
 

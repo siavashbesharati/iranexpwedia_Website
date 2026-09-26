@@ -1843,6 +1843,213 @@ ol {
   }
 }
 
+/* --- Contract template --------------------------------------------------- */
+
+.contract-shell {
+  padding-block: var(--space-3) var(--space-6);
+}
+
+.contract-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-block: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  background: #1a2433;
+  color: #fff;
+}
+
+.contract-toolbar p {
+  margin: 0;
+  color: #d4e3f0;
+  font-size: var(--step--1);
+}
+
+.contract-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: var(--space-1);
+}
+
+.contract-paper {
+  width: min(100%, 850px);
+  margin-inline: auto;
+  padding: clamp(1.25rem, 5vw, 3rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  line-height: 1.95;
+}
+
+.contract-paper h1 {
+  margin: 0;
+  text-align: center;
+  font-size: var(--step-2);
+}
+
+.contract-paper h2 {
+  margin-block: 1.5rem 0.5rem;
+  padding-block-end: 0.35rem;
+  border-block-end: 1px solid var(--border);
+  font-size: var(--step-0);
+}
+
+.contract-paper p {
+  margin-block: 0 0.75rem;
+  text-align: justify;
+}
+
+.contract-paper .contract-subtitle {
+  margin-block: 0 2rem;
+  color: var(--text-muted);
+  text-align: center;
+  font-size: var(--step--1);
+}
+
+.contract-parties {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin-block: var(--space-2);
+}
+
+.contract-party {
+  min-width: 0;
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.contract-party h3 {
+  margin: 0 0 var(--space-1);
+  color: var(--accent-hover);
+  font-size: var(--step-0);
+}
+
+.contract-party p {
+  margin-block: 0 0.45rem;
+  font-size: var(--step--1);
+  overflow-wrap: anywhere;
+}
+
+.contract-party strong {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.contract-fill {
+  min-width: 3.75rem;
+  padding-inline: 0.25rem;
+  border-block-end: 1px dashed var(--text-subtle);
+  color: var(--text);
+  font-weight: 600;
+  outline: none;
+}
+
+.contract-fill:empty::before {
+  color: var(--text-subtle);
+  content: attr(data-placeholder);
+  font-weight: 400;
+}
+
+.contract-fill:focus {
+  border-block-end-color: var(--accent);
+  background: var(--accent-softer);
+}
+
+.contract-fill.is-block {
+  display: block;
+  min-height: 2.5rem;
+  margin-block: 0.5rem 0.9rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px dashed var(--border-strong);
+  border-radius: 4px;
+  white-space: pre-wrap;
+}
+
+.contract-signatures {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-block-start: 2rem;
+  break-inside: avoid;
+}
+
+.contract-signatures span {
+  display: block;
+  height: 3.5rem;
+  border-block-end: 1px solid var(--text);
+}
+
+.contract-signatures p {
+  margin-block-start: 0.4rem;
+  color: var(--text-muted);
+  text-align: center;
+  font-size: var(--step--1);
+}
+
+.contract-paper > footer {
+  margin-block-start: 2rem;
+  color: var(--text-subtle);
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .contract-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .contract-actions {
+    flex-wrap: wrap;
+  }
+
+  .contract-parties {
+    grid-template-columns: 1fr;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 16mm 14mm;
+}
+
+@media print {
+  .contract-toolbar {
+    display: none !important;
+  }
+
+  .contract-shell {
+    padding: 0;
+  }
+
+  .contract-paper {
+    width: auto;
+    max-width: none;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .contract-fill {
+    border-block-end: 1px solid #333;
+  }
+
+  .contract-fill.is-block {
+    border: 1px solid #999;
+  }
+
+  .contract-fill:focus {
+    background: transparent;
+  }
+}
+
 
 /* ==========================================================================
    Homepage story — editorial, scroll-driven, light theme.

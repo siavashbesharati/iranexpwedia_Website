@@ -85,6 +85,56 @@
   /* ------------------------------------------ scroll-in + story rail */
 
   initScrollIn();
+  initContractTemplate();
+
+  function initContractTemplate() {
+    var paper = document.getElementById('contract-paper');
+    if (!paper) return;
+
+    var locale = config.locale || 'fa';
+    var dateFields = paper.querySelectorAll('[data-contract-date]');
+    var resetButton = document.getElementById('contract-reset');
+    var printButton = document.getElementById('contract-print');
+    var today = new Date();
+    var endDate = new Date(today);
+    var day = endDate.getDate();
+    endDate.setDate(1);
+    endDate.setMonth(endDate.getMonth() + 3);
+    endDate.setDate(Math.min(day, new Date(endDate.getFullYear(), endDate.getMonth() + 1, 0).getDate()));
+
+    function formatContractDate(date) {
+      var formatter = new Intl.DateTimeFormat(
+        locale === 'fa' ? 'fa-IR-u-ca-persian-nu-arabext' : 'en-GB',
+        { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'Asia/Tehran' }
+      );
+      var parts = {};
+      formatter.formatToParts(date).forEach(function (part) {
+        if (part.type === 'year' || part.type === 'month' || part.type === 'day') parts[part.type] = part.value;
+      });
+      return parts.year + '/' + parts.month + '/' + parts.day;
+    }
+
+    function setDates() {
+      dateFields.forEach(function (field) {
+        field.textContent = formatContractDate(field.getAttribute('data-contract-date') === 'end' ? endDate : today);
+      });
+    }
+
+    setDates();
+
+    if (printButton) printButton.addEventListener('click', function () { window.print(); });
+
+    if (resetButton) {
+      resetButton.addEventListener('click', function () {
+        var message = locale === 'fa' ? 'همه فیلدها به مقادیر پیش‌فرض بازگردانده شوند؟' : 'Restore all fields to their default values?';
+        if (!window.confirm(message)) return;
+        paper.querySelectorAll('.contract-fill').forEach(function (field) {
+          field.textContent = field.getAttribute('data-default') || '';
+        });
+        setDates();
+      });
+    }
+  }
 
   function initScrollIn() {
     var scrollSelector = [
