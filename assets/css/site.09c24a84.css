@@ -1454,6 +1454,46 @@ ol {
   margin: 0;
 }
 
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: var(--space-3) auto;
+  border-radius: var(--radius-sm);
+}
+
+.prose pre {
+  overflow-x: auto;
+  padding: var(--space-2);
+  background: var(--tint);
+  border-radius: var(--radius-sm);
+  direction: ltr;
+  text-align: left;
+}
+
+.prose code {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+.answer-summary {
+  margin-block-end: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-inline-start: 4px solid var(--accent);
+  background: var(--tint);
+  border-radius: var(--radius-sm);
+}
+
+.answer-summary strong {
+  display: block;
+  margin-block-end: 0.35rem;
+}
+
+.answer-summary p {
+  margin: 0;
+  line-height: 1.9;
+}
+
 /* --- Pricing ----------------------------------------------------------- */
 
 .price-grid {
