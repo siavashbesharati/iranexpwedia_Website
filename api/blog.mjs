@@ -72,7 +72,7 @@ async function github(path, options = {}) {
       ...options.headers,
     },
   });
-  if (response.status === 404) return null;
+  if (response.status === 404 && (options.method || 'GET') === 'GET') return null;
   const result = await response.json().catch(() => ({}));
   if (!response.ok) {
     const error = new Error('CMS_GITHUB_REQUEST_FAILED');
@@ -100,7 +100,12 @@ async function writeFile(path, content, message, contentType = 'text') {
       ...(sha ? { sha } : {}),
     }),
   });
-  return result?.content?.path;
+  if (!result?.content?.path || !result?.commit?.sha) {
+    const error = new Error('CMS_GITHUB_WRITE_NOT_CONFIRMED');
+    error.status = 502;
+    throw error;
+  }
+  return result.content.path;
 }
 
 function slugValue(value) {
