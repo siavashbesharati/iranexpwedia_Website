@@ -29,6 +29,7 @@ import { aboutPage, contactPage, thankYouPage, notFoundPage } from './src/pages/
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const LOCALES = ['fa', 'en'];
+const CMS_POSTS_DIR = path.join(root, 'src/data/blog-cms');
 
 /* Directories and files this build owns and may safely recreate. */
 const GENERATED_DIRS = ['services', 'case-studies', 'blog', 'en', 'assets/css', 'assets/js'];
@@ -36,8 +37,9 @@ const GENERATED_ROOT_FILES = ['sitemap.xml', 'robots.txt'];
 
 async function main() {
   await clean();
+  const allPosts = await loadBlogPosts();
   const assets = await buildAssets();
-  const pages = collectPages(assets);
+  const pages = collectPages(assets, allPosts);
 
   for (const page of pages) {
     const file = path.join(root, page.file);
@@ -96,7 +98,18 @@ function hash(content) {
 
 /* ------------------------------------------------------------------ pages */
 
-function collectPages(assets) {
+async function loadBlogPosts() {
+  const entries = await fs.readdir(CMS_POSTS_DIR, { withFileTypes: true }).catch(() => []);
+  const cmsPosts = await Promise.all(entries
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.json'))
+    .map(async (entry) => {
+      const filename = path.join(CMS_POSTS_DIR, entry.name);
+      return JSON.parse(await fs.readFile(filename, 'utf8'));
+    }));
+  return [...posts, ...cmsPosts.filter((post) => post.published)];
+}
+
+function collectPages(assets, allPosts) {
   const pages = [];
 
   const add = (locale, routePath, html, options = {}) => {
@@ -118,7 +131,7 @@ function collectPages(assets) {
     add(locale, routes.services, servicesHubPage(locale, assets), { priority: 0.9, changefreq: 'monthly' });
     add(locale, routes.bidar, bidarPage(locale, assets), { priority: 0.95, changefreq: 'weekly' });
     add(locale, routes.caseStudies, caseStudiesPageTemplate(locale, assets), { priority: 0.8 });
-    add(locale, routes.blog, blogIndexPage(locale, assets), { priority: 0.8, changefreq: 'weekly' });
+    add(locale, routes.blog, blogIndexPage(locale, assets, allPosts), { priority: 0.8, changefreq: 'weekly' });
     add(locale, routes.about, aboutPage(locale, assets), { priority: 0.6 });
     add(locale, routes.contact, contactPage(locale, assets), { priority: 0.9 });
     add(locale, routes.contract, contractPage(locale, assets), { priority: 0.5 });
@@ -132,13 +145,13 @@ function collectPages(assets) {
       add(locale, routes.caseStudy(study.slug), caseStudyPage(locale, study, assets), { priority: 0.7 });
     }
     for (const category of categories) {
-      add(locale, routes.blogCategory(category.slug), blogCategoryPage(locale, category, assets), {
+      add(locale, routes.blogCategory(category.slug), blogCategoryPage(locale, category, assets, allPosts), {
         priority: 0.5,
         changefreq: 'weekly',
       });
     }
-    for (const post of posts) {
-      add(locale, routes.post(post.slug), postPage(locale, post, assets), {
+    for (const post of allPosts) {
+      add(locale, routes.post(post.slug), postPage(locale, post, assets, allPosts), {
         priority: 0.7,
         lastmod: post.updated || post.date,
       });

@@ -22,6 +22,7 @@ export function layout(page, assets) {
   const { locale, path, title, description, body, navKey, schema = [], noindex = false, pageId } = page;
   const meta = localeMeta[locale];
   const canonical = absolute(site.domain, path, locale);
+  const shareImage = page.ogImage || ogImage;
   const altLocale = locale === 'fa' ? 'en' : 'fa';
   const altPath = localePath(path, altLocale);
 
@@ -73,13 +74,13 @@ export function layout(page, assets) {
 <meta property="og:url" content="${esc(canonical)}" />
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(description)}" />
-<meta property="og:image" content="${ogImage}" />
+<meta property="og:image" content="${esc(shareImage)}" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="${esc(title)}" />
 <meta name="twitter:description" content="${esc(description)}" />
-<meta name="twitter:image" content="${ogImage}" />
+<meta name="twitter:image" content="${esc(shareImage)}" />
 
 ${schema.map((entry) => jsonLd(entry)).join('\n')}
 <script>window.__IX_CONFIG__=${JSON.stringify(runtimeConfig)};</script>

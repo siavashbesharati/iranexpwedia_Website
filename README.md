@@ -38,6 +38,36 @@ anything in `src/`.
 > exist, which fails the deployment. The generator is dependency-free and runs
 > directly with `node`, so none is needed.
 
+## Blog CMS
+
+The admin editor is at `/admin`. It saves draft and published article JSON and
+resized WebP images to the connected GitHub repository through a Vercel
+Function. Published articles are generated into both locales, category pages,
+the blog index, and `sitemap.xml` during the next Vercel deployment. Drafts are
+not public or indexed. The editor accepts separate Persian and English
+Markdown, descriptions, quick answers, keywords, image crops, and social covers.
+
+In **Vercel Project Settings → Environment Variables**, set:
+
+| Variable | Value |
+| --- | --- |
+| `BLOG_ADMIN_PASSWORD` | A strong, unique password for `/admin` |
+| `GITHUB_TOKEN` | Fine-grained GitHub token with Contents read/write access to this repository |
+| `GITHUB_REPOSITORY` | Repository in `owner/name` format |
+| `GITHUB_BRANCH` | Production branch, normally `main` |
+
+Add the variables to Production and Preview only if you intend to manage posts
+there. Vercel builds use `node build.mjs` as configured in `vercel.json`; the
+connected GitHub production branch must match `GITHUB_BRANCH`. Do not put the
+GitHub token or admin password in site files. A CMS save creates a Git commit,
+which starts the normal Vercel deployment.
+
+This keeps content durable without a paid database or storage service. SQLite
+and local filesystem writes are not suitable for persistence on Vercel
+Functions. GitHub-backed saves and Vercel deployments are subject to their
+respective free-plan limits; this is intended for a low-volume editorial blog,
+not concurrent multi-editor publishing.
+
 ## Things to fill in
 
 These are deliberately left as placeholders instead of invented values.

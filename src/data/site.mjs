@@ -120,6 +120,7 @@ export const nav = [
   { key: 'how', label: { fa: 'روش کار', en: 'How it works' }, path: { fa: '/#how', en: '/en/#how' } },
   { key: 'what', label: { fa: 'چه می‌کنیم', en: 'What we do' }, path: { fa: '/#what', en: '/en/#what' } },
   { key: 'pricing', label: { fa: 'قیمت', en: 'Pricing' }, path: { fa: '/#pricing', en: '/en/#pricing' } },
+  { key: 'blog', label: { fa: 'بلاگ', en: 'Blog' }, path: { fa: '/blog', en: '/en/blog' } },
   { key: 'contact', label: { fa: 'تماس', en: 'Contact' }, path: { fa: '/contact', en: '/en/contact' } },
 ];
 

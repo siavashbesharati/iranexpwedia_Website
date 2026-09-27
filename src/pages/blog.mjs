@@ -3,10 +3,12 @@ import { t, formatDate, readingTime } from '../lib/i18n.mjs';
 import { routes, localePath } from '../lib/routes.mjs';
 import { site, ogImage, primaryCta, demoCta } from '../data/site.mjs';
 import { posts, categories, blogPage } from '../data/blog.mjs';
+import { markdownToHtml, markdownWordCount } from '../lib/markdown.mjs';
 import { layout, breadcrumbSchema } from '../templates/layout.mjs';
 import { s, breadcrumbs, ctaBand, inlineCta, leadForm } from '../templates/components.mjs';
 
-const sortedPosts = [...posts].sort((a, b) => (a.date < b.date ? 1 : -1));
+const sortPosts = (items) => [...items].sort((a, b) => (a.date < b.date ? 1 : -1));
+const sortedPosts = sortPosts(posts);
 
 function categoryOf(slug) {
   return categories.find((cat) => cat.slug === slug);
@@ -40,7 +42,8 @@ function categoryNav(locale, activeSlug) {
 
 /* ------------------------------------------------------------- blog index -- */
 
-export function blogIndexPage(locale, assets) {
+export function blogIndexPage(locale, assets, allPosts = posts) {
+  const pagePosts = sortPosts(allPosts);
   const str = s(locale);
   const trail = [
     { label: str.breadcrumbHome, href: localePath(routes.home, locale) },
@@ -57,7 +60,7 @@ export function blogIndexPage(locale, assets) {
 <section class="section">
   <div class="container">
     ${categoryNav(locale)}
-    <div class="grid grid-2">${sortedPosts.map((post) => postCard(locale, post)).join('\n')}</div>
+    <div class="grid grid-2">${pagePosts.map((post) => postCard(locale, post)).join('\n')}</div>
   </div>
 </section>
 ${ctaBand(locale, {
@@ -79,7 +82,7 @@ ${ctaBand(locale, {
     url: `${site.domain}${localePath(routes.blog, locale)}`,
     inLanguage: locale === 'fa' ? 'fa-IR' : 'en',
     publisher: { '@id': `${site.domain}/#organization` },
-    blogPost: sortedPosts.map((post) => ({
+    blogPost: pagePosts.map((post) => ({
       '@type': 'BlogPosting',
       headline: t(post.title, locale),
       url: `${site.domain}${localePath(routes.post(post.slug), locale)}`,
@@ -104,10 +107,10 @@ ${ctaBand(locale, {
 
 /* ---------------------------------------------------------- category page -- */
 
-export function blogCategoryPage(locale, category, assets) {
+export function blogCategoryPage(locale, category, assets, allPosts = posts) {
   const str = s(locale);
   const path = routes.blogCategory(category.slug);
-  const items = sortedPosts.filter((post) => post.category === category.slug);
+  const items = sortPosts(allPosts).filter((post) => post.category === category.slug);
 
   const trail = [
     { label: str.breadcrumbHome, href: localePath(routes.home, locale) },
@@ -213,11 +216,13 @@ function renderBlocks(blocks) {
     .join('\n');
 }
 
-export function postPage(locale, post, assets) {
+export function postPage(locale, post, assets, allPosts = posts) {
   const str = s(locale);
   const path = routes.post(post.slug);
   const category = categoryOf(post.category);
   const blocks = t(post.body, locale);
+  const markdown = post.markdown ? t(post.markdown, locale) : null;
+  const articleContent = markdown === null ? renderBlocks(blocks) : markdownToHtml(markdown);
   const cta = (postCtas[post.cta] || postCtas.consultation)(locale);
 
   const trail = [
@@ -227,7 +232,9 @@ export function postPage(locale, post, assets) {
     { label: t(post.title, locale), href: localePath(path, locale) },
   ];
 
-  const related = sortedPosts.filter((item) => item.slug !== post.slug).slice(0, 2);
+  const related = sortPosts(allPosts).filter((item) => item.slug !== post.slug).slice(0, 2);
+  const answerSummary = t(post.answerSummary, locale);
+  const keywords = t(post.keywords, locale);
 
   const body = `<article>
 <section class="hero-page">
@@ -249,8 +256,9 @@ export function postPage(locale, post, assets) {
 </section>
 <section class="section">
   <div class="container container-narrow">
+    ${answerSummary ? `<aside class="answer-summary"><strong>${esc(t({ fa: 'پاسخ کوتاه', en: 'Quick answer' }, locale))}</strong><p>${esc(answerSummary)}</p></aside>` : ''}
     <div class="prose" style="max-width:none">
-      ${renderBlocks(blocks)}
+      ${articleContent}
     </div>
     ${inlineCta(locale, { ...cta, location: `post_${post.slug}` })}
   </div>
@@ -291,10 +299,15 @@ export function postPage(locale, post, assets) {
     datePublished: post.date,
     dateModified: post.updated || post.date,
     articleSection: t(category.title, locale),
-    wordCount: blocks.reduce((sum, block) => sum + String(block.p || block.h2 || block.quote || (block.ul || block.ol || []).join(' ')).split(/\s+/).length, 0),
+    abstract: answerSummary || t(post.description, locale),
+    keywords,
+    wordCount: markdown === null
+      ? blocks.reduce((sum, block) => sum + String(block.p || block.h2 || block.quote || (block.ul || block.ol || []).join(' ')).split(/\s+/).length, 0)
+      : markdownWordCount(markdown),
     author: { '@id': `${site.domain}/#organization` },
     publisher: { '@id': `${site.domain}/#organization` },
     image: ogImage,
+    ...(answerSummary ? { speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.answer-summary'] } } : {}),
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${site.domain}${localePath(path, locale)}` },
   };
 
@@ -307,6 +320,7 @@ export function postPage(locale, post, assets) {
       ogType: 'article',
       title: `${t(post.title, locale)} | ${t(site.name, locale)}`,
       description: t(post.description, locale),
+      ogImage: post.coverImage ? `${site.domain}${post.coverImage}` : undefined,
       schema: [articleSchema, breadcrumbSchema(locale, trail)],
       body,
     },

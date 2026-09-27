@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="color-scheme" content="light" />
+  <title>Blog studio | IranExpedia</title>
+  <link rel="stylesheet" href="/admin/cms.css" />
+  <script src="/admin/cms.js" defer></script>
+</head>
+<body>
+  <main class="studio" id="app">
+    <header class="topbar">
+      <a class="wordmark" href="/" aria-label="IranExpedia home"><span class="mark">IX</span><span>IranExpedia <small>Blog studio</small></span></a>
+      <div class="top-actions"><span class="save-state" id="save-state">Not saved</span><button class="button button-quiet" id="logout" type="button" hidden>Sign out</button></div>
+    </header>
+
+    <section class="login-panel" id="login-panel" hidden>
+      <p class="eyebrow">PRIVATE WORKSPACE</p>
+      <h1>Sign in to your blog</h1>
+      <form id="login-form">
+        <label for="password">Admin password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required />
+        <button class="button button-primary" type="submit">Sign in <span aria-hidden="true">→</span></button>
+        <p class="form-error" id="login-error" role="alert"></p>
+      </form>
+    </section>
+
+    <section class="workspace" id="workspace" hidden>
+      <aside class="rail">
+        <div class="rail-heading"><div><p class="eyebrow">YOUR PUBLICATION</p><h2>Articles</h2></div><button class="icon-button" id="new-post" type="button" aria-label="New article" title="New article">＋</button></div>
+        <div class="post-list" id="post-list" aria-live="polite"></div>
+        <a class="public-link" href="/blog/" target="_blank" rel="noreferrer">View public blog <span aria-hidden="true">↗</span></a>
+      </aside>
+
+      <section class="editor-shell" aria-label="Article editor">
+        <div class="editor-toolbar">
+          <div class="toolbar-left"><span class="status-dot"></span><span id="article-status">New article</span></div>
+          <div class="toolbar-actions"><button class="button button-quiet" id="delete-post" type="button" hidden>Delete</button><button class="button button-secondary" id="save-draft" type="button">Save draft</button><button class="button button-primary" id="publish-post" type="button">Publish</button></div>
+        </div>
+
+        <div class="fields">
+          <div class="field-grid field-grid-top">
+            <label>Article title · English<input id="title-en" maxlength="150" placeholder="A clear, useful title" /></label>
+            <label dir="rtl">عنوان مقاله · فارسی<input id="title-fa" maxlength="150" dir="rtl" placeholder="عنوان روشن و کاربردی" /></label>
+          </div>
+          <div class="field-grid field-grid-meta">
+            <label>URL slug<input id="slug" maxlength="90" placeholder="clear-article-url" autocomplete="off" /></label>
+            <label>Category<select id="category"></select></label>
+            <label>Publication date<input id="date" type="date" /></label>
+          </div>
+          <div class="field-grid">
+            <label>Search description · English<textarea id="description-en" rows="2" maxlength="240" placeholder="Summarise the answer this article gives."></textarea></label>
+            <label dir="rtl">توضیح برای جستجو · فارسی<textarea id="description-fa" rows="2" maxlength="240" dir="rtl" placeholder="پاسخی را که مقاله می‌دهد، خلاصه کنید."></textarea></label>
+          </div>
+          <div class="field-grid field-grid-answer">
+            <label>Quick answer for readers and AI · English<textarea id="answer-en" rows="2" maxlength="500" placeholder="A direct 1–3 sentence answer near the start of the article."></textarea></label>
+            <label dir="rtl">پاسخ کوتاه برای خواننده و هوش مصنوعی · فارسی<textarea id="answer-fa" rows="2" maxlength="500" dir="rtl" placeholder="پاسخ مستقیم در یک تا سه جمله."></textarea></label>
+          </div>
+          <div class="field-grid">
+            <label>Related search phrases · English<input id="keywords-en" maxlength="300" placeholder="local SEO, business visibility" /></label>
+            <label dir="rtl">عبارت‌های جستجوی مرتبط · فارسی<input id="keywords-fa" maxlength="300" dir="rtl" placeholder="سئوی محلی، دیده‌شدن کسب‌وکار" /></label>
+          </div>
+          <label>Call to action<select id="cta"><option value="consultation">Book a consultation</option><option value="audit">Request an audit</option><option value="demo">See Bidar demo</option></select></label>
+        </div>
+
+        <div class="content-tools">
+          <div><p class="eyebrow">ARTICLE BODY</p><span class="quiet-note">Markdown in, clean article HTML out</span></div>
+          <div class="image-tools">
+            <label class="button button-secondary image-select" for="image-file">Add image</label><input id="image-file" type="file" accept="image/png,image/jpeg,image/webp" hidden />
+            <label class="crop-control">Crop <select id="crop-ratio" aria-label="Image crop ratio"><option value="free">Original</option><option value="1.91">Wide 1.91:1</option><option value="1">Square 1:1</option><option value="0.8">Portrait 4:5</option></select></label>
+            <label class="crop-control">Width <select id="image-width" aria-label="Image output width"><option value="1200">1200 px</option><option value="1600" selected>1600 px</option><option value="2000">2000 px</option></select></label>
+          </div>
+        </div>
+        <div class="image-preview" id="image-preview" hidden><img id="image-preview-img" alt="Selected image crop preview" /><div class="preview-meta"><span id="image-size"></span><div class="crop-position"><label>Horizontal <input id="crop-x" type="range" min="0" max="100" value="50" aria-label="Horizontal crop position" /></label><label>Vertical <input id="crop-y" type="range" min="0" max="100" value="50" aria-label="Vertical crop position" /></label></div><label class="cover-choice"><input id="set-cover" type="checkbox" /> Use as social cover</label><button class="text-button" id="insert-image" type="button">Upload and insert into article</button><button class="text-button" id="clear-image" type="button">Remove</button></div></div>
+
+        <div class="writing-grid">
+          <label class="markdown-pane"><span class="pane-title">Markdown <span class="language-switch"><button type="button" data-language="en" aria-pressed="true">EN</button><button type="button" data-language="fa" aria-pressed="false">فا</button></span><span id="word-count">0 words</span></span><textarea id="markdown" spellcheck="true" placeholder="# Start with the answer\n\nPaste a complete article from your chatbot. Markdown headings, links, lists, quotes, code and images are supported.&#10;Use ![description](/assets/blog/your-image.webp) for article images."></textarea></label>
+          <section class="preview-pane"><div class="pane-title">Preview <span class="preview-language">English</span></div><article class="prose-preview" id="preview" aria-live="polite"></article></section>
+        </div>
+      </section>
+    </section>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+</body>
+</html>
