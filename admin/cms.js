@@ -7,7 +7,7 @@ const categories = [
   ['business-ideas', 'Business Ideas', 'ایده‌های کسب‌وکار'],
   ['case-studies', 'Case Studies', 'تجربه‌های اجرا'],
 ];
-const state = { posts: [], currentSlug: '', dirty: false, image: null, objectUrl: '', toastTimer: 0, markdownLocale: 'en', markdown: { en: '', fa: '' }, coverImage: '' };
+const state = { posts: [], currentSlug: '', dirty: false, image: null, objectUrl: '', toastTimer: 0, markdownLocale: 'en', markdown: { en: '', fa: '' }, coverImage: '', slugEdited: false };
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
@@ -105,7 +105,11 @@ async function request(action, body) {
     body: body ? JSON.stringify({ action, ...body }) : undefined,
   });
   const result = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(result.error || 'Something went wrong.');
+  if (!response.ok) {
+    const error = new Error(result.error || 'Something went wrong.');
+    error.fields = result.fields;
+    throw error;
+  }
   return result;
 }
 
@@ -145,6 +149,7 @@ function setStatus(text, dirty = false) {
 }
 
 function readForm() {
+  state.markdown[state.markdownLocale] = byId('markdown').value;
   return {
     slug: byId('slug').value.trim(),
     category: byId('category').value,
@@ -159,8 +164,75 @@ function readForm() {
   };
 }
 
+function validateForm(post, published) {
+  const errors = {};
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(post.slug)) errors.slug = 'Use a lowercase English URL slug with hyphens, for example local-seo-guide.';
+  if (!categories.some(([slug]) => slug === post.category)) errors.category = 'Choose a blog category.';
+  const date = new Date(`${post.date}T00:00:00Z`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(post.date) || !Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== post.date) {
+    errors.date = 'Choose a valid publication date.';
+  }
+  if (published) {
+    for (const key of ['title', 'description', 'markdown']) {
+      for (const locale of ['fa', 'en']) {
+        if (!post[key][locale].trim()) errors[`${key}.${locale}`] = `Add the ${locale === 'fa' ? 'Persian' : 'English'} ${key}.`;
+      }
+    }
+  }
+  for (const [key, limit] of [['title', 150], ['description', 240], ['markdown', 200000], ['answerSummary', 500], ['keywords', 300]]) {
+    for (const locale of ['fa', 'en']) {
+      if (post[key][locale].length > limit) errors[`${key}.${locale}`] = `Keep this field under ${limit} characters.`;
+    }
+  }
+  return errors;
+}
+
+function switchMarkdownLocale(locale) {
+  state.markdown[state.markdownLocale] = byId('markdown').value;
+  state.markdownLocale = locale;
+  byId('markdown').value = state.markdown[locale];
+  byId('markdown').dir = locale === 'fa' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-language]').forEach((tab) => tab.setAttribute('aria-pressed', String(tab.dataset.language === locale)));
+  byId('preview').dir = locale === 'fa' ? 'rtl' : 'ltr';
+  document.querySelector('.preview-language').textContent = locale === 'fa' ? 'فارسی' : 'English';
+  updatePreview();
+}
+
+function showValidation(errors) {
+  document.querySelectorAll('[aria-invalid="true"]').forEach((control) => control.removeAttribute('aria-invalid'));
+  const labels = {
+    slug: 'URL slug', category: 'Category', date: 'Publication date',
+    'title.en': 'English title', 'title.fa': 'Persian title',
+    'description.en': 'English description', 'description.fa': 'Persian description',
+    'markdown.en': 'English article body', 'markdown.fa': 'Persian article body',
+  };
+  const ids = {
+    slug: 'slug', category: 'category', date: 'date',
+    'title.en': 'title-en', 'title.fa': 'title-fa',
+    'description.en': 'description-en', 'description.fa': 'description-fa',
+  };
+  const entries = Object.entries(errors || {});
+  if (!entries.length) return false;
+  for (const [key] of entries) {
+    const id = ids[key];
+    if (id) byId(id).setAttribute('aria-invalid', 'true');
+  }
+  const first = entries[0][0];
+  let control = byId(ids[first]);
+  if (first.startsWith('markdown.')) {
+    switchMarkdownLocale(first.endsWith('.fa') ? 'fa' : 'en');
+    control = byId('markdown');
+    control.setAttribute('aria-invalid', 'true');
+  }
+  const summary = entries.slice(0, 4).map(([key, message]) => `${labels[key] || key}: ${message}`).join(' ');
+  notify(summary);
+  control?.focus();
+  return true;
+}
+
 function openPost(post) {
   state.currentSlug = post.slug;
+  state.slugEdited = true;
   byId('title-en').value = post.title?.en || '';
   byId('title-fa').value = post.title?.fa || '';
   byId('slug').value = post.slug || '';
@@ -175,6 +247,10 @@ function openPost(post) {
   state.markdown = { en: post.markdown?.en || '', fa: post.markdown?.fa || '' };
   state.markdownLocale = 'en';
   byId('markdown').value = state.markdown.en;
+  byId('markdown').dir = 'ltr';
+  document.querySelectorAll('[data-language]').forEach((tab) => tab.setAttribute('aria-pressed', String(tab.dataset.language === 'en')));
+  byId('preview').dir = 'ltr';
+  document.querySelector('.preview-language').textContent = 'English';
   state.coverImage = post.coverImage || '';
   byId('cta').value = post.cta || 'consultation';
   byId('delete-post').hidden = false;
@@ -185,11 +261,15 @@ function openPost(post) {
 
 function newPost() {
   state.currentSlug = '';
+  state.slugEdited = false;
   for (const field of fields) byId(field).value = '';
   state.markdown = { en: '', fa: '' };
   state.markdownLocale = 'en';
   state.coverImage = '';
   document.querySelectorAll('[data-language]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.language === 'en')));
+  byId('markdown').dir = 'ltr';
+  byId('preview').dir = 'ltr';
+  document.querySelector('.preview-language').textContent = 'English';
   byId('category').value = categories[0][0];
   byId('date').value = new Date().toISOString().slice(0, 10);
   byId('cta').value = 'consultation';
@@ -215,10 +295,7 @@ function slugify(value) {
 
 async function savePost(published) {
   const post = readForm();
-  if (!post.slug || !post.title.en || !post.title.fa || !post.description.en || !post.description.fa || !post.markdown.en.trim() || !post.markdown.fa.trim() || !post.date) {
-    notify('Add both titles, descriptions and article bodies, plus a URL slug and date.');
-    return;
-  }
+  if (showValidation(validateForm(post, published))) return;
   const button = published ? byId('publish-post') : byId('save-draft');
   button.disabled = true;
   byId('save-state').textContent = 'Saving to GitHub…';
@@ -233,7 +310,7 @@ async function savePost(published) {
     notify(published ? 'Published. Vercel will rebuild the public article.' : 'Draft saved to GitHub.');
   } catch (error) {
     byId('save-state').textContent = 'Save failed';
-    notify(error.message);
+    if (!showValidation(error.fields)) notify(error.message);
   } finally {
     button.disabled = false;
   }
@@ -334,23 +411,22 @@ function init() {
   byId('publish-post').addEventListener('click', () => savePost(true));
   byId('delete-post').addEventListener('click', deletePost);
   byId('markdown').addEventListener('input', () => { updatePreview(); setStatus('Unsaved changes', true); });
-  document.querySelectorAll('[data-language]').forEach((button) => button.addEventListener('click', () => {
-    state.markdown[state.markdownLocale] = byId('markdown').value;
-    state.markdownLocale = button.dataset.language;
-    byId('markdown').value = state.markdown[state.markdownLocale];
-    byId('markdown').dir = state.markdownLocale === 'fa' ? 'rtl' : 'ltr';
-    document.querySelectorAll('[data-language]').forEach((tab) => tab.setAttribute('aria-pressed', String(tab === button)));
-    byId('word-count').textContent = `${wordCount(byId('markdown').value)} words`;
-    byId('preview').dir = state.markdownLocale === 'fa' ? 'rtl' : 'ltr';
-    document.querySelector('.preview-language').textContent = state.markdownLocale === 'fa' ? 'فارسی' : 'English';
-    updatePreview();
-  }));
+  document.querySelectorAll('[data-language]').forEach((button) => button.addEventListener('click', () => switchMarkdownLocale(button.dataset.language)));
   for (const id of fields.filter((field) => field !== 'markdown')) {
     byId(id).addEventListener('input', () => {
-      if (id === 'title-en' && !state.currentSlug) byId('slug').value = slugify(byId(id).value);
+      if ((id === 'title-en' || id === 'title-fa') && !state.currentSlug && !state.slugEdited) {
+        const englishSlug = slugify(byId('title-en').value);
+        const hasTitle = byId('title-en').value.trim() || byId('title-fa').value.trim();
+        byId('slug').value = englishSlug || (hasTitle ? `article-${byId('date').value.replace(/-/g, '')}` : '');
+      }
+      byId(id).removeAttribute('aria-invalid');
       setStatus('Unsaved changes', true);
     });
   }
+  byId('slug').addEventListener('input', () => {
+    state.slugEdited = true;
+    byId('slug').removeAttribute('aria-invalid');
+  });
   byId('image-file').addEventListener('change', (event) => selectImage(event.target.files[0]));
   for (const id of ['crop-ratio', 'crop-x', 'crop-y']) byId(id).addEventListener('input', () => {
     byId('image-preview-img').style.objectPosition = `${byId('crop-x').value}% ${byId('crop-y').value}%`;

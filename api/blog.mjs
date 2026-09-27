@@ -105,39 +105,61 @@ function slugValue(value) {
   return typeof value === 'string' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value) ? value : '';
 }
 
-function validLocalizedText(value, required = true) {
-  return value && typeof value === 'object' && ['fa', 'en'].every((locale) =>
-    typeof value[locale] === 'string' && (!required || value[locale].trim().length > 0)
-  );
+function isIsoDate(value) {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
 }
 
 function validatePost(post) {
+  const fields = {};
+  const published = Boolean(post?.published);
   const slug = slugValue(post?.slug);
-  if (!slug || !/^[a-z0-9-]+$/.test(post.category || '')) return null;
-  if (!validLocalizedText(post.title) || !validLocalizedText(post.description) || !validLocalizedText(post.markdown)) return null;
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(post.date || '')) return null;
-  if (post.answerSummary && !validLocalizedText(post.answerSummary, false)) return null;
-  if (post.keywords && !validLocalizedText(post.keywords, false)) return null;
+  if (!slug) fields.slug = 'Use lowercase English letters and numbers separated by hyphens.';
+  if (typeof post?.category !== 'string' || !/^[a-z0-9-]+$/.test(post.category)) fields.category = 'Choose a category.';
+  if (!isIsoDate(post?.date)) {
+    fields.date = 'Choose a valid publication date.';
+  }
+
+  const localized = (value, key, required, limit) => {
+    const result = {};
+    for (const locale of ['fa', 'en']) {
+      const text = value && typeof value === 'object' && typeof value[locale] === 'string' ? value[locale] : '';
+      if (required && !text.trim()) fields[`${key}.${locale}`] = `Add the ${locale === 'fa' ? 'Persian' : 'English'} ${key}.`;
+      if (text.length > limit) fields[`${key}.${locale}`] = `Keep the ${locale === 'fa' ? 'Persian' : 'English'} ${key} under ${limit} characters.`;
+      result[locale] = key === 'markdown' ? text : text.trim();
+    }
+    return result;
+  };
+
+  const title = localized(post?.title, 'title', published, 150);
+  const description = localized(post?.description, 'description', published, 240);
+  const markdown = localized(post?.markdown, 'markdown', published, 200_000);
+  const answerSummary = localized(post?.answerSummary, 'answerSummary', false, 500);
+  const keywords = localized(post?.keywords, 'keywords', false, 300);
+  if (Object.keys(fields).length) return { fields };
 
   return {
-    slug,
+    post: {
     category: post.category,
+    slug,
     date: post.date,
     updated: new Date().toISOString().slice(0, 10),
-    title: post.title,
-    description: post.description,
-    markdown: post.markdown,
+    title,
+    description,
+    markdown,
     readingMinutes: Math.max(1, Math.ceil(Math.max(
-      post.markdown.fa.trim().split(/\s+/).length,
-      post.markdown.en.trim().split(/\s+/).length
+      markdown.fa.trim().split(/\s+/).filter(Boolean).length,
+      markdown.en.trim().split(/\s+/).filter(Boolean).length
     ) / 200)),
-    answerSummary: post.answerSummary || { fa: '', en: '' },
-    keywords: post.keywords || { fa: '', en: '' },
+    answerSummary,
+    keywords,
     coverImage: typeof post.coverImage === 'string' && /^\/assets\/blog\/[a-z0-9-]+\/[a-z0-9._-]+\.webp$/.test(post.coverImage)
       ? post.coverImage
       : '',
     cta: ['consultation', 'demo', 'audit'].includes(post.cta) ? post.cta : 'consultation',
-    published: Boolean(post.published),
+    published,
+    },
   };
 }
 
@@ -192,13 +214,17 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'POST' && action === 'save') {
-      const post = validatePost(req.body?.post);
-      if (!post) return send(res, 400, { error: 'Check the article fields and try again.' });
+      const validation = validatePost(req.body?.post);
+      if (validation.fields) return send(res, 400, { error: 'Fix the marked article fields.', fields: validation.fields });
+      const post = validation.post;
       const categoryFile = await github(`src/data/blog.mjs?ref=${encodeURIComponent(repositoryConfig().branch)}`);
       if (!categoryFile) return send(res, 503, { error: 'Blog categories could not be loaded.' });
       const categorySource = Buffer.from(categoryFile.content, 'base64').toString('utf8');
       if (!categorySource.includes(`slug: '${post.category}'`)) {
-        return send(res, 400, { error: 'Select an existing blog category.' });
+        return send(res, 400, { error: 'Fix the marked article fields.', fields: { category: 'Choose an existing category.' } });
+      }
+      if (categorySource.includes(`slug: '${post.slug}'`)) {
+        return send(res, 400, { error: 'Fix the marked article fields.', fields: { slug: 'This URL is already used by a built-in blog page.' } });
       }
       const path = `${CONTENT_DIR}/${post.slug}.json`;
       await writeFile(path, JSON.stringify(post, null, 2), `${post.published ? 'Publish' : 'Save'} blog article: ${post.slug}`);
