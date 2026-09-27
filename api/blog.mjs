@@ -113,7 +113,9 @@ function isIsoDate(value) {
 
 function validatePost(post) {
   const fields = {};
+  if (!post || typeof post !== 'object' || Array.isArray(post)) return { fields: { post: 'Article data is missing.' } };
   const published = Boolean(post?.published);
+  if (post.published !== undefined && typeof post.published !== 'boolean') fields.published = 'Choose draft or published status.';
   const slug = slugValue(post?.slug);
   if (!slug) fields.slug = 'Use lowercase English letters and numbers separated by hyphens.';
   if (typeof post?.category !== 'string' || !/^[a-z0-9-]+$/.test(post.category)) fields.category = 'Choose a category.';
@@ -123,7 +125,13 @@ function validatePost(post) {
 
   const localized = (value, key, required, limit) => {
     const result = {};
+    if (value !== undefined && value !== null && (typeof value !== 'object' || Array.isArray(value))) {
+      fields[key] = `Provide ${key} separately for Persian and English.`;
+    }
     for (const locale of ['fa', 'en']) {
+      if (value?.[locale] !== undefined && typeof value[locale] !== 'string') {
+        fields[`${key}.${locale}`] = `Provide the ${locale === 'fa' ? 'Persian' : 'English'} ${key} as text.`;
+      }
       const text = value && typeof value === 'object' && typeof value[locale] === 'string' ? value[locale] : '';
       if (required && !text.trim()) fields[`${key}.${locale}`] = `Add the ${locale === 'fa' ? 'Persian' : 'English'} ${key}.`;
       if (text.length > limit) fields[`${key}.${locale}`] = `Keep the ${locale === 'fa' ? 'Persian' : 'English'} ${key} under ${limit} characters.`;
@@ -137,6 +145,10 @@ function validatePost(post) {
   const markdown = localized(post?.markdown, 'markdown', published, 200_000);
   const answerSummary = localized(post?.answerSummary, 'answerSummary', false, 500);
   const keywords = localized(post?.keywords, 'keywords', false, 300);
+  if (post.cta !== undefined && !['consultation', 'demo', 'audit'].includes(post.cta)) fields.cta = 'Choose a valid call to action.';
+  if (post.coverImage && (typeof post.coverImage !== 'string' || !/^\/assets\/blog\/[a-z0-9-]+\/[a-z0-9._-]+\.webp$/.test(post.coverImage))) {
+    fields.coverImage = 'Choose a WebP image uploaded through the editor.';
+  }
   if (Object.keys(fields).length) return { fields };
 
   return {
@@ -154,10 +166,8 @@ function validatePost(post) {
     ) / 200)),
     answerSummary,
     keywords,
-    coverImage: typeof post.coverImage === 'string' && /^\/assets\/blog\/[a-z0-9-]+\/[a-z0-9._-]+\.webp$/.test(post.coverImage)
-      ? post.coverImage
-      : '',
-    cta: ['consultation', 'demo', 'audit'].includes(post.cta) ? post.cta : 'consultation',
+    coverImage: post.coverImage || '',
+    cta: post.cta || 'consultation',
     published,
     },
   };

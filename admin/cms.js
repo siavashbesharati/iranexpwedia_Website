@@ -205,11 +205,17 @@ function showValidation(errors) {
     'title.en': 'English title', 'title.fa': 'Persian title',
     'description.en': 'English description', 'description.fa': 'Persian description',
     'markdown.en': 'English article body', 'markdown.fa': 'Persian article body',
+    'answerSummary.en': 'English quick answer', 'answerSummary.fa': 'Persian quick answer',
+    'keywords.en': 'English search phrases', 'keywords.fa': 'Persian search phrases',
+    cta: 'Call to action', coverImage: 'Social cover image',
   };
   const ids = {
     slug: 'slug', category: 'category', date: 'date',
     'title.en': 'title-en', 'title.fa': 'title-fa',
     'description.en': 'description-en', 'description.fa': 'description-fa',
+    'answerSummary.en': 'answer-en', 'answerSummary.fa': 'answer-fa',
+    'keywords.en': 'keywords-en', 'keywords.fa': 'keywords-fa',
+    cta: 'cta', coverImage: 'set-cover',
   };
   const entries = Object.entries(errors || {});
   if (!entries.length) return false;
