@@ -53,13 +53,23 @@ In **Vercel Project Settings → Environment Variables**, set:
 | --- | --- |
 | `BLOG_ADMIN_PASSWORD` | A strong, unique password for `/admin` |
 | `GITHUB_TOKEN` | Fine-grained GitHub token with Contents read/write access to this repository |
+| `GEMINI_API_KEY` | Google AI Studio Gemini API key; required only for link-based article generation |
+| `GEMINI_MODEL` | Optional default model: `gemini-3.8-flash`; the editor also offers supported Flash models |
 
 The CMS is pinned to `siavashbesharati/iranexpwedia_Website` on `main`; do not
 set `GITHUB_REPOSITORY` or `GITHUB_BRANCH` because the API ignores them. Add the
-two required variables to Production and Preview only if you intend to manage
-posts there. Vercel builds use `node build.mjs` as configured in `vercel.json`.
-Do not put the GitHub token or admin password in site files. A CMS save creates
-a Git commit, which starts the normal Vercel deployment.
+required CMS variables to Production and Preview only if you intend to manage
+posts there. Add `GEMINI_API_KEY` to the same Vercel environments to enable
+generation. `GEMINI_MODEL` is an optional default; supported models are also
+selected in the editor. Vercel builds use `node build.mjs` as configured in
+`vercel.json`. Do not put API keys or the admin password in site files. A CMS
+save creates a Git commit, which starts the normal Vercel deployment.
+
+The editor's **Generate bilingual draft** action uses Gemini URL Context to read
+a public source page and produce Persian and English metadata and Markdown. It
+does not save or publish automatically. Review both versions, facts, and source
+attribution before saving. URL Context cannot read paywalled/login-only pages,
+and Google AI Studio usage is subject to its current model quotas and pricing.
 
 This keeps content durable without a paid database or storage service. SQLite
 and local filesystem writes are not suitable for persistence on Vercel

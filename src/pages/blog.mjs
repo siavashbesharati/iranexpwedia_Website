@@ -216,6 +216,15 @@ function renderBlocks(blocks) {
     .join('\n');
 }
 
+function sourceHref(value) {
+  try {
+    const url = new URL(value);
+    return ['http:', 'https:'].includes(url.protocol) && !url.username && !url.password ? url.href : '';
+  } catch {
+    return '';
+  }
+}
+
 export function postPage(locale, post, assets, allPosts = posts) {
   const str = s(locale);
   const path = routes.post(post.slug);
@@ -235,6 +244,7 @@ export function postPage(locale, post, assets, allPosts = posts) {
   const related = sortPosts(allPosts).filter((item) => item.slug !== post.slug).slice(0, 2);
   const answerSummary = t(post.answerSummary, locale);
   const keywords = t(post.keywords, locale);
+  const sourceUrl = sourceHref(post.sourceUrl);
 
   const body = `<article>
 <section class="hero-page">
@@ -257,6 +267,7 @@ export function postPage(locale, post, assets, allPosts = posts) {
 <section class="section">
   <div class="container container-narrow">
     ${answerSummary ? `<aside class="answer-summary"><strong>${esc(t({ fa: 'پاسخ کوتاه', en: 'Quick answer' }, locale))}</strong><p>${esc(answerSummary)}</p></aside>` : ''}
+    ${sourceUrl ? `<p class="source-reference">${esc(t({ fa: 'منبع مقاله:', en: 'Source article:' }, locale))} <a href="${esc(sourceUrl)}" rel="nofollow noopener" target="_blank">${esc(new URL(sourceUrl).hostname)}</a></p>` : ''}
     <div class="prose" style="max-width:none">
       ${articleContent}
     </div>
@@ -301,6 +312,7 @@ export function postPage(locale, post, assets, allPosts = posts) {
     articleSection: t(category.title, locale),
     abstract: answerSummary || t(post.description, locale),
     keywords,
+    ...(sourceUrl ? { isBasedOn: sourceUrl } : {}),
     wordCount: markdown === null
       ? blocks.reduce((sum, block) => sum + String(block.p || block.h2 || block.quote || (block.ul || block.ol || []).join(' ')).split(/\s+/).length, 0)
       : markdownWordCount(markdown),

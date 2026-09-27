@@ -1,5 +1,5 @@
 const byId = (id) => document.getElementById(id);
-const fields = ['title-en', 'title-fa', 'slug', 'category', 'date', 'description-en', 'description-fa', 'answer-en', 'answer-fa', 'keywords-en', 'keywords-fa', 'cta', 'markdown'];
+const fields = ['title-en', 'title-fa', 'slug', 'category', 'date', 'source-url', 'description-en', 'description-fa', 'answer-en', 'answer-fa', 'keywords-en', 'keywords-fa', 'cta', 'markdown'];
 const categories = [
   ['business-growth', 'Business Growth', 'رشد کسب‌وکار'],
   ['marketing', 'Marketing', 'بازاریابی'],
@@ -126,6 +126,17 @@ async function loadPosts() {
   const result = await request('posts');
   state.posts = result.posts || [];
   renderPostList();
+  try {
+    const settings = await request('settings');
+    byId('gemini-model').value = settings.gemini.defaultModel;
+    byId('generate-from-url').disabled = !settings.gemini.configured;
+    if (!settings.gemini.configured) {
+      byId('generator-status').textContent = 'Add GEMINI_API_KEY in Vercel settings to enable generation.';
+    }
+  } catch (error) {
+    byId('generator-status').textContent = error.message;
+    byId('generator-status').dataset.state = 'error';
+  }
 }
 
 function renderPostList() {
@@ -162,6 +173,7 @@ function readForm() {
     markdown: { ...state.markdown },
     cta: byId('cta').value,
     coverImage: state.coverImage,
+    sourceUrl: byId('source-url').value.trim(),
   };
 }
 
@@ -169,6 +181,12 @@ function validateForm(post, published) {
   const errors = {};
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(post.slug)) errors.slug = 'Use a lowercase English URL slug with hyphens, for example local-seo-guide.';
   if (!categories.some(([slug]) => slug === post.category)) errors.category = 'Choose a blog category.';
+  if (post.sourceUrl) {
+    try {
+      const url = new URL(post.sourceUrl);
+      if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password) errors.sourceUrl = 'Enter a public http or https URL without sign-in details.';
+    } catch { errors.sourceUrl = 'Enter a valid source URL.'; }
+  }
   const date = new Date(`${post.date}T00:00:00Z`);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(post.date) || !Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== post.date) {
     errors.date = 'Choose a valid publication date.';
@@ -208,7 +226,7 @@ function showValidation(errors) {
     'markdown.en': 'English article body', 'markdown.fa': 'Persian article body',
     'answerSummary.en': 'English quick answer', 'answerSummary.fa': 'Persian quick answer',
     'keywords.en': 'English search phrases', 'keywords.fa': 'Persian search phrases',
-    cta: 'Call to action', coverImage: 'Social cover image',
+    cta: 'Call to action', coverImage: 'Social cover image', sourceUrl: 'Source URL',
   };
   const ids = {
     slug: 'slug', category: 'category', date: 'date',
@@ -216,7 +234,7 @@ function showValidation(errors) {
     'description.en': 'description-en', 'description.fa': 'description-fa',
     'answerSummary.en': 'answer-en', 'answerSummary.fa': 'answer-fa',
     'keywords.en': 'keywords-en', 'keywords.fa': 'keywords-fa',
-    cta: 'cta', coverImage: 'set-cover',
+    cta: 'cta', coverImage: 'set-cover', sourceUrl: 'source-url',
   };
   const entries = Object.entries(errors || {});
   if (!entries.length) return false;
@@ -243,6 +261,7 @@ function openPost(post) {
   byId('title-en').value = post.title?.en || '';
   byId('title-fa').value = post.title?.fa || '';
   byId('slug').value = post.slug || '';
+  byId('source-url').value = post.sourceUrl || '';
   byId('category').value = post.category || categories[0][0];
   byId('date').value = post.date || new Date().toISOString().slice(0, 10);
   byId('description-en').value = post.description?.en || '';
@@ -273,6 +292,7 @@ function newPost() {
   state.markdown = { en: '', fa: '' };
   state.markdownLocale = 'en';
   state.coverImage = '';
+  byId('source-url').value = '';
   document.querySelectorAll('[data-language]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.language === 'en')));
   byId('markdown').dir = 'ltr';
   byId('preview').dir = 'ltr';
@@ -320,6 +340,66 @@ async function savePost(published) {
     if (!showValidation(error.fields)) notify(error.message);
   } finally {
     button.disabled = false;
+  }
+}
+
+async function generateFromSource() {
+  const url = byId('source-url').value.trim();
+  const button = byId('generate-from-url');
+  const status = byId('generator-status');
+  if (!url) {
+    status.textContent = 'Enter the public article URL first.';
+    status.dataset.state = 'error';
+    byId('source-url').setAttribute('aria-invalid', 'true');
+    byId('source-url').focus();
+    return;
+  }
+  if (state.dirty && !window.confirm('Replace the unsaved article with a generated draft?')) return;
+
+  button.disabled = true;
+  button.textContent = 'Reading and drafting…';
+  status.textContent = 'Gemini is reading the source and preparing both languages. This can take a little while.';
+  status.dataset.state = '';
+  byId('source-url').removeAttribute('aria-invalid');
+  try {
+    const result = await request('generate', { url, model: byId('gemini-model').value });
+    const article = result.article;
+    state.currentSlug = '';
+    state.slugEdited = true;
+    state.markdown = { en: article.markdown.en, fa: article.markdown.fa };
+    state.markdownLocale = 'en';
+    state.coverImage = '';
+    byId('title-en').value = article.title.en;
+    byId('title-fa').value = article.title.fa;
+    byId('slug').value = article.suggestedSlug;
+    byId('category').value = article.category;
+    byId('date').value = new Date().toISOString().slice(0, 10);
+    byId('description-en').value = article.description.en;
+    byId('description-fa').value = article.description.fa;
+    byId('answer-en').value = article.answerSummary.en;
+    byId('answer-fa').value = article.answerSummary.fa;
+    byId('keywords-en').value = article.keywords.en;
+    byId('keywords-fa').value = article.keywords.fa;
+    byId('markdown').value = article.markdown.en;
+    byId('markdown').dir = 'ltr';
+    byId('cta').value = article.cta;
+    byId('source-url').value = result.sourceUrl;
+    byId('delete-post').hidden = true;
+    document.querySelectorAll('[data-language]').forEach((tab) => tab.setAttribute('aria-pressed', String(tab.dataset.language === 'en')));
+    byId('preview').dir = 'ltr';
+    document.querySelector('.preview-language').textContent = 'English';
+    renderPostList();
+    updatePreview();
+    setStatus('Generated draft', true);
+    status.textContent = `Draft generated with ${result.model}. Review both languages, then save or publish.`;
+    status.dataset.state = 'success';
+    byId('title-en').focus();
+  } catch (error) {
+    status.textContent = error.message;
+    status.dataset.state = 'error';
+  } finally {
+    button.disabled = false;
+    button.textContent = 'Generate bilingual draft';
   }
 }
 
@@ -417,6 +497,7 @@ function init() {
   byId('save-draft').addEventListener('click', () => savePost(false));
   byId('publish-post').addEventListener('click', () => savePost(true));
   byId('delete-post').addEventListener('click', deletePost);
+  byId('generate-from-url').addEventListener('click', generateFromSource);
   byId('markdown').addEventListener('input', () => { updatePreview(); setStatus('Unsaved changes', true); });
   document.querySelectorAll('[data-language]').forEach((button) => button.addEventListener('click', () => switchMarkdownLocale(button.dataset.language)));
   for (const id of fields.filter((field) => field !== 'markdown')) {

@@ -1,3 +1,4 @@
+.source-reference{margin:0 0 var(--space-2);color:var(--text-muted);font-size:var(--step--1)}.source-reference a{color:var(--accent);text-decoration:underline;text-underline-offset:.15em}
 /* ==========================================================================
    iranexpedia.ir — design tokens + components
    Light theme only. Logical properties throughout so the same stylesheet

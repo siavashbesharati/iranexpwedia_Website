@@ -40,6 +40,15 @@
           <div class="toolbar-actions"><button class="button button-quiet" id="delete-post" type="button" hidden>Delete</button><button class="button button-secondary" id="save-draft" type="button">Save draft</button><button class="button button-primary" id="publish-post" type="button">Publish</button></div>
         </div>
 
+        <section class="source-generator" aria-label="Generate article from a source link">
+          <div class="source-generator-fields">
+            <label>Source article URL<input id="source-url" type="url" inputmode="url" maxlength="2048" placeholder="https://example.com/article" autocomplete="url" /></label>
+            <label>Gemini model<select id="gemini-model"><option value="gemini-3.8-flash">Gemini 3.8 Flash · recommended</option><option value="gemini-3.7-flash">Gemini 3.7 Flash</option><option value="gemini-3.6-flash">Gemini 3.6 Flash</option></select></label>
+            <button class="button button-primary generate-button" id="generate-from-url" type="button">Generate bilingual draft</button>
+          </div>
+          <p class="generator-status" id="generator-status" role="status">Reads the public page, then fills the editor for your review. It will not save or publish automatically.</p>
+        </section>
+
         <div class="fields">
           <div class="field-grid field-grid-top">
             <label>Article title · English<input id="title-en" maxlength="150" placeholder="A clear, useful title" /></label>
