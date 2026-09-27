@@ -5,6 +5,8 @@ const CONTENT_DIR = 'src/data/blog-cms';
 const COOKIE_NAME = 'ix_blog_admin';
 const SESSION_SECONDS = 60 * 60 * 12;
 const MAX_IMAGE_BYTES = 750_000;
+const GITHUB_REPOSITORY = 'siavashbesharati/iranexpwedia_Website';
+const GITHUB_BRANCH = 'main';
 
 function send(res, status, payload, headers = {}) {
   res.setHeader('Cache-Control', 'no-store');
@@ -49,14 +51,12 @@ function sessionCookie(req, value, maxAge) {
 }
 
 function repositoryConfig() {
-  const repository = process.env.GITHUB_REPOSITORY || '';
-  if (!process.env.GITHUB_TOKEN || !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repository)) {
-    throw new Error('CMS_GITHUB_CONFIGURATION');
-  }
+  const token = process.env.GITHUB_TOKEN || '';
+  if (!token) throw new Error('CMS_GITHUB_CONFIGURATION');
   return {
-    repository,
-    branch: process.env.GITHUB_BRANCH || 'main',
-    token: process.env.GITHUB_TOKEN,
+    repository: GITHUB_REPOSITORY,
+    branch: GITHUB_BRANCH,
+    token,
   };
 }
 
@@ -203,7 +203,7 @@ function imagePayload(body) {
 function githubFailureMessage(status) {
   if (status === 401) return 'GitHub rejected GITHUB_TOKEN. Check that the token is current, then redeploy after updating it.';
   if (status === 403) return 'GitHub denied access. Give this token Contents read/write permission for the selected repository and approve it if required.';
-  if (status === 404) return 'GitHub could not access this repository or branch. Check GITHUB_REPOSITORY, GITHUB_BRANCH, and the token repository selection.';
+  if (status === 404) return 'GitHub hid the repository or main branch from this token. Grant this token access to siavashbesharati/iranexpwedia_Website.';
   if (status === 409) return 'The GitHub branch changed during this save. Retry once the latest deployment finishes.';
   if (status === 422) return 'GitHub rejected the commit. Check branch protection or repository rules for the configured branch.';
   if (status >= 500) return 'GitHub is temporarily unavailable. Try saving again shortly.';

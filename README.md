@@ -53,14 +53,13 @@ In **Vercel Project Settings → Environment Variables**, set:
 | --- | --- |
 | `BLOG_ADMIN_PASSWORD` | A strong, unique password for `/admin` |
 | `GITHUB_TOKEN` | Fine-grained GitHub token with Contents read/write access to this repository |
-| `GITHUB_REPOSITORY` | Repository in `owner/name` format |
-| `GITHUB_BRANCH` | Production branch, normally `main` |
 
-Add the variables to Production and Preview only if you intend to manage posts
-there. Vercel builds use `node build.mjs` as configured in `vercel.json`; the
-connected GitHub production branch must match `GITHUB_BRANCH`. Do not put the
-GitHub token or admin password in site files. A CMS save creates a Git commit,
-which starts the normal Vercel deployment.
+The CMS is pinned to `siavashbesharati/iranexpwedia_Website` on `main`; do not
+set `GITHUB_REPOSITORY` or `GITHUB_BRANCH` because the API ignores them. Add the
+two required variables to Production and Preview only if you intend to manage
+posts there. Vercel builds use `node build.mjs` as configured in `vercel.json`.
+Do not put the GitHub token or admin password in site files. A CMS save creates
+a Git commit, which starts the normal Vercel deployment.
 
 This keeps content durable without a paid database or storage service. SQLite
 and local filesystem writes are not suitable for persistence on Vercel
