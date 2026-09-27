@@ -98,7 +98,8 @@ function notify(message) {
 }
 
 async function request(action, body) {
-  const response = await fetch('/api/blog', {
+  const url = body ? '/api/blog' : `/api/blog?action=${encodeURIComponent(action)}`;
+  const response = await fetch(url, {
     method: body ? 'POST' : 'GET',
     credentials: 'same-origin',
     headers: body ? { 'Content-Type': 'application/json' } : {},

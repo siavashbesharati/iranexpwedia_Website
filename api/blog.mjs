@@ -1,4 +1,5 @@
 import { createHmac, timingSafeEqual } from 'node:crypto';
+import { categories } from '../src/data/blog.mjs';
 
 const CONTENT_DIR = 'src/data/blog-cms';
 const COOKIE_NAME = 'ix_blog_admin';
@@ -82,7 +83,8 @@ async function github(path, options = {}) {
 }
 
 async function existingSha(path) {
-  const item = await github(path);
+  const branch = encodeURIComponent(repositoryConfig().branch);
+  const item = await github(`${path}?ref=${branch}`);
   return item?.sha;
 }
 
@@ -227,13 +229,10 @@ export default async function handler(req, res) {
       const validation = validatePost(req.body?.post);
       if (validation.fields) return send(res, 400, { error: 'Fix the marked article fields.', fields: validation.fields });
       const post = validation.post;
-      const categoryFile = await github(`src/data/blog.mjs?ref=${encodeURIComponent(repositoryConfig().branch)}`);
-      if (!categoryFile) return send(res, 503, { error: 'Blog categories could not be loaded.' });
-      const categorySource = Buffer.from(categoryFile.content, 'base64').toString('utf8');
-      if (!categorySource.includes(`slug: '${post.category}'`)) {
+      if (!categories.some((category) => category.slug === post.category)) {
         return send(res, 400, { error: 'Fix the marked article fields.', fields: { category: 'Choose an existing category.' } });
       }
-      if (categorySource.includes(`slug: '${post.slug}'`)) {
+      if (categories.some((category) => category.slug === post.slug)) {
         return send(res, 400, { error: 'Fix the marked article fields.', fields: { slug: 'This URL is already used by a built-in blog page.' } });
       }
       const path = `${CONTENT_DIR}/${post.slug}.json`;
