@@ -195,6 +195,16 @@ function imagePayload(body) {
   return { slug, name, bytes };
 }
 
+function githubFailureMessage(status) {
+  if (status === 401) return 'GitHub rejected GITHUB_TOKEN. Check that the token is current, then redeploy after updating it.';
+  if (status === 403) return 'GitHub denied access. Give this token Contents read/write permission for the selected repository and approve it if required.';
+  if (status === 404) return 'GitHub could not access this repository or branch. Check GITHUB_REPOSITORY, GITHUB_BRANCH, and the token repository selection.';
+  if (status === 409) return 'The GitHub branch changed during this save. Retry once the latest deployment finishes.';
+  if (status === 422) return 'GitHub rejected the commit. Check branch protection or repository rules for the configured branch.';
+  if (status >= 500) return 'GitHub is temporarily unavailable. Try saving again shortly.';
+  return 'GitHub could not save this article. Check the repository and token settings.';
+}
+
 export default async function handler(req, res) {
   const action = req.method === 'GET' ? req.query?.action : req.body?.action;
 
@@ -267,6 +277,12 @@ export default async function handler(req, res) {
       return send(res, 503, { error: 'GitHub storage settings are incomplete.' });
     }
     console.error('Blog CMS request failed', error.message);
-    return send(res, error.status === 409 ? 409 : 502, { error: 'Could not save to GitHub. Check the repository settings.' });
+    if (error.status) {
+      return send(res, error.status === 409 ? 409 : 502, { error: githubFailureMessage(error.status) });
+    }
+    if (error instanceof TypeError) {
+      return send(res, 502, { error: 'Could not reach the GitHub API. Try again, then check Vercel Function logs if it continues.' });
+    }
+    return send(res, 502, { error: 'GitHub could not save this article. Check Vercel Function logs for the request status.' });
   }
 }
