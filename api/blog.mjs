@@ -315,6 +315,12 @@ export default async function handler(req, res) {
       if (error.status === 404) {
         return send(res, 502, { error: 'Gemini model was not found. Choose a supported model in the editor or check GEMINI_MODEL.' });
       }
+      if (error.status === 400) {
+        return send(res, 502, { error: 'Gemini rejected the request. Check the selected model and Vercel Function logs for the provider response.' });
+      }
+      if (error.status >= 500) {
+        return send(res, 502, { error: `Gemini returned HTTP ${error.status}. Try again shortly; check Google AI Studio status if it continues.` });
+      }
       console.error('Gemini generation failed', error.status || 'unknown');
       return send(res, error.status === 422 ? 422 : 502, { error: 'Gemini could not generate this draft. Check the API key, model availability, and Vercel Function logs.' });
     }

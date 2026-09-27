@@ -99,18 +99,25 @@ function notify(message) {
 
 async function request(action, body) {
   const url = body ? '/api/blog' : `/api/blog?action=${encodeURIComponent(action)}`;
-  const response = await fetch(url, {
-    method: body ? 'POST' : 'GET',
-    credentials: 'same-origin',
-    headers: body ? { 'Content-Type': 'application/json' } : {},
-    body: body ? JSON.stringify({ action, ...body }) : undefined,
-  });
-  const result = await response.json().catch(() => ({}));
+  let response;
+  try {
+    response = await fetch(url, {
+      method: body ? 'POST' : 'GET',
+      credentials: 'same-origin',
+      headers: body ? { 'Content-Type': 'application/json' } : {},
+      body: body ? JSON.stringify({ action, ...body }) : undefined,
+    });
+  } catch {
+    throw new Error('Could not reach the CMS API. Check the deployment and try again.');
+  }
+  const result = await response.json().catch(() => null);
   if (!response.ok) {
-    const error = new Error(result.error || 'Something went wrong.');
-    error.fields = result.fields;
+    const error = new Error(result?.error || `CMS request failed (HTTP ${response.status}). Check the Vercel Function logs.`);
+    error.fields = result?.fields;
+    error.status = response.status;
     throw error;
   }
+  if (!result) throw new Error(`CMS returned an unreadable response (HTTP ${response.status}). Check the Vercel Function logs.`);
   return result;
 }
 
@@ -132,10 +139,13 @@ async function loadPosts() {
     byId('generate-from-url').disabled = !settings.gemini.configured;
     if (!settings.gemini.configured) {
       byId('generator-status').textContent = 'Add GEMINI_API_KEY in Vercel settings to enable generation.';
+      byId('generator-status').dataset.state = 'error';
+      byId('generator-status').setAttribute('role', 'alert');
     }
   } catch (error) {
     byId('generator-status').textContent = error.message;
     byId('generator-status').dataset.state = 'error';
+    byId('generator-status').setAttribute('role', 'alert');
   }
 }
 
@@ -350,6 +360,7 @@ async function generateFromSource() {
   if (!url) {
     status.textContent = 'Enter the public article URL first.';
     status.dataset.state = 'error';
+    status.setAttribute('role', 'alert');
     byId('source-url').setAttribute('aria-invalid', 'true');
     byId('source-url').focus();
     return;
@@ -359,7 +370,8 @@ async function generateFromSource() {
   button.disabled = true;
   button.textContent = 'Reading and drafting…';
   status.textContent = 'Gemini is reading the source and preparing both languages. This can take a little while.';
-  status.dataset.state = '';
+  status.dataset.state = 'busy';
+  status.setAttribute('role', 'status');
   byId('source-url').removeAttribute('aria-invalid');
   try {
     const result = await request('generate', { url, model: byId('gemini-model').value });
@@ -393,10 +405,12 @@ async function generateFromSource() {
     setStatus('Generated draft', true);
     status.textContent = `Draft generated with ${result.model}. Review both languages, then save or publish.`;
     status.dataset.state = 'success';
+    status.setAttribute('role', 'status');
     byId('title-en').focus();
   } catch (error) {
     status.textContent = error.message;
     status.dataset.state = 'error';
+    status.setAttribute('role', 'alert');
   } finally {
     button.disabled = false;
     button.textContent = 'Generate bilingual draft';
